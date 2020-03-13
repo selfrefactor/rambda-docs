@@ -9,7 +9,5 @@ export class FooComponent implements OnInit {
   name = 'foo'
   constructor() {}
 
-  ngOnInit() {
-    console.log(1)
-  }
+  ngOnInit() {}
 }

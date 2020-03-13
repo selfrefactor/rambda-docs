@@ -1,4 +1,6 @@
 <div
   [ngStyle]="{'background-color':background ? background : '#fafafa' }"
   class="grid"
->{{demoContent}}</div>
+>
+  <ng-content></ng-content>
+</div>
