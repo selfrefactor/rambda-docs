@@ -1,15 +1,29 @@
 {
   "name": "rambda-docs",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
+    "component": "ng g component --skipTests",
+    "class": "ng g class --skipTests",
+    "directive": "ng g directive --skipTests",
+    "service": "ng g service --skipTests",
+    "pipe": "ng g pipe --skipTests",
     "ng": "ng",
+    "in": "ng serve",
     "start": "ng serve",
-    "build": "ng build",
+    "out": "ng build",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "lint": "ng lint --fix --force=true",
+    "doc": "compodoc -p tsconfig.app.json",
+    "story": "start-storybook -p 6006",
+    "build": "build-storybook"
   },
   "private": true,
+  "jest": {
+    "preset": "jest-preset-angular",
+    "transformIgnorePatterns": [
+      "node_modules/(?!@ngrx|angular2-ui-switch|ng-dynamic)"
+    ]
+  },
   "dependencies": {
     "@angular/animations": "^9.0.6",
     "@angular/cdk": "9.0.0",
@@ -21,9 +35,11 @@
     "@angular/platform-browser": "9.0.6",
     "@angular/platform-browser-dynamic": "9.0.6",
     "@angular/router": "9.0.6",
-    "rambdax": "^3.7.0",
+    "rambdax": "^3.6.0",
+    "roughjs": "4.0.4",
     "rxjs": "^7.0.0-alpha.1",
     "tslib": "^1.11.1",
+    "wired-elements": "^2.0.0",
     "zone.js": "^0.10.2"
   },
   "devDependencies": {
@@ -48,5 +64,8 @@
     "ts-node": "^8.6.2",
     "tslint": "^6.0.0",
     "typescript": "3.7.2"
-  }
+  },
+  "depFn": [
+    "typescript"
+  ]
 }
