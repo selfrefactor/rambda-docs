@@ -1,7 +1,7 @@
 import {delay} from 'rambdax'
 import {interval} from 'rxjs'
 import {take, publish, refCount} from 'rxjs/operators'
-import { foo } from './foo'
+import {foo} from './foo'
 
 test('happy', () => {
   console.log(foo(1))

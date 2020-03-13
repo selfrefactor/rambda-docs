@@ -67,5 +67,8 @@
   },
   "depFn": [
     "typescript"
-  ]
+  ],
+  "commitMessage": {
+    "workInProgress": "grid story"
+  }
 }

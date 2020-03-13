@@ -11,7 +11,8 @@ import {WordsComponent} from './words/words.component'
 import {BarComponent} from './bar/bar.component'
 import {FooPipe} from './foo.pipe'
 import {RoughDemoComponent} from './rough-demo/rough-demo.component'
-import {MatSliderModule} from '@angular/material/slider'
+import {MatSliderModule} from '@angular/material/slider';
+import { GridComponent } from './grid/grid.component'
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {MatSliderModule} from '@angular/material/slider'
     BarComponent,
     FooPipe,
     RoughDemoComponent,
+    GridComponent,
   ],
   imports: [
     BrowserModule,
