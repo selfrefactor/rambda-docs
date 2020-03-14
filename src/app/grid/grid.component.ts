@@ -1,7 +1,7 @@
 import {Component, Input, Output} from '@angular/core'
 
 @Component({
-  selector: 'app-grid',
+  selector: 'grid',
   templateUrl: './grid.component.html',
   styleUrls: ['./grid.component.scss'],
 })

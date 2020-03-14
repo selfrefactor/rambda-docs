@@ -1,5 +1,8 @@
-import {Component, Input, HostBinding} from '@angular/core'
+import {Component, Input, HostBinding, OnInit} from '@angular/core'
 import {DomSanitizer} from '@angular/platform-browser'
+import {ok, shuffle} from 'rambdax'
+
+const possibleOutlineColors = ['pink', 'green', 'red', 'blue', 'purple']
 
 interface TopLeft {
   x: number
@@ -10,13 +13,16 @@ interface TopLeft {
   selector: 'cell',
   templateUrl: './cell.component.html',
 })
-export class CellComponent{
+export class CellComponent implements OnInit {
+  @Input() outline: boolean
   @Input() width: number
   @Input() height: number
   @Input() topLeft: TopLeft
-  @Input() evalStyle: any
   constructor(private sanitizer: DomSanitizer) {}
 
+  ngOnInit() {
+    ok(this.width, this.height, this.topLeft)(Number, Number, {x: Number, y: Number})
+  }
   @HostBinding('style.grid-row')
   get gridRow() {
     return this.sanitizer.bypassSecurityTrustStyle(`${this.topLeft.y + 1} / span ${this.height}`)
@@ -25,10 +31,15 @@ export class CellComponent{
   get gridColumn() {
     return this.sanitizer.bypassSecurityTrustStyle(`${this.topLeft.x + 1} / span ${this.width}`)
   }
+  @HostBinding('style.outline')
+  get outlineCell() {
+    return this.outline ? `1px solid ${shuffle(possibleOutlineColors)[0]}` : null
+  }
 
   getStyle() {
     return {
       background: 'grey',
+      outline: '1px solid pink',
     }
   }
 }

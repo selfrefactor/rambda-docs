@@ -1,4 +1,3 @@
-
 import {HttpClientModule} from '@angular/common/http'
 import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core'
 import {FormsModule} from '@angular/forms'
@@ -12,15 +11,18 @@ import {MatSliderModule} from '@angular/material/slider'
 import {GridComponent} from './grid/grid.component'
 import {CellComponent} from './cell/cell.component'
 import {SubGridComponent} from './sub-grid/sub-grid.component'
+import {SingleMethodComponent} from './single-method/single-method.component'
+import {WholeComponent} from './whole/whole.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     FooComponent,
-
     GridComponent,
     CellComponent,
     SubGridComponent,
+    SingleMethodComponent,
+    WholeComponent,
   ],
   imports: [
     BrowserModule,

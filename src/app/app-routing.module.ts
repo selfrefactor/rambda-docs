@@ -1,11 +1,13 @@
 import {NgModule} from '@angular/core'
 import {RouterModule, Routes} from '@angular/router'
 import {FooComponent} from './foo/foo.component'
-
 import {GridComponent} from './grid/grid.component'
+import {SingleMethodComponent} from './single-method/single-method.component'
+import {WholeComponent} from './whole/whole.component'
 
 const routes: Routes = [
-  {path: '', component: FooComponent},
+  {path: '', component: WholeComponent},
+  {path: 'method', component: SingleMethodComponent},
   {path: 'grid', component: GridComponent},
   {path: 'foo', component: FooComponent},
 ]
