@@ -12,7 +12,7 @@ interface TopLeft {
   templateUrl: './cell.component.html',
 })
 export class CellComponent implements OnInit {
-  @Input() outline: boolean
+  @Input() debug: boolean
   @Input() width: number
   @Input() height: number
   @Input() topLeft: TopLeft
@@ -31,6 +31,10 @@ export class CellComponent implements OnInit {
   }
   @HostBinding('style.outline')
   get outlineCell() {
-    return this.outline ? '2px solid pink' : null
+    return this.debug ? '2px solid green' : null
+  }
+  @HostBinding('style.border')
+  get borderCell() {
+    return this.debug ? '2px solid red' : null
   }
 }

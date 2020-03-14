@@ -13,7 +13,7 @@ interface TopLeft {
   styleUrls: ['./sub-grid.component.scss'],
 })
 export class SubGridComponent implements OnInit {
-  @Input() outline: boolean
+  @Input() debug: boolean
   @Input() width: number
   @Input() height: number
   @Input() topLeft: TopLeft
@@ -32,6 +32,10 @@ export class SubGridComponent implements OnInit {
   }
   @HostBinding('style.outline')
   get outlineCell() {
-    return this.outline ? '2px solid green' : null
+    return this.debug ? '2px solid purple' : null
+  }
+  @HostBinding('style.border')
+  get borderCell() {
+    return this.debug ? '2px solid blue' : null
   }
 }

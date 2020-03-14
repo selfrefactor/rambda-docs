@@ -6,7 +6,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {AppRoutingModule} from './app-routing.module'
 import {AppComponent} from './app.component'
 import {FooComponent} from './foo/foo.component'
-
 import {MatSliderModule} from '@angular/material/slider'
 import {GridComponent} from './grid/grid.component'
 import {CellComponent} from './cell/cell.component'
@@ -33,7 +32,6 @@ import {WholeComponent} from './whole/whole.component'
     MatSliderModule,
   ],
   providers: [],
-
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
