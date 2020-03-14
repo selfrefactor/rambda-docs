@@ -1,8 +1,6 @@
 import {Component, Input, HostBinding, OnInit} from '@angular/core'
 import {DomSanitizer} from '@angular/platform-browser'
-import {ok, shuffle} from 'rambdax'
-
-const possibleOutlineColors = ['pink', 'green', 'red', 'blue', 'purple']
+import {ok} from 'rambdax'
 
 interface TopLeft {
   x: number
@@ -33,13 +31,6 @@ export class CellComponent implements OnInit {
   }
   @HostBinding('style.outline')
   get outlineCell() {
-    return this.outline ? `1px solid ${shuffle(possibleOutlineColors)[0]}` : null
-  }
-
-  getStyle() {
-    return {
-      background: 'grey',
-      outline: '1px solid pink',
-    }
+    return this.outline ? '2px solid pink' : null
   }
 }
