@@ -1,9 +1,12 @@
-import {Component, OnInit, Input, Output, ViewChildren, QueryList
-} from '@angular/core'
+import {Component, OnInit, Input, Output, ViewChildren, QueryList} from '@angular/core'
 
-interface TopLeft{
+interface TopLeft {
   x: number
   y: number
+}
+
+function zeroBasedOrder(x) {
+  return x + 1
 }
 
 @Component({
@@ -19,6 +22,13 @@ export class CellComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log({w: this.width, ty: this.topLeft, ev: this.evalStyle})
+    // console.log({h: this.height, w: this.width, ty: this.topLeft, ev: this.evalStyle})
+  }
+  getStyle() {
+    return {
+      background: 'grey',
+      'grid-column': `${zeroBasedOrder(this.topLeft.x)} / span ${this.width}`,
+      'grid-row': `${zeroBasedOrder(this.topLeft.y)} / span ${this.height}`,
+    }
   }
 }

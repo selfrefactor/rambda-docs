@@ -13,7 +13,8 @@ import {FooPipe} from './foo.pipe'
 import {RoughDemoComponent} from './rough-demo/rough-demo.component'
 import {MatSliderModule} from '@angular/material/slider';
 import { GridComponent } from './grid/grid.component';
-import { CellComponent } from './cell/cell.component'
+import { CellComponent } from './cell/cell.component';
+import { SubGridComponent } from './sub-grid/sub-grid.component'
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CellComponent } from './cell/cell.component'
     RoughDemoComponent,
     GridComponent,
     CellComponent,
+    SubGridComponent,
   ],
   imports: [
     BrowserModule,
