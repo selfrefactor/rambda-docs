@@ -1,4 +1,4 @@
-import {APP_BASE_HREF} from '@angular/common'
+
 import {HttpClientModule} from '@angular/common/http'
 import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core'
 import {FormsModule} from '@angular/forms'
@@ -7,23 +7,17 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {AppRoutingModule} from './app-routing.module'
 import {AppComponent} from './app.component'
 import {FooComponent} from './foo/foo.component'
-import {WordsComponent} from './words/words.component'
-import {BarComponent} from './bar/bar.component'
-import {FooPipe} from './foo.pipe'
-import {RoughDemoComponent} from './rough-demo/rough-demo.component'
-import {MatSliderModule} from '@angular/material/slider';
-import { GridComponent } from './grid/grid.component';
-import { CellComponent } from './cell/cell.component';
-import { SubGridComponent } from './sub-grid/sub-grid.component'
+
+import {MatSliderModule} from '@angular/material/slider'
+import {GridComponent} from './grid/grid.component'
+import {CellComponent} from './cell/cell.component'
+import {SubGridComponent} from './sub-grid/sub-grid.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    WordsComponent,
     FooComponent,
-    BarComponent,
-    FooPipe,
-    RoughDemoComponent,
+
     GridComponent,
     CellComponent,
     SubGridComponent,
@@ -36,8 +30,8 @@ import { SubGridComponent } from './sub-grid/sub-grid.component'
     BrowserAnimationsModule,
     MatSliderModule,
   ],
-  // providers: [],
-  providers: [{provide: APP_BASE_HREF, useValue: '/'}],
+  providers: [],
+
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

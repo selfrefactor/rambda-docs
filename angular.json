@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "joke-maker": {
+    "rambda-docs": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/joke-maker",
+            "outputPath": "dist/rambda-docs",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "joke-maker:build"
+            "browserTarget": "rambda-docs:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "joke-maker:build:production"
+              "browserTarget": "rambda-docs:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "joke-maker:build"
+            "browserTarget": "rambda-docs:build"
           }
         },
         "test": {
@@ -115,5 +115,5 @@
       }
     }
   },
-  "defaultProject": "joke-maker"
+  "defaultProject": "rambda-docs"
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, HostBinding} from '@angular/core'
+import {Component, Input, HostBinding} from '@angular/core'
 import {DomSanitizer} from '@angular/platform-browser'
 
 interface TopLeft {
@@ -6,25 +6,17 @@ interface TopLeft {
   y: number
 }
 
-function zeroBasedOrder(x) {
-  return x + 1
-}
-
 @Component({
-  selector: 'app-cell',
+  selector: 'cell',
   templateUrl: './cell.component.html',
 })
-export class CellComponent implements OnInit {
+export class CellComponent{
   @Input() width: number
   @Input() height: number
   @Input() topLeft: TopLeft
   @Input() evalStyle: any
-  @HostBinding('style.color') color = 'grey'
   constructor(private sanitizer: DomSanitizer) {}
 
-  ngOnInit(): void {
-    // console.log({h: this.height, w: this.width, ty: this.topLeft, ev: this.evalStyle})
-  }
   @HostBinding('style.grid-row')
   get gridRow() {
     return this.sanitizer.bypassSecurityTrustStyle(`${this.topLeft.y + 1} / span ${this.height}`)
@@ -37,8 +29,6 @@ export class CellComponent implements OnInit {
   getStyle() {
     return {
       background: 'grey',
-      'grid-column': `${zeroBasedOrder(this.topLeft.x)} / span ${this.width}`,
-      'grid-row': `${zeroBasedOrder(this.topLeft.y)} / span ${this.height}`,
     }
   }
 }
