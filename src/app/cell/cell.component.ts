@@ -1,4 +1,5 @@
-import {Component, OnInit, Input, Output, ViewChildren, QueryList} from '@angular/core'
+import {Component, OnInit, Input, HostBinding} from '@angular/core'
+import {DomSanitizer} from '@angular/platform-browser'
 
 interface TopLeft {
   x: number
@@ -19,11 +20,21 @@ export class CellComponent implements OnInit {
   @Input() height: number
   @Input() topLeft: TopLeft
   @Input() evalStyle: any
-  constructor() {}
+  @HostBinding('style.color') color = 'grey';
+  constructor(private sanitizer:DomSanitizer) {}
 
   ngOnInit(): void {
     // console.log({h: this.height, w: this.width, ty: this.topLeft, ev: this.evalStyle})
   }
+  @HostBinding('style.grid-row')
+  get gridRow() {
+    return this.sanitizer.bypassSecurityTrustStyle(` 6 / span 4`);
+  }
+  @HostBinding('style.grid-column')
+  get gridColumn() {
+    return this.sanitizer.bypassSecurityTrustStyle(` 6 / span 4`);
+  }
+
   getStyle() {
     return {
       background: 'grey',
