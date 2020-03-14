@@ -7,9 +7,7 @@ import {WholeComponent} from './whole/whole.component'
 
 const routes: Routes = [
   {path: '', component: WholeComponent},
-  {path: 'method', component: SingleMethodComponent},
-  {path: 'grid', component: GridComponent},
-  {path: 'foo', component: FooComponent},
+  {path: ':method', component: WholeComponent},
 ]
 
 @NgModule({

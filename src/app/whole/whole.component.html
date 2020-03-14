@@ -1,10 +1,31 @@
 <grid>
-  <sub-grid [width]="16" [height]="16" [topLeft]="{x:5,y:2}" [debug]="true">
+  <sub-grid [width]="8" [height]="32" [topLeft]="{x:0,y:0}" [debug]="true">
     <cell
-      [width]="5"
-      [height]="16"
-      [topLeft]="{x:2,y:0}"
+      [width]="16"
+      [height]="2"
+      [topLeft]="{x:0,y:0}"
       [debug]="true"
     >List of methods</cell>
+    <cell [width]="16" [height]="2" [topLeft]="{x:0,y:2}">
+      <a href="#" click="(changeMethod($event))">R.add</a>
+    </cell>
+    <cell [width]="16" [height]="2" [topLeft]="{x:0,y:4}">
+      <a href="#" click="(changeMethod($event))">R.update</a>
+    </cell>
+  </sub-grid>
+
+  <sub-grid [width]="24" [height]="32" [topLeft]="{x:8,y:0}" [debug]="true">
+    <cell
+      [width]="8"
+      [height]="2"
+      [topLeft]="{x:0,y:0}"
+      [debug]="true"
+    >{{data.name}}</cell>
+    <cell
+      [width]="8"
+      [height]="2"
+      [topLeft]="{x:8,y:0}"
+      [debug]="true"
+    >{{data.example}}</cell>
   </sub-grid>
 </grid>
