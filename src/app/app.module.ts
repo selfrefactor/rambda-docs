@@ -12,6 +12,8 @@ import {CellComponent} from './cell/cell.component'
 import {SubGridComponent} from './sub-grid/sub-grid.component'
 import {SingleMethodComponent} from './single-method/single-method.component'
 import {WholeComponent} from './whole/whole.component'
+import {ReplComponent} from './repl/repl.component'
+import {CodemirrorModule} from '@ctrl/ngx-codemirror'
 
 @NgModule({
   declarations: [
@@ -22,12 +24,14 @@ import {WholeComponent} from './whole/whole.component'
     SubGridComponent,
     SingleMethodComponent,
     WholeComponent,
+    ReplComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    CodemirrorModule,
     BrowserAnimationsModule,
     MatSliderModule,
   ],

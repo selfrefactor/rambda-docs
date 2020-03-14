@@ -1,0 +1,9 @@
+<ngx-codemirror
+  [(ngModel)]="content"
+  (ngModelChange)="handleChange($event)"
+  [options]="{
+    lineNumbers: true,
+    theme: 'material',
+    mode: 'javascript'
+  }"
+></ngx-codemirror>

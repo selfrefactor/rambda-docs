@@ -28,17 +28,17 @@ const allData = {
 export class WholeComponent implements OnInit {
   activeMethod: string
   data: SingleMethod
-  notExist: boolean = false
+  notExist = false
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.route.params.subscribe(routeParams => {
       this.activeMethod = routeParams.method
-      if(!allData[routeParams.method]){
-        return this.notExist = true
+      if (!allData[routeParams.method]) {
+        return (this.notExist = true)
       }
 
-      if(this.notExist) this.notExist = false
+      if (this.notExist) this.notExist = false
 
       this.data = allData[routeParams.method]
     })
