@@ -13,26 +13,25 @@ function zeroBasedOrder(x) {
 @Component({
   selector: 'app-cell',
   templateUrl: './cell.component.html',
-  styleUrls: ['./cell.component.scss'],
 })
 export class CellComponent implements OnInit {
   @Input() width: number
   @Input() height: number
   @Input() topLeft: TopLeft
   @Input() evalStyle: any
-  @HostBinding('style.color') color = 'grey';
-  constructor(private sanitizer:DomSanitizer) {}
+  @HostBinding('style.color') color = 'grey'
+  constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     // console.log({h: this.height, w: this.width, ty: this.topLeft, ev: this.evalStyle})
   }
   @HostBinding('style.grid-row')
   get gridRow() {
-    return this.sanitizer.bypassSecurityTrustStyle(` 6 / span 4`);
+    return this.sanitizer.bypassSecurityTrustStyle(`${this.topLeft.y + 1} / span ${this.height}`)
   }
   @HostBinding('style.grid-column')
   get gridColumn() {
-    return this.sanitizer.bypassSecurityTrustStyle(` 6 / span 4`);
+    return this.sanitizer.bypassSecurityTrustStyle(`${this.topLeft.x + 1} / span ${this.width}`)
   }
 
   getStyle() {
