@@ -1,18 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import {OnDestroy, Component, OnInit, Output, EventEmitter} from '@angular/core'
+import {Subject} from 'rxjs'
+import {debounceTime} from 'rxjs/operators'
 
 @Component({
   selector: 'app-repl',
   templateUrl: './repl.component.html',
-  styleUrls: ['./repl.component.scss']
+  styleUrls: ['./repl.component.scss'],
 })
-export class ReplComponent implements OnInit {
+export class ReplComponent implements OnInit, OnDestroy {
   content: any
-  constructor() { }
+  @Output() outputReplEvent = new EventEmitter<string>()
+  debouncer: Subject<string> = new Subject<string>()
+
+  constructor() {}
 
   ngOnInit(): void {
-    console.log(this.content)
+    this.debouncer.pipe(debounceTime(500)).subscribe(value => this.outputReplEvent.emit(value))
   }
-  handleChange(e){
-    console.log(e)
+
+  handleChange(e: string) {
+    this.debouncer.next(e)
+  }
+  ngOnDestroy() {
+    this.debouncer.unsubscribe()
   }
 }
