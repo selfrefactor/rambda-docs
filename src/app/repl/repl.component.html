@@ -1,9 +1,15 @@
-<ngx-codemirror
-  [(ngModel)]="content"
-  (ngModelChange)="handleChange($event)"
-  [options]="{
-    lineNumbers: true,
-    theme: 'material',
-    mode: 'javascript'
-  }"
-></ngx-codemirror>
+<div class="foo">
+  <ngx-codemirror
+    class="foo"
+    [(ngModel)]="content"
+    (ngModelChange)="handleChange($event)"
+    [preserveScrollPosition]="true"
+    [options]="{
+      tabSize: 2,
+      lineNumbers: true,
+      spellcheck: true,
+      theme: 'eclipse',
+      mode: 'javascript'
+    }"
+  ></ngx-codemirror>
+</div>

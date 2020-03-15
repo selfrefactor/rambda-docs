@@ -15,7 +15,7 @@ export class ReplComponent implements OnInit, OnDestroy {
   constructor() {}
 
   ngOnInit(): void {
-    this.debouncer.pipe(debounceTime(500)).subscribe(value => this.outputReplEvent.emit(value))
+    this.debouncer.pipe(debounceTime(1000)).subscribe(value => this.outputReplEvent.emit(value))
   }
 
   handleChange(e: string) {
