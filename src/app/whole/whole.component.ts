@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core'
 import {Router, ActivatedRoute} from '@angular/router'
+import {handleReplChange} from '../_modules/handle-repl-change'
 
 interface SingleMethod {
   name: string
@@ -29,6 +30,7 @@ export class WholeComponent implements OnInit {
   activeMethod: string
   data: SingleMethod
   notExist = false
+  replEvaluateLock = false
   replResult = ''
 
   constructor(private route: ActivatedRoute, private router: Router) {}
@@ -50,18 +52,10 @@ export class WholeComponent implements OnInit {
     console.log(e)
   }
 
-  handleReplChange(newReplContent: string) {
-    let replResult
-    try {
-      replResult = eval(newReplContent)
-      this.replResult = replResult
-    } catch (_) {}
-    console.log(replResult)
+  async onReplChange(newReplContent: string) {
+    if (this.replEvaluateLock) return
+    this.replEvaluateLock = true
+    this.replResult = await handleReplChange(newReplContent)
+    this.replEvaluateLock = false
   }
 }
-// const getFlag = anyPass([
-//   includes('const result ='),
-//   includes('const result='),
-//   includes('let result='),
-//   includes('let result ='),
-// ])

@@ -28,7 +28,7 @@
       [debug]="true"
     >{{replResult}}</cell>
     <cell [width]="8" [height]="16" [topLeft]="{x:0,y:2}" [debug]="true">
-      <app-repl (outputReplEvent)="handleReplChange($event)"></app-repl>
+      <app-repl (outputReplEvent)="onReplChange($event)"></app-repl>
     </cell>
   </sub-grid>
 </grid>

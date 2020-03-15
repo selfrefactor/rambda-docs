@@ -1,4 +1,6 @@
-import {type, anyPass, includes, unless, RambdaTypes} from 'rambdax'
+import {RambdaTypes, anyPass, includes, replace, type, unless, when} from 'rambdax'
+
+const replaceRambdaRef = replace(/R\./gm, 'RMock.')
 
 const hasResultConst = anyPass([
   includes('const result ='),
@@ -28,7 +30,7 @@ export const stringifyResult = x => {
 
 async function evaluateCode(codeToEvaluate, maybeRambdaxMock): Promise<string | ResultHolder> {
   if (maybeRambdaxMock) {
-    var R = maybeRambdaxMock
+    var RMock = maybeRambdaxMock
   }
   var resultHolder: ResultHolder
   try {
@@ -39,10 +41,10 @@ async function evaluateCode(codeToEvaluate, maybeRambdaxMock): Promise<string | 
   }
 }
 
-export function handleReplChange(input, maybeRambdaxMock) {
+export function handleReplChange(input, maybeRambdaxMock = undefined): Promise<string> {
   return new Promise(resolve => {
     const code = addSemiColon(addConst(input.trim()))
-    const codeToEvaluate = `
+    const codeToEvaluateRaw = `
     ${code}
     const resultType = R.type(result)
 
@@ -52,6 +54,9 @@ export function handleReplChange(input, maybeRambdaxMock) {
       payload: result
     }
     `
+    const codeToEvaluate =
+      maybeRambdaxMock === undefined ? codeToEvaluateRaw : replaceRambdaRef(codeToEvaluateRaw)
+
     evaluateCode(codeToEvaluate, maybeRambdaxMock).then(evaluated => {
       if (typeof evaluated === 'string') {
         return resolve(evaluated)
