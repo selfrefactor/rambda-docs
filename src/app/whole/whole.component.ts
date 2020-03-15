@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core'
-import {Router, ActivatedRoute, EventEmitter} from '@angular/router'
-import {Subject} from 'rxjs'
+import {Router, ActivatedRoute} from '@angular/router'
 
 interface SingleMethod {
   name: string
@@ -30,6 +29,7 @@ export class WholeComponent implements OnInit {
   activeMethod: string
   data: SingleMethod
   notExist = false
+  replResult = ''
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 
@@ -49,7 +49,13 @@ export class WholeComponent implements OnInit {
   changeMethod(e) {
     console.log(e)
   }
+
   handleReplChange(newReplContent: string) {
-    console.log(newReplContent)
+    let replResult
+    try {
+      replResult = eval(newReplContent)
+      this.replResult = replResult
+    } catch (_) {}
+    console.log(replResult)
   }
 }

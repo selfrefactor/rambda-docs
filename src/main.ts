@@ -1,8 +1,8 @@
 import 'codemirror/mode/javascript/javascript'
-// import 'codemirror/mode/markdown/markdown';
-
 import {enableProdMode} from '@angular/core'
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic'
+import * as R from 'rambdax'
+window.R = R
 
 import {AppModule} from './app/app.module'
 import {environment} from './environments/environment'
