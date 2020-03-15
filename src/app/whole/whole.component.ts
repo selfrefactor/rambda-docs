@@ -59,3 +59,9 @@ export class WholeComponent implements OnInit {
     console.log(replResult)
   }
 }
+// const getFlag = anyPass([
+//   includes('const result ='),
+//   includes('const result='),
+//   includes('let result='),
+//   includes('let result ='),
+// ])
