@@ -15,6 +15,10 @@ const update: SingleMethod = {
   name: 'update',
   example: 'R.update(0,10, [1,2,3])',
 }
+const defaultMethod: SingleMethod = {
+  name: '',
+  example: '',
+}
 
 const allData = {
   add,
@@ -28,7 +32,7 @@ const allData = {
 })
 export class WholeComponent implements OnInit {
   activeMethod: string
-  data: SingleMethod
+  data: SingleMethod = add
   notExist = false
   replEvaluateLock = false
   replResult = ''
@@ -38,6 +42,7 @@ export class WholeComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(routeParams => {
       this.activeMethod = routeParams.method
+      console.log(routeParams.method)
       if (!allData[routeParams.method]) {
         return (this.notExist = true)
       }

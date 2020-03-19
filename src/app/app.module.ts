@@ -12,6 +12,7 @@ import {CellComponent} from './cell/cell.component'
 import {SubGridComponent} from './sub-grid/sub-grid.component'
 import {SingleMethodComponent} from './single-method/single-method.component'
 import {WholeComponent} from './whole/whole.component'
+import {GridFnComponent} from 'grid-fn'
 import {ReplComponent} from './repl/repl.component'
 import {CodemirrorModule} from '@ctrl/ngx-codemirror'
 
@@ -24,6 +25,7 @@ import {CodemirrorModule} from '@ctrl/ngx-codemirror'
     SubGridComponent,
     SingleMethodComponent,
     WholeComponent,
+    GridFnComponent,
     ReplComponent,
   ],
   imports: [
