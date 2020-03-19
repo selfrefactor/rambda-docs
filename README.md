@@ -1,6 +1,4 @@
-# JokeMaker
-
-## Missing e2e tests with Protractor
+# Rambda docs with Angular
 
 ## Update deps
 

@@ -7,7 +7,7 @@ import {WholeComponent} from './whole/whole.component'
 
 const routes: Routes = [
   {path: '', component: WholeComponent},
-  // {path: 'foo', component: FooComponent},
+  {path: 'foo', component: FooComponent},
   {path: ':method', component: WholeComponent},
 ]
 

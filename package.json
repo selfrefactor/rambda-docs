@@ -35,7 +35,7 @@
     "@angular/router": "9.0.6",
     "@ctrl/ngx-codemirror": "^3.0.1",
     "codemirror": "^5.52.0",
-    "grid-fn": "^0.0.1",
+    "grid-fn": "^0.0.4",
     "rambdax": "3.7.0",
     "rxjs": "^7.0.0-alpha.1",
     "tslib": "^1.11.1",
@@ -61,6 +61,6 @@
     "typescript": "3.7.2"
   },
   "commitMessage": {
-    "workInProgress": "use grid.fn lib"
+    "workInProgress": ""
   }
 }
