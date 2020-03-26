@@ -3,10 +3,9 @@ import {Router, ActivatedRoute} from '@angular/router'
 import {handleReplChange} from '../_modules/handle-repl-change'
 
 interface SingleMethod {
-  name: string
-  example: string
+  name: string,
+  example: string,
 }
-
 const add: SingleMethod = {
   name: 'add',
   example: 'R.add(1,2)',
@@ -44,16 +43,17 @@ export class WholeComponent implements OnInit {
       this.activeMethod = routeParams.method
       console.log(routeParams.method)
       if (!allData[routeParams.method]) {
-        return (this.notExist = true)
+        return this.notExist = true
       }
 
+      // if (this.notExist)       this.notExist = false;
       if (this.notExist) this.notExist = false
 
       this.data = allData[routeParams.method]
     })
   }
 
-  changeMethod(e) {
+  changeMethod(e: string) {
     console.log(e)
   }
 

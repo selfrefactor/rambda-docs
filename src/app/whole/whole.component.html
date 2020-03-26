@@ -1,34 +1,63 @@
 <grid>
-  <sub-grid [width]="8" [height]="32" [topLeft]="{x:0,y:0}" [debug]="true">
-    <cell
-      [width]="16"
-      [height]="2"
-      [topLeft]="{x:0,y:0}"
-      [debug]="true"
-    >List of methods</cell>
-    <cell [width]="16" [height]="2" [topLeft]="{x:0,y:2}">
-      <a routerLink="/add" click="(changeMethod($event))">R.add</a>
-    </cell>
-    <cell [width]="16" [height]="2" [topLeft]="{x:0,y:4}">
-      <a routerLink="/update" click="(changeMethod($event))">R.update</a>
-    </cell>
-  </sub-grid>
+	<sub-grid
+		[debug]="true"
+		[height]="32"
+		[topLeft]="{x:0,y:0}"
+		[width]="8"
+	>
+		<cell
+			[debug]="true"
+			[height]="2"
+			[topLeft]="{x:0,y:0}"
+			[width]="16"
+		>List of methods</cell>
+		<cell
+			[height]="2"
+			[topLeft]="{x:0,y:2}"
+			[width]="16"
+		>
+			<a
+				click="(changeMethod($event))"
+				routerLink="/add"
+			>R.add</a>
+		</cell>
+		<cell
+			[height]="2"
+			[topLeft]="{x:0,y:4}"
+			[width]="16"
+		>
+			<a
+				click="(changeMethod($event))"
+				routerLink="/update"
+			>R.update</a>
+		</cell>
+	</sub-grid>
 
-  <sub-grid [width]="24" [height]="32" [topLeft]="{x:8,y:0}" [debug]="true">
-    <cell
-      [width]="8"
-      [height]="2"
-      [topLeft]="{x:0,y:0}"
-      [debug]="true"
-    >{{data.name}}</cell>
-    <cell
-      [width]="8"
-      [height]="2"
-      [topLeft]="{x:8,y:0}"
-      [debug]="true"
-    >{{replResult}}</cell>
-    <cell [width]="8" [height]="16" [topLeft]="{x:0,y:2}" [debug]="true">
-      <app-repl (outputReplEvent)="onReplChange($event)"></app-repl>
-    </cell>
-  </sub-grid>
+	<sub-grid
+		[debug]="true"
+		[height]="32"
+		[topLeft]="{x:8,y:0}"
+		[width]="24"
+	>
+		<cell
+			[debug]="true"
+			[height]="2"
+			[topLeft]="{x:0,y:0}"
+			[width]="8"
+		>{{data.name}}</cell>
+		<cell
+			[debug]="true"
+			[height]="2"
+			[topLeft]="{x:8,y:0}"
+			[width]="8"
+		>{{replResult}}</cell>
+		<cell
+			[debug]="true"
+			[height]="16"
+			[topLeft]="{x:0,y:2}"
+			[width]="8"
+		>
+			<app-repl (outputReplEvent)="onReplChange($event)"></app-repl>
+		</cell>
+	</sub-grid>
 </grid>
