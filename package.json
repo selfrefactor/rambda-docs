@@ -4,6 +4,8 @@
   "scripts": {
     "update":"ng update --all=true --allowDirty=true --next=true",
     "updatex":"ng update --all=true --allowDirty=true",
+    "update:force":"ng update --force --all=true --allowDirty=true --next=true",
+    "updatex:force":"ng update --force --all=true --allowDirty=true",
     "component": "ng g component --skipTests",
     "class": "ng g class --skipTests",
     "directive": "ng g directive --skipTests",
