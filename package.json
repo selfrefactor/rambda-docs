@@ -2,8 +2,8 @@
   "name": "rambda-docs",
   "version": "1.0.0",
   "scripts": {
-    "y": "eslint src/foo.ts --fix",
-    "z": "eslint src/app/whole/whole.component.ts --fix",
+    "update":"ng update --all=true --allowDirty=true --next=true",
+    "updatex":"ng update --all=true --allowDirty=true",
     "component": "ng g component --skipTests",
     "class": "ng g class --skipTests",
     "directive": "ng g directive --skipTests",
