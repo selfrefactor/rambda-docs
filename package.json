@@ -38,7 +38,7 @@
     "@angular/router": "9.1.0",
     "@ctrl/ngx-codemirror": "^3.0.2",
     "codemirror": "^5.52.2",
-    "grid-fn": "^0.0.4",
+    "grid-fn": "^0.1.1",
     "rambdax": "3.7.0",
     "rxjs": "^7.0.0-alpha.1",
     "tslib": "^1.11.1",
