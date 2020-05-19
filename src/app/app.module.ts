@@ -5,7 +5,6 @@ import {BrowserModule} from '@angular/platform-browser'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {AppRoutingModule} from './app-routing.module'
 import {AppComponent} from './app.component'
-import {FooComponent} from './foo/foo.component'
 import {MatSliderModule} from '@angular/material/slider'
 import {SingleMethodComponent} from './single-method/single-method.component'
 import {WholeComponent} from './whole/whole.component'
@@ -16,7 +15,6 @@ import {CellComponent, GridComponent, SubGridComponent} from 'grid-fn'
 @NgModule({
   declarations: [
     AppComponent,
-    FooComponent,
     GridComponent,
     CellComponent,
     SubGridComponent,
