@@ -10,6 +10,6 @@ describe('MethodsDataService', () => {
   })
 
   it('should be created', () => {
-    expect(service.getMethodsList()).toMatchSnapshot()
+    expect(service.getAllKeys()).toMatchSnapshot()
   })
 })

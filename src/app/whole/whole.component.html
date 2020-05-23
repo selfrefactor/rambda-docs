@@ -16,10 +16,12 @@
 			[height]="13"
 			[topLeft]="{x:0,y:2}"
 			[width]="16"
-		></cell>
-		<!-- <li *ngFor="let hero of heroes">
-      {{ hero }}
-		</li>-->
+		>
+			<span
+				*ngFor="let singleMethodKey of allMethods"
+			>{{ singleMethodKey }}</span>
+		</cell>
+
 		<!-- <cell
 			[height]="2"
 			[topLeft]="{x:0,y:2}"

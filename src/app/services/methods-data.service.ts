@@ -17,7 +17,7 @@ export class MethodsDataService {
   constructor() {
     this.data = allMethods
   }
-  getMethodsList() {
+  getAllKeys() {
     return Object.keys(this.data)
   }
 }
