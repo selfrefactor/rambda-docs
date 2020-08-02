@@ -19,6 +19,7 @@
 			[width]="16"
 		>
 			<p
+			[click]="changeMethod"
 			class="sidebar__cell"
 				*ngFor="let singleMethodKey of allMethods"
 			>{{ singleMethodKey }}</p>
