@@ -16,7 +16,7 @@ interface ResultHolder {
 }
 
 export const addConst = unless(hasResultConst, x => `const result = ${x}`)
-export const addSemiColon = unless(
+export const addSemiColon = unless<string, string>(
   x => x.endsWith(';'),
   x => `${x};`,
 )

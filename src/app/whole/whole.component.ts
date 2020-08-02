@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core'
 import {Router, ActivatedRoute} from '@angular/router'
 import {handleReplChange} from '../_modules/handle-repl-change'
-import { MethodsDataService } from '../services/methods-data.service'
+import {MethodsDataService} from '../services/methods-data.service'
 
 interface SingleMethod {
   name: string,
@@ -36,9 +36,13 @@ export class WholeComponent implements OnInit {
   notExist = false
   replEvaluateLock = false
   replResult = ''
-  allMethods: Array<string>
+  allMethods: string[]
 
-  constructor(private route: ActivatedRoute, private router: Router, private dataService: MethodsDataService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private dataService: MethodsDataService
+  ) {}
 
   ngOnInit() {
     this.init()
@@ -55,7 +59,7 @@ export class WholeComponent implements OnInit {
       this.data = allData[routeParams.method]
     })
   }
-  init(){
+  init() {
     this.allMethods = this.dataService.getAllKeys()
   }
 
