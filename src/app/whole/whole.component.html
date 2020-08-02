@@ -12,14 +12,16 @@
 			[width]="16"
 		>List of methods</cell>
 		<cell
+		class="sidebar"
 			[debug]="true"
 			[height]="13"
 			[topLeft]="{x:0,y:2}"
 			[width]="16"
 		>
-			<span
+			<p
+			class="sidebar__cell"
 				*ngFor="let singleMethodKey of allMethods"
-			>{{ singleMethodKey }}</span>
+			>{{ singleMethodKey }}</p>
 		</cell>
 
 		<!-- <cell

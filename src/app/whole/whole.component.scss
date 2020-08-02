@@ -1,0 +1,15 @@
+.sidebar{
+  background-color: #fafafa;
+  color: #111;
+  overflow-y: scroll;
+  &__cell{
+    font-weight: bold;
+    padding: 20px 10px;
+    font-size: 4vh;
+    cursor: pointer;
+    &:hover{
+      background-color: #861D4F;
+      color: #fafafa;
+    }
+  }
+}
