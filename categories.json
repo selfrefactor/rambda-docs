@@ -45,6 +45,7 @@
     "map",
     "mean",
     "median",
+    "move",
     "none",
     "nth",
     "partition",
@@ -71,7 +72,17 @@
     "update",
     "without",
     "zip",
-    "zipObj"
+    "zipObj",
+    "zipWith",
+    "splitAt",
+    "splitWhen",
+    "takeLastWhile",
+    "evolve",
+    "dropLastWhile",
+    "dropRepeats",
+    "dropRepeatsWith",
+    "dropWhile",
+    "takeWhile"
   ],
   "Function": [
     "allPass",
@@ -83,10 +94,11 @@
     "compose",
     "cond",
     "curry",
+    "curryN",
     "either",
     "flip",
     "ifElse",
-    "of",
+    "once",
     "pipe",
     "tap",
     "tryCatch",
@@ -95,6 +107,7 @@
   ],
   "Logic": [
     "and",
+    "or",
     "defaultTo",
     "equals",
     "identical",
@@ -116,6 +129,7 @@
   ],
   "Object": [
     "assoc",
+    "assocPath",
     "clone",
     "dissoc",
     "filter",
@@ -139,10 +153,13 @@
     "propEq",
     "propIs",
     "propOr",
+    "reject",
     "toPairs",
     "values",
     "where",
-    "whereEq"
+    "whereEq",
+    "props",
+    "evolve"
   ],
   "Other": [
     "clamp"
@@ -152,13 +169,13 @@
     "drop",
     "dropLast",
     "endsWith",
+    "groupWith",
     "head",
     "includes",
     "init",
     "last",
     "length",
     "match",
-    "prepend",
     "replace",
     "reverse",
     "slice",
@@ -172,7 +189,12 @@
     "toLower",
     "toUpper",
     "toString",
-    "trim"
+    "trim",
+    "splitAt",
+    "takeLastWhile",
+    "dropLastWhile",
+    "dropWhile",
+    "takeWhile"
   ],
   "Lenses": [
     "lens",
