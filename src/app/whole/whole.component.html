@@ -12,16 +12,16 @@
 			[width]="16"
 		>List of methods</cell>
 		<cell
-		class="sidebar"
 			[debug]="true"
 			[height]="13"
 			[topLeft]="{x:0,y:2}"
 			[width]="16"
+			class="sidebar"
 		>
 			<p
-			[click]="changeMethod"
-			class="sidebar__cell"
+				[click]="changeMethod"
 				*ngFor="let singleMethodKey of allMethods"
+				class="sidebar__cell"
 			>{{ singleMethodKey }}</p>
 		</cell>
 
@@ -71,7 +71,8 @@
 			[topLeft]="{x:0,y:2}"
 			[width]="8"
 		>
-			<app-repl (outputReplEvent)="onReplChange($event)"></app-repl>
+			<app-replx></app-replx>
+			<!-- <app-repl (outputReplEvent)="onReplChange($event)"></app-repl> -->
 		</cell>
 	</sub-grid>
 </grid>

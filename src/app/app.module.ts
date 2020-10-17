@@ -11,6 +11,8 @@ import {WholeComponent} from './whole/whole.component'
 import {ReplComponent} from './repl/repl.component'
 import {CodemirrorModule} from '@ctrl/ngx-codemirror'
 import {CellComponent, GridComponent, SubGridComponent} from 'grid-fn'
+import { MonacoEditorModule } from '@materia-ui/ngx-monaco-editor';
+import { ReplxComponent } from './replx/replx.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +23,14 @@ import {CellComponent, GridComponent, SubGridComponent} from 'grid-fn'
     SingleMethodComponent,
     WholeComponent,
     ReplComponent,
+    ReplxComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    MonacoEditorModule,
     CodemirrorModule,
     BrowserAnimationsModule,
     MatSliderModule,
