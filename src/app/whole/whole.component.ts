@@ -47,6 +47,7 @@ export class WholeComponent implements OnInit {
     // Safeguard for async methods combined with change of mode
     // ============================================
     if (this.selectedMode !== 'repl') return
+    
     if (this.replEvaluateLock) return
     this.replEvaluateLock = true
     this.replResult = await handleReplChange(newReplContent)

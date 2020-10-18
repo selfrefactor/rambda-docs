@@ -55,33 +55,62 @@
 	>
 		<cell
 			[debug]="true"
-			[height]="2"
-			[topLeft]="{x:0,y:0}"
-			[width]="8"
+			[height]="1"
+			[topLeft]="{x:1,y:0}"
+			[width]="6"
+		>R.{{selectedMethod}}</cell>
+		<cell
+			[debug]="true"
+			[height]="1"
+			[topLeft]="{x:1,y:1}"
+			[width]="6"
 		>
-			<span
+			{{data.explanation}}
+			<!-- <span
 				(click)="selectMode(singleMode.mode)"
 				*ngFor="let singleMode of allModes"
 				class="select__mode"
-			>{{singleMode.text}}</span>
+			>{{singleMode.text}}</span>-->
 		</cell>
 		<cell
 			[debug]="true"
-			[height]="2"
-			[topLeft]="{x:8,y:0}"
-			[width]="8"
-		>{{replResult}}</cell>
+			[height]="1"
+			[topLeft]="{x:1,y:2}"
+			[width]="6"
+		>{{data.typing}}</cell>
 		<cell
 			[debug]="true"
-			[height]="16"
-			[topLeft]="{x:0,y:2}"
+			[height]="6"
+			[topLeft]="{x:0,y:3}"
 			[width]="8"
 		>
 			<app-replx
 				(outputReplEvent)="onReplChange($event)"
 				[initialState]="data.example"
 			></app-replx>
-			<!-- <app-repl (outputReplEvent)="onReplChange($event)"></app-repl> -->
 		</cell>
+		<cell
+			[debug]="true"
+			[height]="5"
+			[topLeft]="{x:1,y:9}"
+			[width]="6"
+		>
+			<pre>
+			{{data.rambdaSource}}
+		</pre>
+		</cell>
+
+		<cell
+			[debug]="true"
+			[height]="5"
+			[topLeft]="{x:8,y:0}"
+			[width]="7"
+		>{{data.explanation}}</cell>
+		<cell
+			[debug]="true"
+			[height]="5"
+			[topLeft]="{x:8,y:5}"
+			[width]="7"
+		>11</cell>
 	</sub-grid>
 </grid>

@@ -35,7 +35,7 @@
     "rambdaSource": "export function all(predicate, list){\n  if (arguments.length === 1) return _list => all(predicate, _list)\n\n  for (let i = 0; i < list.length; i++){\n    if (!predicate(list[ i ])) return false\n  }\n\n  return true\n}",
     "rambdaSpecs": "import { all } from './all'\n\nconst list = [ 0, 1, 2, 3, 4 ]\n\ntest('when true', () => {\n  const fn = x => x > -1\n\n  expect(all(fn)(list)).toBeTrue()\n})\n\ntest('when false', () => {\n  const fn = x => x > 2\n\n  expect(all(fn, list)).toBeFalse()\n})",
     "explanation": "It returns `true`, if all members of array `list` returns `true`, when applied as argument to `predicate` function.",
-    "example": "const list = [ 0, 1, 2, 3, 4 ]\nconst predicate = x => x > -1\n\nconst result = R.all(predicate, arr)\n// => true",
+    "example": "const list = [ 0, 1, 2, 3, 4 ]\nconst predicate = x => x > -1\n\nconst result = R.all(predicate, list)\n// => true",
     "typescriptDefinitionTest": "import {all} from 'rambda'\n\ndescribe('all', () => {\n  it('happy', () => {\n    const result = all(\n      x => {\n        x // $ExpectType number\n        return x > 0\n      },\n      [1, 2, 3]\n    )\n    result // $ExpectType boolean\n  })\n  it('curried needs a type', () => {\n    const result = all<number>(x => {\n      x // $ExpectType number\n      return x > 0\n    })([1, 2, 3])\n    result // $ExpectType boolean\n  })\n})"
   },
   "allPass": {
