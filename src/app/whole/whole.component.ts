@@ -5,13 +5,7 @@ import {
   MethodsDataService,
   SingleMethod,
 } from '../services/methods-data.service'
-
-const EmptyMethod: SingleMethod = {
-  example: '',
-  allTypings: '',
-  rambdaSource: '',
-  typing: '',
-}
+import {Mode, ALL_MODES, EmptyMethod, SingleMode } from './whole.component.interfaces'
 
 @Component({
   selector: 'app-whole',
@@ -25,6 +19,8 @@ export class WholeComponent implements OnInit {
   replEvaluateLock = false
   replResult = ''
   selectedMethod = ''
+  selectedMode: Mode = 'repl'
+  allModes = ALL_MODES
 
   constructor(
     private route: ActivatedRoute,
@@ -40,19 +36,24 @@ export class WholeComponent implements OnInit {
   }
 
   onRouteChange(method: string) {
-    console.log(method, 'route method')
     if (!this.allMethods.includes(method)) return
 
     this.selectedMethod = method
     this.data = this.dataService.getMethod(method)
+    console.log(this.data)
   }
 
   async onReplChange(newReplContent: string) {
-    console.log({newReplContent})
+    // Safeguard for async methods combined with change of mode
+    // ============================================
+    if (this.selectedMode !== 'repl') return
     if (this.replEvaluateLock) return
     this.replEvaluateLock = true
     this.replResult = await handleReplChange(newReplContent)
-    console.log(this.replResult, 'repl result')
     this.replEvaluateLock = false
+  }
+
+  selectMode(input: SingleMode) {
+    this.selectedMethod = input.mode
   }
 }

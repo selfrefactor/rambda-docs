@@ -35,7 +35,7 @@ export class ReplxComponent implements OnInit, OnChanges {
     console.log('init replx', this.initialState)
     setTimeout(() => {
       this.code = this.initialState
-    }, 100);
+    }, 0);
   }
 
   // changeMonacoSettings() {

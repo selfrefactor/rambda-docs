@@ -58,7 +58,13 @@
 			[height]="2"
 			[topLeft]="{x:0,y:0}"
 			[width]="8"
-		>{{data.name}}</cell>
+		>
+			<span
+				(click)="selectMode(singleMode.mode)"
+				*ngFor="let singleMode of allModes"
+				class="select__mode"
+			>{{singleMode.text}}</span>
+		</cell>
 		<cell
 			[debug]="true"
 			[height]="2"
@@ -71,7 +77,10 @@
 			[topLeft]="{x:0,y:2}"
 			[width]="8"
 		>
-			<app-replx [initialState]="data.example" (outputReplEvent)="onReplChange($event)"></app-replx>
+			<app-replx
+				(outputReplEvent)="onReplChange($event)"
+				[initialState]="data.example"
+			></app-replx>
 			<!-- <app-repl (outputReplEvent)="onReplChange($event)"></app-repl> -->
 		</cell>
 	</sub-grid>
