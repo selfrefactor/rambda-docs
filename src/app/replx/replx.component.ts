@@ -1,7 +1,5 @@
-import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core'
-import {
-  MonacoEditorComponent,
-} from '@materia-ui/ngx-monaco-editor'
+import {Component, EventEmitter, OnInit,Input, Output, ViewChild, ViewEncapsulation, OnChanges} from '@angular/core'
+import {MonacoEditorComponent} from '@materia-ui/ngx-monaco-editor'
 import {OnChange} from 'property-watch-decorator'
 
 @Component({
@@ -10,7 +8,7 @@ import {OnChange} from 'property-watch-decorator'
   styleUrls: ['./replx.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class ReplxComponent implements OnInit {
+export class ReplxComponent implements OnInit, OnChanges {
   @ViewChild(MonacoEditorComponent, {static: false})
   editor: MonacoEditorComponent
   editorOptions = {
@@ -22,14 +20,22 @@ export class ReplxComponent implements OnInit {
     },
     fixedOverflowWidgets: true,
   }
+  @Output() outputReplEvent = new EventEmitter<string>()
+  @Input() initialState: string
 
   @OnChange<string>(function(this: ReplxComponent, code: string) {
-    console.log({code})
+    this.outputReplEvent.emit(code)
   })
-  code = 'const a = 1'
+  code = ''
 
+  ngOnChanges() {
+    this.code = this.initialState
+  }
   ngOnInit() {
-    console.log('init replx')
+    console.log('init replx', this.initialState)
+    setTimeout(() => {
+      this.code = this.initialState
+    }, 100);
   }
 
   // changeMonacoSettings() {

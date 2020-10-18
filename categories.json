@@ -93,6 +93,7 @@
     "complement",
     "compose",
     "cond",
+    "converge",
     "curry",
     "curryN",
     "either",
@@ -159,7 +160,8 @@
     "where",
     "whereEq",
     "props",
-    "evolve"
+    "evolve",
+    "eqProps"
   ],
   "Other": [
     "clamp"

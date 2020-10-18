@@ -1,8 +1,15 @@
 import {Injectable} from '@angular/core'
 import allMethods from '../../../data.json'
 
-interface SingleMethod {
+export interface SingleMethod {
+  allTypings: string,
+  categories?: string[],
+  example?: string,
+  explanation?: string,
+  notes?: string,
   rambdaSource: string,
+  rambdaSpecs?: string,
+  typing: string,
 }
 
 interface Data {
@@ -19,5 +26,8 @@ export class MethodsDataService {
   }
   getAllKeys() {
     return Object.keys(this.data)
+  }
+  getMethod(prop: string) {
+    return this.data[prop]
   }
 }

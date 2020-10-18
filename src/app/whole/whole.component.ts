@@ -1,28 +1,16 @@
 import {Component, OnInit} from '@angular/core'
-import {Router, ActivatedRoute} from '@angular/router'
+import {ActivatedRoute} from '@angular/router'
 import {handleReplChange} from '../_modules/handle-repl-change'
-import {MethodsDataService} from '../services/methods-data.service'
+import {
+  MethodsDataService,
+  SingleMethod,
+} from '../services/methods-data.service'
 
-interface SingleMethod {
-  name: string,
-  example: string,
-}
-const add: SingleMethod = {
-  name: 'add',
-  example: 'R.add(1,2)',
-}
-const update: SingleMethod = {
-  name: 'update',
-  example: 'R.update(0,10, [1,2,3])',
-}
-const defaultMethod: SingleMethod = {
-  name: '',
+const EmptyMethod: SingleMethod = {
   example: '',
-}
-
-const allData = {
-  add,
-  update,
+  allTypings: '',
+  rambdaSource: '',
+  typing: '',
 }
 
 @Component({
@@ -32,45 +20,39 @@ const allData = {
 })
 export class WholeComponent implements OnInit {
   activeMethod: string
-  data: SingleMethod = add
-  notExist = false
+  allMethods: string[]
+  data: SingleMethod = EmptyMethod
   replEvaluateLock = false
   replResult = ''
-  allMethods: string[]
+  selectedMethod = ''
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private dataService: MethodsDataService
   ) {}
 
   ngOnInit() {
-    this.init()
+    this.allMethods = this.dataService.getAllKeys()
+
     this.route.params.subscribe(routeParams => {
-      this.activeMethod = routeParams.method
-      console.log(routeParams.method)
-      if (!allData[routeParams.method]) {
-        return this.notExist = true
-      }
-
-      // if (this.notExist)       this.notExist = false;
-      if (this.notExist) this.notExist = false
-
-      this.data = allData[routeParams.method]
+      this.onRouteChange(routeParams.method)
     })
   }
-  init() {
-    this.allMethods = this.dataService.getAllKeys()
-  }
 
-  changeMethod(e: string) {
-    console.log(e)
+  onRouteChange(method: string) {
+    console.log(method, 'route method')
+    if (!this.allMethods.includes(method)) return
+
+    this.selectedMethod = method
+    this.data = this.dataService.getMethod(method)
   }
 
   async onReplChange(newReplContent: string) {
+    console.log({newReplContent})
     if (this.replEvaluateLock) return
     this.replEvaluateLock = true
     this.replResult = await handleReplChange(newReplContent)
+    console.log(this.replResult, 'repl result')
     this.replEvaluateLock = false
   }
 }

@@ -19,39 +19,39 @@
 			class="sidebar"
 		>
 			<p
-				[click]="changeMethod"
 				*ngFor="let singleMethodKey of allMethods"
 				class="sidebar__cell"
-			>{{ singleMethodKey }}</p>
+			>
+				<a
+					routerLink="/{{singleMethodKey}}"
+				>{{ singleMethodKey }}</a>
+			</p>
 		</cell>
-
-		<!-- <cell
-			[height]="2"
-			[topLeft]="{x:0,y:2}"
-			[width]="16"
-		>
-			<a
-				click="(changeMethod($event))"
-				routerLink="/add"
-			>R.add</a>
-		</cell>-->
-		<!-- <cell
-			[height]="2"
-			[topLeft]="{x:0,y:4}"
-			[width]="16"
-		>
-			<a
-				click="(changeMethod($event))"
-				routerLink="/update"
-			>R.update</a>
-		</cell>-->
 	</sub-grid>
 
+	<!-- home page -->
 	<sub-grid
 		[debug]="true"
 		[height]="32"
 		[topLeft]="{x:8,y:0}"
 		[width]="24"
+		*ngIf="selectedMethod===''"
+	>
+		<cell
+			[debug]="true"
+			[height]="2"
+			[topLeft]="{x:0,y:0}"
+			[width]="8"
+		>Welcome to documentation site of `Rambda` library</cell>
+	</sub-grid>
+
+	<!-- method page  -->
+	<sub-grid
+		[debug]="true"
+		[height]="32"
+		[topLeft]="{x:8,y:0}"
+		[width]="24"
+		*ngIf="selectedMethod!==''"
 	>
 		<cell
 			[debug]="true"
@@ -71,7 +71,7 @@
 			[topLeft]="{x:0,y:2}"
 			[width]="8"
 		>
-			<app-replx></app-replx>
+			<app-replx [initialState]="data.example" (outputReplEvent)="onReplChange($event)"></app-replx>
 			<!-- <app-repl (outputReplEvent)="onReplChange($event)"></app-repl> -->
 		</cell>
 	</sub-grid>
