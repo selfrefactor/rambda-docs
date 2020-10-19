@@ -17,6 +17,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "highlight.js",
+              "css-element-queries"
+            ],
             "outputPath": "dist/rambda-docs",
             "index": "src/index.html",
             "main": "src/main.ts",
