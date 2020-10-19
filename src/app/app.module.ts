@@ -1,5 +1,6 @@
 import {HttpClientModule} from '@angular/common/http'
 import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core'
+import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import {FormsModule} from '@angular/forms'
 import {BrowserModule} from '@angular/platform-browser'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
@@ -29,14 +30,30 @@ import { ReplxComponent } from './replx/replx.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    HighlightModule,
     FormsModule,
     MonacoEditorModule,
     CodemirrorModule,
     BrowserAnimationsModule,
     MatSliderModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HIGHLIGHT_OPTIONS,
+      useValue: {
+        fullLibraryLoader: () => import('highlight.js')
+        // languages: getHighlightLanguages()
+      }
+    }
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}
+
+function getHighlightLanguages() {
+  return {
+    typescript: () => import('highlight.js/lib/languages/javascript'),
+    javascript: () => import('highlight.js/lib/languages/javascript'),
+  };
+}

@@ -19,7 +19,7 @@
   },
   "version": "1.0.0",
   "dependencies": {
-    "@materia-ui/ngx-monaco-editor": "^4.0.1",
+    "@materia-ui/ngx-monaco-editor": "4.0.1",
     "property-watch-decorator": "^1.2.5",
     "monaco-editor": "^0.20.0",
     "@angular/animations": "10.0.7",
@@ -33,11 +33,12 @@
     "@angular/platform-browser-dynamic": "10.0.7",
     "@angular/router": "10.0.7",
     "@ctrl/ngx-codemirror": "4.0.0",
+    "ngx-highlightjs": "4.1.0-beta",
     "codemirror": "5.56.0",
     "grid-fn": "0.2.2",
     "rambdax": "4.0.0",
     "rxjs": "7.0.0-beta.0",
-    "tslib": "^2.0.0",
+    "tslib": "2.0.0",
     "zone.js": "0.10.3"
   },
   "devDependencies": {
