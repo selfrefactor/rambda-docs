@@ -1,6 +1,9 @@
 {
   "name": "rambda-docs",
   "scripts": {
+    "devx": "node prepare/apply-highlighter.test.js",
+    "dev": "nodemon prepare/apply-highlighter.test.js",
+    "prepare:dev": "nodemon prepare/apply-highlighter.test.js",
     "update": "ng update --all=true --allowDirty=true --next=true",
     "updatex": "ng update --all=true --allowDirty=true",
     "update:force": "ng update --force --all=true --allowDirty=true --next=true",
@@ -51,10 +54,12 @@
     "@types/jest": "26.0.8",
     "@types/node": "14.0.27",
     "babel-loader": "8.1.0",
+    "fs-extra": "9.0.1",
     "jest": "26.2.2",
     "jest-preset-angular": "8.2.1",
     "prettier": "2.0.5",
     "rxjs-tslint-rules": "4.34.0",
+    "shiki": "0.2.6",
     "ts-node": "8.10.2",
     "tslint-fn": "0.2.2",
     "typescript": "3.9.7"
