@@ -3,7 +3,8 @@ const shiki = require('shiki')
 
 const initialResolver = {
   '{{LINE}}':'<span class="line">',
-  '{{START}}':'<pre class="shiki" style="background-color: #2e3440">'
+  '{{START}}':'<pre class="shiki" style="background-color: #2e3440">',
+  '{{END}}':'</span></span></code></pre>'
 }
 
 class ApplyHighlighter {
@@ -12,7 +13,6 @@ class ApplyHighlighter {
       throw new Error('codeToHtml is not ready')
     }
     this.resolver = initialResolver
-    this.resolverObject = {}
   }
   
   async init() {
@@ -64,10 +64,12 @@ class ApplyHighlighter {
       all.allTypings = data.allTypings ? this.codeToHtml(data.allTypings, 'ts'): ''
       all.typescriptDefinitionTest = data.typescriptDefinitionTest ? this.codeToHtml(data.typescriptDefinitionTest, 'ts'): ''
 
-      return piped(
+      const parsedData = piped(
         all,
         map(x => this.appendToResolver(x)),
       )
+
+      return {...data, ...parsedData}
 
       /*
         forEach(x => this.appendToResolver(x), all)
@@ -79,13 +81,15 @@ class ApplyHighlighter {
 
     const toSave = await mapAsync(iterator, source)
 
+    const resolverObject = {}
     forEach((x, prop) => {
       const newKey = remove(['{{','}}'], prop)
-      this.resolverObject[newKey] = x
+      resolverObject[newKey] = x
     })(this.resolver)
 
-    return {toSave, resolver: this.resolverObject}
+    return {toSave, resolver: resolverObject}
   }
+
   render(input, resolver){
     return interpolate(input, resolver)
   }

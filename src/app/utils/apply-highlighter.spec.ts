@@ -1,8 +1,7 @@
-import {delay} from 'rambdax'
-import {interval} from 'rxjs'
-import {take, publish, refCount} from 'rxjs/operators'
 import {applyHighlighter} from './apply-highlighter'
+import data from '../../../new-data.json'
 
-test('happy', async() => {
-  await applyHighlighter()
+test('happy', () => {
+  const parsed = applyHighlighter(data.add.typing)
+  console.log(parsed)
 })
