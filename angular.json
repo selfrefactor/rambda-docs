@@ -18,7 +18,6 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "highlight.js",
               "css-element-queries"
             ],
             "outputPath": "dist/rambda-docs",
@@ -37,7 +36,6 @@
               }
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.scss"
             ],

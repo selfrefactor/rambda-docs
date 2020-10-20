@@ -25,6 +25,7 @@ export class WholeComponent implements OnInit {
   selectedMethod = ''
   currentCodeSnippet = ''
   codeSnippetMode: SnippetMode = 'source'
+  allTypings = ''
   selectedMode: Mode = 'repl'
   allModes = ALL_MODES
 
@@ -54,6 +55,9 @@ export class WholeComponent implements OnInit {
     this.currentCodeSnippet = this.dataService.applyHighlighter(
       this.data[prop]
     )
+    if(!this.data.allTypings) return
+    
+    this.allTypings = this.dataService.applyHighlighter(this.data.allTypings)
   }
 
   onRouteChange(method: string) {

@@ -7,14 +7,20 @@
 	>
 		<cell
 			[debug]="true"
-			[height]="2"
+			[height]="1"
 			[topLeft]="{x:0,y:0}"
 			[width]="16"
 		>List of methods</cell>
 		<cell
 			[debug]="true"
-			[height]="13"
-			[topLeft]="{x:0,y:2}"
+			[height]="3"
+			[topLeft]="{x:0,y:1}"
+			[width]="16"
+		>Active filter lists</cell>
+		<cell
+			[debug]="true"
+			[height]="11"
+			[topLeft]="{x:0,y:4}"
 			[width]="16"
 			class="sidebar"
 		>
@@ -53,36 +59,26 @@
 		[width]="24"
 		*ngIf="selectedMethod!==''"
 	>
+
+		<!-- first sidebar -->
 		<cell
 			[debug]="true"
 			[height]="1"
-			[topLeft]="{x:1,y:0}"
-			[width]="6"
+			[topLeft]="{x:0,y:0}"
+			[width]="7"
 		>R.{{selectedMethod}}</cell>
 		<cell
 			[debug]="true"
-			[height]="1"
-			[topLeft]="{x:1,y:1}"
-			[width]="6"
+			[height]="2"
+			[topLeft]="{x:0,y:1}"
+			[width]="7"
 		>
 			{{data.explanation}}
-			<!-- <span
-				(click)="selectMode(singleMode.mode)"
-				*ngFor="let singleMode of allModes"
-				class="select__mode"
-			>{{singleMode.text}}</span>-->
 		</cell>
 		<cell
-			[debug]="true"
-			[height]="1"
-			[topLeft]="{x:1,y:2}"
-			[width]="6"
-		>{{data.typing}}</cell>
-		<cell
-			[debug]="true"
-			[height]="6"
+			[height]="9"
 			[topLeft]="{x:0,y:3}"
-			[width]="8"
+			[width]="7"
 		>
 			<app-repl
 				(outputReplEvent)="onReplChange($event)"
@@ -91,24 +87,40 @@
 		</cell>
 		<cell
 			[debug]="true"
-			[height]="5"
-			[topLeft]="{x:1,y:9}"
-			[width]="6"
-		></cell>
+			[height]="3"
+			[topLeft]="{x:0,y:12}"
+			[width]="7"
+		>{{replResult}}</cell>
 
 		<cell
 			[debug]="true"
-			[height]="3"
-			[topLeft]="{x:8,y:0}"
+			[height]="9"
+			[topLeft]="{x:8,y:6}"
 			[width]="7"
-		>{{data.explanation}}</cell>
-		<cell
-			[debug]="true"
-			[height]="4"
-			[topLeft]="{x:9,y:5}"
-			[width]="5"
 		>
 			<div [innerHTML]="currentCodeSnippet | purehtml"></div>
+		</cell>
+
+		<!-- second sidebar -->
+		<cell
+			[debug]="true"
+			[height]="5"
+			[topLeft]="{x:8,y:0}"
+			[width]="7"
+		>
+		<div [innerHTML]="allTypings | purehtml"></div>
+		 </cell>
+		<cell
+			[debug]="true"
+			[height]="1"
+			[topLeft]="{x:8,y:5}"
+			[width]="7"
+		>
+		<span
+				(click)="selectMode(singleMode.mode)"
+				*ngFor="let singleMode of allModes"
+				class="select__mode"
+			>{{singleMode.text}}</span>
 		</cell>
 	</sub-grid>
 </grid>
