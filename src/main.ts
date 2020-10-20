@@ -1,4 +1,3 @@
-// import 'codemirror/mode/javascript/javascript'
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic'
 import * as R from 'rambdax'
 window.R = R

@@ -1,6 +1,14 @@
-@import "./app//assets/code-mirror.css";
-@import "~codemirror/theme/eclipse";
-@import '~highlight.js/styles/vs2015.css';
+// @import "./app//assets/code-mirror.css";
+// @import "~codemirror/theme/eclipse";
+// @import '~highlight.js/styles/vs2015.css';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: hidden; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto,
+    "Helvetica Neue", sans-serif;
+  overflow: hidden;
+}

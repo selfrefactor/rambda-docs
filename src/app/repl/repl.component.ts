@@ -1,27 +1,54 @@
-import {OnDestroy, Component, OnInit, Output, EventEmitter} from '@angular/core'
-import {Subject} from 'rxjs'
-import {debounceTime} from 'rxjs/operators'
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Input,
+  Output,
+  ViewChild,
+  ViewEncapsulation,
+  OnChanges,
+} from '@angular/core'
+import {MonacoEditorComponent} from '@materia-ui/ngx-monaco-editor'
+import {OnChange} from 'property-watch-decorator'
 
 @Component({
   selector: 'app-repl',
   templateUrl: './repl.component.html',
   styleUrls: ['./repl.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
-export class ReplComponent implements OnInit, OnDestroy {
-  content: any
+export class ReplComponent implements OnInit, OnChanges {
+  @ViewChild(MonacoEditorComponent, {static: false})
+  editor: MonacoEditorComponent
+  editorOptions = {
+    theme: 'vs-dark',
+    language: 'typescript',
+    fontSize: 19,
+    minimap: {
+      enabled: false,
+    },
+    fixedOverflowWidgets: true,
+  }
   @Output() outputReplEvent = new EventEmitter<string>()
-  debouncer: Subject<string> = new Subject<string>()
+  @Input() initialState: string
 
-  constructor() {}
+  @OnChange<string>(function(this: ReplComponent, code: string) {
+    this.outputReplEvent.emit(code)
+  })
+  code = ''
 
-  ngOnInit(): void {
-    this.debouncer.pipe(debounceTime(1000)).subscribe(value => this.outputReplEvent.emit(value))
+  ngOnChanges() {
+    this.code = this.initialState
+  }
+  ngOnInit() {
+    setTimeout(() => {
+      this.code = this.initialState
+    }, 0)
   }
 
-  handleChange(e: string) {
-    this.debouncer.next(e)
-  }
-  ngOnDestroy() {
-    this.debouncer.unsubscribe()
-  }
+  // changeMonacoSettings() {
+  //   setTimeout(() => {
+  // this.editor.editor?.focus();
+  //   }, 0);
+  // }
 }

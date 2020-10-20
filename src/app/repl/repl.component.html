@@ -1,11 +1,1 @@
-<ngx-codemirror
-  [(ngModel)]="content"
-  (ngModelChange)="handleChange($event)"
-  [preserveScrollPosition]="true"
-  [options]="{
-      tabSize: 2,
-      lineNumbers: true,
-      theme: 'eclipse',
-      mode: 'javascript'
-    }"
-></ngx-codemirror>
+<ngx-monaco-editor [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>

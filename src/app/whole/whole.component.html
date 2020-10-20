@@ -84,17 +84,18 @@
 			[topLeft]="{x:0,y:3}"
 			[width]="8"
 		>
-			<app-replx
+			<app-repl
 				(outputReplEvent)="onReplChange($event)"
 				[initialState]="data.example"
-			></app-replx>
+			></app-repl>
 		</cell>
 		<cell
 			[debug]="true"
 			[height]="5"
+			[innerHTML]="currentCodeSnippet | purehtml"
 			[topLeft]="{x:1,y:9}"
 			[width]="6"
-		>111</cell>
+		></cell>
 
 		<cell
 			[debug]="true"
