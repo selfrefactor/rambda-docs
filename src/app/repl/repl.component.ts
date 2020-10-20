@@ -21,9 +21,18 @@ export class ReplComponent implements OnInit, OnChanges {
   @ViewChild(MonacoEditorComponent, {static: false})
   editor: MonacoEditorComponent
   editorOptions = {
-    theme: 'vs-dark',
+    theme: 'vs', // 'vs-dark' 'hc-black' 'vs'
     language: 'typescript',
-    fontSize: 19,
+    fontSize: 17,
+    contextmenu:false,
+    codeLens: false,
+    quickSuggestionsDelay: 1000,
+    showUnused: false,
+    copyWithSyntaxHighlighting: false,
+    lineHeight: 19,
+    disableMonospaceOptimizations: true,
+    cursorBlinking: 'smooth', // "blink" | "smooth" | "phase" | "expand" | "solid"
+    lineNumbers: false,
     minimap: {
       enabled: false,
     },
