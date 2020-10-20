@@ -39,7 +39,7 @@
     "ngx-highlightjs": "4.1.0-beta",
     "codemirror": "5.56.0",
     "grid-fn": "0.2.2",
-    "rambdax": "4.0.0",
+    "rambdax": "7.0.0",
     "rxjs": "7.0.0-beta.0",
     "tslib": "2.0.0",
     "zone.js": "0.10.3"

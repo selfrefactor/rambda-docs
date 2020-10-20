@@ -1,5 +1,4 @@
-const {randomString} = require('string-fn')
-const {mapAsync, match, remove, forEach, template: templateLib, replace, piped, map} = require('rambdax')
+const {mapAsync, match, remove, forEach, replace, piped, map, interpolate} = require('rambdax')
 const shiki = require('shiki')
 
 const initialResolver = {
@@ -88,7 +87,7 @@ class ApplyHighlighter {
     return {toSave, resolver: this.resolverObject}
   }
   render(input, resolver){
-    return templateLib(input, resolver)
+    return interpolate(input, resolver)
   }
 }
 
