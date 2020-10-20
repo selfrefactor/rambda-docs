@@ -10,7 +10,6 @@ import {
   SnippetMode,
 } from './whole.component.interfaces'
 import {SingleMethod} from '../services/methods-data.service.interfaces'
-import {remove} from 'rambdax'
 
 @Component({
   selector: 'app-whole',
@@ -52,14 +51,9 @@ export class WholeComponent implements OnInit {
     }
 
     const prop = this.dataService.getDataKey(this.codeSnippetMode)
-    const currentCodeSnippetRaw = this.dataService.applyHighlighter(
+    this.currentCodeSnippet = this.dataService.applyHighlighter(
       this.data[prop]
     )
-    this.currentCodeSnippet = remove([
-      '<pre class="shiki" style="background-color: #2e3440">',
-      '</pre>',
-    ])(currentCodeSnippetRaw)
-    console.log(this.currentCodeSnippet)
   }
 
   onRouteChange(method: string) {

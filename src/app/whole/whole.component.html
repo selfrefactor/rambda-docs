@@ -92,22 +92,23 @@
 		<cell
 			[debug]="true"
 			[height]="5"
-			[innerHTML]="currentCodeSnippet | purehtml"
 			[topLeft]="{x:1,y:9}"
 			[width]="6"
 		></cell>
 
 		<cell
 			[debug]="true"
-			[height]="5"
+			[height]="3"
 			[topLeft]="{x:8,y:0}"
 			[width]="7"
 		>{{data.explanation}}</cell>
 		<cell
 			[debug]="true"
-			[height]="5"
-			[topLeft]="{x:8,y:5}"
-			[width]="7"
-		>11</cell>
+			[height]="4"
+			[topLeft]="{x:9,y:5}"
+			[width]="5"
+		>
+			<div [innerHTML]="currentCodeSnippet | purehtml"></div>
+		</cell>
 	</sub-grid>
 </grid>
