@@ -1,11 +1,16 @@
 import {Component, OnInit} from '@angular/core'
 import {ActivatedRoute} from '@angular/router'
 import {handleReplChange} from '../_modules/handle-repl-change'
+import {MethodsDataService} from '../services/methods-data.service'
 import {
-  MethodsDataService,
-  SingleMethod,
-} from '../services/methods-data.service'
-import {Mode, ALL_MODES, EmptyMethod, SingleMode } from './whole.component.interfaces'
+  Mode,
+  ALL_MODES,
+  EmptyMethod,
+  SingleMode,
+  SnippetMode,
+} from './whole.component.interfaces'
+import {SingleMethod} from '../services/methods-data.service.interfaces'
+import {remove} from 'rambdax'
 
 @Component({
   selector: 'app-whole',
@@ -19,6 +24,8 @@ export class WholeComponent implements OnInit {
   replEvaluateLock = false
   replResult = ''
   selectedMethod = ''
+  currentCodeSnippet = ''
+  codeSnippetMode: SnippetMode = 'source'
   selectedMode: Mode = 'repl'
   allModes = ALL_MODES
 
@@ -35,19 +42,37 @@ export class WholeComponent implements OnInit {
     })
   }
 
+  selectMethod(method) {
+    this.selectedMethod = method
+
+    this.data = this.dataService.getMethod(method)
+
+    if (this.codeSnippetMode !== 'source') {
+      this.codeSnippetMode = 'source'
+    }
+
+    const prop = this.dataService.getDataKey(this.codeSnippetMode)
+    const currentCodeSnippetRaw = this.dataService.applyHighlighter(
+      this.data[prop]
+    )
+    this.currentCodeSnippet = remove([
+      '<pre class="shiki" style="background-color: #2e3440">',
+      '</pre>',
+    ])(currentCodeSnippetRaw)
+    console.log(this.currentCodeSnippet)
+  }
+
   onRouteChange(method: string) {
     if (!this.allMethods.includes(method)) return
 
-    this.selectedMethod = method
-    this.data = this.dataService.getMethod(method)
-    console.log(this.data)
+    this.selectMethod(method)
   }
 
   async onReplChange(newReplContent: string) {
     // Safeguard for async methods combined with change of mode
     // ============================================
     if (this.selectedMode !== 'repl') return
-    
+
     if (this.replEvaluateLock) return
     this.replEvaluateLock = true
     this.replResult = await handleReplChange(newReplContent)

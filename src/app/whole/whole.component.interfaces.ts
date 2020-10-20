@@ -1,4 +1,4 @@
-import {SingleMethod} from '../services/methods-data.service'
+import {SingleMethod} from '../services/methods-data.service.interfaces'
 
 export const EmptyMethod: SingleMethod = {
   example: '',
@@ -8,6 +8,12 @@ export const EmptyMethod: SingleMethod = {
 }
 
 export type Mode = 'repl' | 'all.typings' | 'tests' | 'typings.tests'
+
+export type SnippetMode =
+  | 'source'
+  | 'tests'
+  | 'all.typings'
+  | 'typings.tests'
 
 export interface SingleMode {
   text: string,

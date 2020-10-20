@@ -1,4 +1,13 @@
-import {Component, EventEmitter, OnInit,Input, Output, ViewChild, ViewEncapsulation, OnChanges} from '@angular/core'
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Input,
+  Output,
+  ViewChild,
+  ViewEncapsulation,
+  OnChanges,
+} from '@angular/core'
 import {MonacoEditorComponent} from '@materia-ui/ngx-monaco-editor'
 import {OnChange} from 'property-watch-decorator'
 
@@ -32,10 +41,9 @@ export class ReplxComponent implements OnInit, OnChanges {
     this.code = this.initialState
   }
   ngOnInit() {
-    console.log('init replx', this.initialState)
     setTimeout(() => {
       this.code = this.initialState
-    }, 0);
+    }, 0)
   }
 
   // changeMonacoSettings() {
