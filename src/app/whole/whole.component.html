@@ -69,7 +69,7 @@
 			[topLeft]="{x:0,y:0}"
 			[width]="7"
 		>
-			<wired-card>
+			<wired-card fill="#e2e2e2">
 				<p
 					*ngFor="let explanationLine of explanation"
 				>{{explanationLine}}</p>
@@ -82,7 +82,7 @@
 			[topLeft]="{x:0,y:3}"
 			[width]="7"
 		>
-			<wired-card>
+			<wired-card fill="#2e3440">
 				<div [innerHTML]="allTypings | purehtml"></div>
 			</wired-card>
 		</cell>
@@ -99,7 +99,7 @@
 			[topLeft]="{x:0,y:12}"
 			[width]="7"
 		>
-			<wired-card>{{replResult}}</wired-card>
+			<wired-card fill="#e2e2e2">{{replResult}}</wired-card>
 		</cell>
 
 		<!-- second sidebar -->
@@ -123,7 +123,7 @@
 			[topLeft]="{x:8,y:1}"
 			[width]="8"
 		>
-			<wired-card>
+			<wired-card elevation="5">
 				<div [innerHTML]="currentCodeSnippet | purehtml"></div>
 			</wired-card>
 		</cell>
