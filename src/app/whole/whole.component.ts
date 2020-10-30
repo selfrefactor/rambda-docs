@@ -1,5 +1,8 @@
-import {Component, OnInit} from '@angular/core'
 import {ActivatedRoute} from '@angular/router'
+// import roughjs from 'roughjs/bin/rough'
+// https://github.com/selfrefactor/rambda-docs/blob/4456ae2b9a513df560680485f8b080574e845331/src/app/app.module.ts
+import 'wired-elements'
+import {Component, OnInit} from '@angular/core'
 import {handleReplChange} from '../_modules/handle-repl-change'
 import {MethodsDataService} from '../services/methods-data.service'
 import {
@@ -55,8 +58,8 @@ export class WholeComponent implements OnInit {
     this.currentCodeSnippet = this.dataService.applyHighlighter(
       this.data[prop]
     )
-    if(!this.data.allTypings) return
-    
+    if (!this.data.allTypings) return
+
     this.allTypings = this.dataService.applyHighlighter(this.data.allTypings)
   }
 
@@ -64,6 +67,9 @@ export class WholeComponent implements OnInit {
     if (!this.allMethods.includes(method)) return
 
     this.selectMethod(method)
+  }
+
+  ngAfterViewInit() {
   }
 
   async onReplChange(newReplContent: string) {

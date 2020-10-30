@@ -1,6 +1,6 @@
 <grid>
 	<sub-grid
-		[debug]="true"
+		[debug]="false"
 		[height]="32"
 		[topLeft]="{x:0,y:0}"
 		[width]="8"
@@ -37,14 +37,14 @@
 
 	<!-- home page -->
 	<sub-grid
-		[debug]="true"
+		[debug]="false"
 		[height]="32"
 		[topLeft]="{x:8,y:0}"
 		[width]="24"
 		*ngIf="selectedMethod===''"
 	>
 		<cell
-			[debug]="true"
+			[debug]="false"
 			[height]="2"
 			[topLeft]="{x:0,y:0}"
 			[width]="8"
@@ -53,65 +53,80 @@
 
 	<!-- method page  -->
 	<sub-grid
-		[debug]="true"
+		[debug]="false"
 		[height]="32"
 		[topLeft]="{x:8,y:0}"
 		[width]="24"
 		*ngIf="selectedMethod!==''"
 	>
-
 		<!-- first sidebar -->
 		<cell
-			[debug]="true"
+			[debug]="false"
 			[height]="1"
 			[topLeft]="{x:0,y:0}"
 			[width]="7"
 		>R.{{selectedMethod}}</cell>
 		<cell
-			[debug]="true"
+			[debug]="false"
 			[height]="2"
 			[topLeft]="{x:0,y:1}"
 			[width]="7"
 		>
-			{{data.explanation}}
+			<wired-card>{{data.explanation}}</wired-card>
 		</cell>
-		<cell
-			[height]="9"
-			[topLeft]="{x:0,y:3}"
-			[width]="7"
-		>
+		<cell [height]="9" [topLeft]="{x:0,y:3}" [width]="7">
 			<app-repl
 				(outputReplEvent)="onReplChange($event)"
 				[initialState]="data.example"
 			></app-repl>
 		</cell>
 		<cell
-			[debug]="true"
+			[debug]="false"
 			[height]="3"
 			[topLeft]="{x:0,y:12}"
 			[width]="7"
-		>{{replResult}}</cell>
+		>
+			<wired-card>{{replResult}}</wired-card>
+		</cell>
 
 		<cell
-			[debug]="true"
+			[debug]="false"
 			[height]="9"
 			[topLeft]="{x:8,y:6}"
 			[width]="7"
 		>
-			<div [innerHTML]="currentCodeSnippet | purehtml"></div>
+			<wired-card>
+				<div [innerHTML]="currentCodeSnippet | purehtml"></div>
+			</wired-card>
 		</cell>
 
 		<!-- second sidebar -->
 		<cell
-			[debug]="true"
+			[debug]="false"
 			[height]="5"
 			[topLeft]="{x:8,y:0}"
 			[width]="7"
 		>
-		<div [innerHTML]="allTypings | purehtml"></div>
-		 </cell>
+			<wired-card>
+				<div [innerHTML]="allTypings | purehtml"></div>
+			</wired-card>
+		</cell>
 		<cell
-			[debug]="true"
+			[debug]="false"
+			[height]="1"
+			[topLeft]="{x:8,y:5}"
+			[width]="7"
+		>
+			<wired-card>
+				<span
+					(click)="selectMode(singleMode.mode)"
+					*ngFor="let singleMode of allModes"
+					class="select__mode"
+				>{{singleMode.text}}</span>
+			</wired-card>
+		</cell>
+		<!-- <cell
+			[debug]="false"
 			[height]="1"
 			[topLeft]="{x:8,y:5}"
 			[width]="7"
@@ -121,6 +136,6 @@
 				*ngFor="let singleMode of allModes"
 				class="select__mode"
 			>{{singleMode.text}}</span>
-		</cell>
+		</cell>-->
 	</sub-grid>
 </grid>

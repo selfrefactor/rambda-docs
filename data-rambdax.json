@@ -6,7 +6,7 @@
       "Number"
     ],
     "notes": "It doesn't work with strings, as the inputs are parsed to numbers before calculation.",
-    "rambdaSource": "export function add(a, b) {\n  if (arguments.length === 1)\n    return (_b) => add(a, _b);\n\n  return Number(a) + Number(b);\n}",
+    "rambdaSource": "export function add(a, b){\n  if (arguments.length === 1) return _b => add(a, _b)\n\n  return Number(a) + Number(b)\n}",
     "rambdaSpecs": "import { add } from './add'\n\ntest('with number', () => {\n  expect(add(2, 3)).toEqual(5)\n  expect(add(7)(10)).toEqual(17)\n})\n\ntest('string is bad input', () => {\n  expect(add('foo', 'bar')).toBeNaN()\n})\n\ntest('ramda specs', () => {\n  expect(add('1', '2')).toEqual(3)\n  expect(add(1, '2')).toEqual(3)\n  expect(add(true, false)).toEqual(1)\n  expect(add(null, null)).toEqual(0)\n  expect(add(undefined, undefined)).toEqual(NaN)\n  expect(add(new Date(1), new Date(2))).toEqual(3)\n})",
     "explanation": "It adds `a` and `b`.",
     "example": "R.add(2, 3) // =>  5",
@@ -462,8 +462,8 @@
     "example": "F() // => false"
   },
   "filter": {
-    "typing": "\nfilter<T>(predicate: FilterFunctionArray<T>): (input: readonly T[]) => T[]",
-    "allTypings": "filter<T>(predicate: FilterFunctionArray<T>): (input: readonly T[]) => T[];\nfilter<T>(predicate: FilterFunctionArray<T>, input: readonly T[]): T[];\nfilter<T, U>(predicate: FilterFunctionObject<T>): (x: Dictionary<T>) => Dictionary<T>;\nfilter<T>(predicate: FilterFunctionObject<T>, x: Dictionary<T>): Dictionary<T>;",
+    "typing": "\nfilter<T>(predicate: Predicate<T>): (input: readonly T[]) => T[]",
+    "allTypings": "filter<T>(predicate: Predicate<T>): (input: readonly T[]) => T[];\nfilter<T>(predicate: Predicate<T>, input: readonly T[]): T[];\nfilter<T, U>(predicate: ObjectPredicate<T>): (x: Dictionary<T>) => Dictionary<T>;\nfilter<T>(predicate: ObjectPredicate<T>, x: Dictionary<T>): Dictionary<T>;",
     "categories": [
       "List",
       "Object"
@@ -554,8 +554,8 @@
     "failedSpecsCount": 4
   },
   "forEach": {
-    "typing": "\nforEach<T>(fn: MapFunctionArray<T, void>, list: readonly T[]): T[]",
-    "allTypings": "forEach<T>(fn: MapFunctionArray<T, void>, list: readonly T[]): T[];\nforEach<T>(fn: MapFunctionArray<T, void>): (list: readonly T[]) => T[];\nforEach<T>(fn: MapFunctionObject<T, void>, list: Dictionary<T>): Dictionary<T>;\nforEach<T, U>(fn: MapFunctionObject<T, void>): (list: Dictionary<T>) => Dictionary<T>;",
+    "typing": "\nforEach<T>(fn: Iterator<T, void>, list: readonly T[]): T[]",
+    "allTypings": "forEach<T>(fn: Iterator<T, void>, list: readonly T[]): T[];\nforEach<T>(fn: Iterator<T, void>): (list: readonly T[]) => T[];\nforEach<T>(fn: ObjectIterator<T, void>, list: Dictionary<T>): Dictionary<T>;\nforEach<T, U>(fn: ObjectIterator<T, void>): (list: Dictionary<T>) => Dictionary<T>;",
     "categories": [
       "List",
       "Object"
@@ -713,7 +713,7 @@
     "rambdaSpecs": "import R from 'ramda'\n\nimport { includes } from './includes'\n\ntest('includes with string', () => {\n  const str = 'foo bar'\n\n  expect(includes('bar')(str)).toBeTrue()\n  expect(R.includes('bar')(str)).toBeTrue()\n  expect(includes('never', str)).toBeFalse()\n  expect(R.includes('never', str)).toBeFalse()\n})\n\ntest('includes with array', () => {\n  const arr = [ 1, 2, 3 ]\n\n  expect(includes(2)(arr)).toBeTrue()\n  expect(R.includes(2)(arr)).toBeTrue()\n\n  expect(includes(4, arr)).toBeFalse()\n  expect(R.includes(4, arr)).toBeFalse()\n})\n\ntest('with wrong input that does not throw', () => {\n  const result = includes(1, /foo/g)\n  const ramdaResult = R.includes(1, /foo/g)\n  expect(result).toBeFalse()\n  expect(ramdaResult).toBeFalse()\n})\n\ntest('throws on wrong input - match ramda behaviour', () => {\n  expect(() => includes(2, null)).toThrowWithMessage(TypeError,\n    'Cannot read property \\'indexOf\\' of null')\n  expect(() => R.includes(2, null)).toThrowWithMessage(TypeError,\n    'Cannot read property \\'indexOf\\' of null')\n  expect(() => includes(2, undefined)).toThrowWithMessage(TypeError,\n    'Cannot read property \\'indexOf\\' of undefined')\n  expect(() => R.includes(2, undefined)).toThrowWithMessage(TypeError,\n    'Cannot read property \\'indexOf\\' of undefined')\n})",
     "explanation": "If `input` is string, then this method work as native `String.includes`.\n\nIf `input` is array, then `R.equals` is used to define if `valueToFind` belongs to the list.",
     "example": "const result = [\n  R.includes('oo', 'foo'),\n  R.includes({a: 1}, [{a: 1}])\n]\n// => [true, true ]",
-    "typescriptDefinitionTest": "import {includes} from 'ramda'\n\nconst list = [{a: {b: '1'}}, {a: {c: '2'}}, {a: {b: '3'}}]\n\ndescribe('R.includes', () => {\n  it('happy', () => {\n    const result = includes({a: {b: '1'}}, list)\n    /*\n      should work:\n\n      const resultCurried = includes({a: {b: '1'}})(list)\n    */\n    result // $ExpectType boolean\n    result // $ExpectType boolean\n  })\n  it('with string', () => {\n    const result = includes('oo', 'foo')\n    const resultCurried = includes('oo')('foo')\n\n    result // $ExpectType boolean\n    resultCurried // $ExpectType boolean\n  })\n})",
+    "typescriptDefinitionTest": "import {includes} from 'rambda'\n\nconst list = [{a: {b: '1'}}, {a: {c: '2'}}, {a: {b: '3'}}]\n\ndescribe('R.includes', () => {\n  it('happy', () => {\n    const result = includes({a: {b: '1'}}, list)\n    result // $ExpectType boolean\n  })\n  it('with string', () => {\n    const result = includes('oo', 'foo')\n    const resultCurried = includes('oo')('foo')\n\n    result // $ExpectType boolean\n    resultCurried // $ExpectType boolean\n  })\n})",
     "failedRamdaSpecs": "var R = require('../../../../dist/rambda.js');\nvar eq = require('./shared/eq');\n\ndescribe('includes', function() {\n  it('has R.equals semantics', function() {\n    function Just(x) { this.value = x; }\n    Just.prototype.equals = function(x) {\n      return x instanceof Just && R.equals(x.value, this.value);\n    };\n    eq(R.includes(0, [-0]), false);\n    eq(R.includes(-0, [0]), false);\n    eq(R.includes(NaN, [NaN]), true);\n    eq(R.includes(new Just([42]), [new Just([42])]), true);\n  });\n});",
     "failedSpecsReasons": "Ramda method pass to `equals` method if available",
     "failedSpecsCount": 1
@@ -977,8 +977,8 @@
     "typescriptDefinitionTest": "import {lens, view, assoc} from 'rambda'\n\ninterface Input {\n  foo: string,\n}\n\nconst testObject: Input = {\n  foo: 'Led Zeppelin',\n}\n\nconst fooLens = lens<Input, string, string>((x: Input) => {\n  return x.foo\n}, assoc('foo'))\n\ndescribe('R.view', () => {\n  it('happt', () => {\n    const result = view<Input, string>(fooLens, testObject)\n    result // $ExpectType string\n  })\n})"
   },
   "map": {
-    "typing": "\nmap<T, U>(fn: MapFunctionObject<T, U>, iterable: Dictionary<T>): Dictionary<U>",
-    "allTypings": "map<T, U>(fn: MapFunctionObject<T, U>, iterable: Dictionary<T>): Dictionary<U>;\nmap<T, U>(fn: MapIterator<T, U>, iterable: readonly T[]): U[];\nmap<T, U>(fn: MapIterator<T, U>): (iterable: readonly T[]) => U[];\nmap<T, U, S>(fn: MapFunctionObject<T, U>): (iterable: Dictionary<T>) => Dictionary<U>;\nmap<T>(fn: MapIterator<T, T>): (iterable: readonly T[]) => T[];\nmap<T>(fn: MapIterator<T, T>, iterable: readonly T[]): T[];",
+    "typing": "\nmap<T, U>(fn: ObjectIterator<T, U>, iterable: Dictionary<T>): Dictionary<U>",
+    "allTypings": "map<T, U>(fn: ObjectIterator<T, U>, iterable: Dictionary<T>): Dictionary<U>;\nmap<T, U>(fn: Iterator<T, U>, iterable: readonly T[]): U[];\nmap<T, U>(fn: Iterator<T, U>): (iterable: readonly T[]) => U[];\nmap<T, U, S>(fn: ObjectIterator<T, U>): (iterable: Dictionary<T>) => Dictionary<U>;\nmap<T>(fn: Iterator<T, T>): (iterable: readonly T[]) => T[];\nmap<T>(fn: Iterator<T, T>, iterable: readonly T[]): T[];",
     "categories": [
       "List",
       "Object"
@@ -1498,8 +1498,8 @@
     "failedSpecsCount": 2
   },
   "reject": {
-    "typing": "\nreject<T>(predicate: FilterFunctionArray<T>, list: readonly T[]): T[]",
-    "allTypings": "reject<T>(predicate: FilterFunctionArray<T>, list: readonly T[]): T[];\nreject<T>(predicate: FilterFunctionArray<T>): (list: readonly T[]) => T[];\nreject<T>(predicate: FilterFunctionArray<T>, obj: Dictionary<T>): Dictionary<T>;\nreject<T, U>(predicate: FilterFunctionArray<T>): (obj: Dictionary<T>) => Dictionary<T>;",
+    "typing": "\nreject<T>(predicate: Predicate<T>, list: readonly T[]): T[]",
+    "allTypings": "reject<T>(predicate: Predicate<T>, list: readonly T[]): T[];\nreject<T>(predicate: Predicate<T>): (list: readonly T[]) => T[];\nreject<T>(predicate: Predicate<T>, obj: Dictionary<T>): Dictionary<T>;\nreject<T, U>(predicate: Predicate<T>): (obj: Dictionary<T>) => Dictionary<T>;",
     "categories": [
       "List",
       "Object"
@@ -2911,8 +2911,8 @@
     "typescriptDefinitionTest": "import {applyDiff} from 'rambda'\n\ninterface Output {\n  a: {\n    b: number,\n    d: number,\n  },\n}\n\ndescribe('R.applyDiff', () => {\n  it('happy', async() => {\n    const obj = {a: {b: 1, c: 2}}\n    const rules = [\n      {op: 'remove', path: 'a.c'} as const,\n      {op: 'add', path: 'a.d', value: 4} as const,\n      {op: 'update', path: 'a.b', value: 2} as const,\n    ]\n    const result = applyDiff<Output>(rules, obj)\n    result // $ExpectType Output\n  })\n})"
   },
   "mapIndexed": {
-    "typing": "\nmapIndexed<T, U>(fn: MapFunctionObject<T, U>, iterable: Dictionary<T>): Dictionary<U>",
-    "allTypings": "mapIndexed<T, U>(fn: MapFunctionObject<T, U>, iterable: Dictionary<T>): Dictionary<U>;\nmapIndexed<T, U>(fn: MapIndexedIterator<T, U>, iterable: readonly T[]): U[];\nmapIndexed<T, U>(fn: MapIndexedIterator<T, U>): (iterable: readonly T[]) => U[];\nmapIndexed<T, U, S>(fn: MapFunctionObject<T, U>): (iterable: Dictionary<T>) => Dictionary<U>;\nmapIndexed<T>(fn: MapIndexedIterator<T, T>): (iterable: readonly T[]) => T[];\nmapIndexed<T>(fn: MapIndexedIterator<T, T>, iterable: readonly T[]): T[];",
+    "typing": "\nmapIndexed<T, U>(fn: ObjectIterator<T, U>, iterable: Dictionary<T>): Dictionary<U>",
+    "allTypings": "mapIndexed<T, U>(fn: ObjectIterator<T, U>, iterable: Dictionary<T>): Dictionary<U>;\nmapIndexed<T, U>(fn: IndexedIterator<T, U>, iterable: readonly T[]): U[];\nmapIndexed<T, U>(fn: IndexedIterator<T, U>): (iterable: readonly T[]) => U[];\nmapIndexed<T, U, S>(fn: ObjectIterator<T, U>): (iterable: Dictionary<T>) => Dictionary<U>;\nmapIndexed<T>(fn: IndexedIterator<T, T>): (iterable: readonly T[]) => T[];\nmapIndexed<T>(fn: IndexedIterator<T, T>, iterable: readonly T[]): T[];",
     "categories": [
       "List",
       "Object"
@@ -2923,8 +2923,8 @@
     "typescriptDefinitionTest": "import {mapIndexed} from 'rambda'\n\nconst fn = (x: number, i: number) => {\n  x // $ExpectType number\n  i // $ExpectType number\n  return x + 2\n}\nconst list = [1, 2, 3]\n\ndescribe('R.mapIndexed', () => {\n  it('happy', () => {\n    const result = mapIndexed<number>(fn, list)\n    result // $ExpectType number[]\n  })\n  it('curried', () => {\n    const result = mapIndexed<number>(fn)(list)\n    result // $ExpectType number[]\n  })\n})"
   },
   "filterIndexed": {
-    "typing": "\nfilterIndexed<T>(predicate: FilterPredicateIndexed<T>): (x: readonly T[]) => T[]",
-    "allTypings": "filterIndexed<T>(predicate: FilterPredicateIndexed<T>): (x: readonly T[]) => T[];\nfilterIndexed<T>(predicate: FilterPredicateIndexed<T>, x: readonly T[]): T[];\nfilterIndexed<T, U>(predicate: FilterFunctionObject<T>): (x: Dictionary<T>) => Dictionary<T>;\nfilterIndexed<T>(predicate: FilterFunctionObject<T>, x: Dictionary<T>): Dictionary<T>;",
+    "typing": "\nfilterIndexed<T>(predicate: IndexedPredicate<T>): (x: readonly T[]) => T[]",
+    "allTypings": "filterIndexed<T>(predicate: IndexedPredicate<T>): (x: readonly T[]) => T[];\nfilterIndexed<T>(predicate: IndexedPredicate<T>, x: readonly T[]): T[];\nfilterIndexed<T, U>(predicate: ObjectPredicate<T>): (x: Dictionary<T>) => Dictionary<T>;\nfilterIndexed<T>(predicate: ObjectPredicate<T>, x: Dictionary<T>): Dictionary<T>;",
     "categories": [
       "List",
       "Object"
@@ -2935,8 +2935,8 @@
     "typescriptDefinitionTest": "import {filterIndexed} from 'rambda'\n\nconst list = [1, 2, 3]\n\ndescribe('R.filterIndexed with array', () => {\n  it('happy', () => {\n    const result = filterIndexed(x => {\n      x // $ExpectType number\n      return x > 1\n    }, list)\n    result // $ExpectType number[]\n  })\n  it('curried require explicit type', () => {\n    const result = filterIndexed<number>(x => {\n      x // $ExpectType number\n      return x > 1\n    })(list)\n    result // $ExpectType number[]\n  })\n})"
   },
   "forEachIndexed": {
-    "typing": "\nforEachIndexed<T>(fn: MapFunctionArrayIndexed<T, void>, list: readonly T[]): T[]",
-    "allTypings": "forEachIndexed<T>(fn: MapFunctionArrayIndexed<T, void>, list: readonly T[]): T[];\nforEachIndexed<T>(fn: MapFunctionArrayIndexed<T, void>): (list: readonly T[]) => T[];\nforEachIndexed<T>(fn: MapFunctionObject<T, void>, list: Dictionary<T>): Dictionary<T>;\nforEachIndexed<T, U>(fn: MapFunctionObject<T, void>): (list: Dictionary<T>) => Dictionary<T>;",
+    "typing": "\nforEachIndexed<T>(fn: IndexedIterator<T, void>, list: readonly T[]): T[]",
+    "allTypings": "forEachIndexed<T>(fn: IndexedIterator<T, void>, list: readonly T[]): T[];\nforEachIndexed<T>(fn: IndexedIterator<T, void>): (list: readonly T[]) => T[];\nforEachIndexed<T>(fn: ObjectIterator<T, void>, list: Dictionary<T>): Dictionary<T>;\nforEachIndexed<T, U>(fn: ObjectIterator<T, void>): (list: Dictionary<T>) => Dictionary<T>;",
     "rambdaSource": "import {mapIndexed} from './mapIndexed'\n\nexport function forEachIndexed(fn, iterable) {\n  if (arguments.length === 1){\n    return (_iterable) => forEachIndexed(fn, _iterable);\n  }\n\n  mapIndexed(fn, iterable)\n\n  return iterable\n}",
     "rambdaSpecs": "import { forEachIndexed } from './forEachIndexed'\n\nconst list = [ 1, 2, 3 ]\nconst iterator = (x, i) => {\n  expect(x).toBeNumber()\n  expect(i).toBeNumber()\n}\n\ntest('happy', () => {\n  const result = forEachIndexed(iterator, list)\n\n  expect(result).toEqual(list)\n})\n\ntest('curried', () => {\n  const result = forEachIndexed(iterator)(list)\n\n  expect(result).toEqual(list)\n})",
     "typescriptDefinitionTest": "import {forEachIndexed} from 'rambda'\n\nconst list = [1, 2, 3]\n\ndescribe('R.forEachIndexed', () => {\n  it('happy', () => {\n    const result = forEachIndexed((x, i) => {\n      x // $ExpectType number\n      i // $ExpectType number\n    }, list)\n\n    result // $ExpectType number[]\n  })\n  it('curried', () => {\n    const result = forEachIndexed<number>((x, i) => {\n      x // $ExpectType number\n      i // $ExpectType number\n    })(list)\n\n    result // $ExpectType number[]\n  })\n})"
