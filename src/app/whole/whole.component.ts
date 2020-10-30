@@ -14,6 +14,13 @@ import {
 } from './whole.component.interfaces'
 import {SingleMethod} from '../services/methods-data.service.interfaces'
 
+function parseExplanation(explanation) {
+  if (!explanation) return ['']
+  if (!explanation.includes('\n')) return [explanation]
+
+  return explanation.split('\n')
+}
+
 @Component({
   selector: 'app-whole',
   templateUrl: './whole.component.html',
@@ -26,6 +33,7 @@ export class WholeComponent implements OnInit {
   replEvaluateLock = false
   replResult = ''
   selectedMethod = ''
+  explanation: string[] = ['']
   currentCodeSnippet = ''
   codeSnippetMode: SnippetMode = 'source'
   allTypings = ''
@@ -49,7 +57,9 @@ export class WholeComponent implements OnInit {
     this.selectedMethod = method
 
     this.data = this.dataService.getMethod(method)
+    this.explanation = parseExplanation(this.data.explanation)
 
+    console.log(this.data.explanation.includes('\n'))
     if (this.codeSnippetMode !== 'source') {
       this.codeSnippetMode = 'source'
     }
@@ -69,8 +79,7 @@ export class WholeComponent implements OnInit {
     this.selectMethod(method)
   }
 
-  ngAfterViewInit() {
-  }
+  ngAfterViewInit() {}
 
   async onReplChange(newReplContent: string) {
     // Safeguard for async methods combined with change of mode

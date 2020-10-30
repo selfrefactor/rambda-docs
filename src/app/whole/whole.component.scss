@@ -8,8 +8,15 @@ ngx-monaco-editor {
   padding: 5px;
   &:nth-child(odd) {
     font-size: 110%;
+    color: red;
   }
 }
+
+// .helper {
+//   &__padding {
+//     padding: 5% 10%;
+//   }
+// }
 
 .sidebar {
   background-color: #fafafa;
