@@ -1,6 +1,6 @@
 const {mapAsync, match, remove, forEach, replace, piped, map, interpolate} = require('rambdax')
 const shiki = require('shiki')
-
+const tripTankTheme = shiki.loadTheme(`${__dirname}/assets/TripTank.json`)
 const initialResolver = {
   '{{LINE}}':'<span class="line">',
   '{{START}}':'<pre class="shiki" style="background-color: #2e3440">',
@@ -17,7 +17,8 @@ class ApplyHighlighter {
   
   async init() {
     const {codeToHtml} = await shiki.getHighlighter({
-      theme: 'nord',
+      theme: tripTankTheme,
+      // theme: 'nord',
     })
     this.codeToHtml = codeToHtml
   }

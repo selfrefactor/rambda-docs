@@ -1,7 +1,8 @@
 {
   "name": "rambda-docs",
   "scripts": {
-    "prepare": "node prepare/apply-highlighter.test.js",
+    "prepare": "echo prepareisinternal",
+    "pre": "node prepare/apply-highlighter.test.js",
     "dev": "nodemon prepare/apply-highlighter.test.js",
     "prepare:dev": "nodemon prepare/apply-highlighter.test.js",
     "update": "ng update --all=true --allowDirty=true --next=true",

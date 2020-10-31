@@ -88,7 +88,7 @@
 			[topLeft]="{x:0,y:3}"
 			[width]="7"
 		>
-			<wired-card fill="#2e3440">
+			<wired-card [fill]="highlightBackground">
 				<div [innerHTML]="allTypings | purehtml"></div>
 			</wired-card>
 		</cell>
@@ -130,7 +130,7 @@
 			[topLeft]="{x:8,y:1}"
 			[width]="8"
 		>
-			<wired-card fill="#2e3440">
+			<wired-card [fill]="highlightBackground">
 				<div [innerHTML]="currentCodeSnippet | purehtml"></div>
 			</wired-card>
 		</cell>

@@ -24,7 +24,7 @@ function parseExplanation(explanation) {
 }
 
 function getVisibleMethods(allMethods: string[], activeCategory: Category){
-  
+  return allMethods  
 }
 
 @Component({
@@ -48,6 +48,7 @@ export class WholeComponent implements OnInit {
   selectedMode: Mode = 'repl'
   allModes = ALL_MODES
   allCategories = ALL_CATEGORIES
+  highlightBackground = '#25252A'
 
   constructor(
     private route: ActivatedRoute,
