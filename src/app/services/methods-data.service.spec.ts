@@ -12,4 +12,13 @@ describe('MethodsDataService', () => {
   it('should be created', () => {
     expect(service.getAllKeys()).toMatchSnapshot()
   })
+  it('getActiveCategoryIndexes', () => {
+    const prop = 'add'
+    const a = service.getActiveCategoryIndexes({
+      prop, 
+      methodCategories: service.getMethod(prop).categories,
+      currentFilter:'All'
+    })
+    console.log({a})
+  })
 })

@@ -23,8 +23,8 @@ function parseExplanation(explanation) {
   return explanation.split('\n')
 }
 
-function getVisibleMethods(allMethods: string[], activeCategory: Category){
-  return allMethods  
+function getVisibleMethods(allMethods: string[], activeCategory: Category) {
+  return allMethods
 }
 
 @Component({
@@ -34,7 +34,8 @@ function getVisibleMethods(allMethods: string[], activeCategory: Category){
 })
 export class WholeComponent implements OnInit {
   activeMethod: string
-  activeCategory: Category = 'all'
+  activeCategoryIndexes: number[] = [0]
+  activeCategory: Category = 'All'
   allMethods: string[]
   visibleMethods: string[]
   data: SingleMethod = EmptyMethod
@@ -57,7 +58,10 @@ export class WholeComponent implements OnInit {
 
   ngOnInit() {
     this.allMethods = this.dataService.getAllKeys()
-    this.visibleMethods = getVisibleMethods(this.allMethods, this.activeCategory)
+    this.visibleMethods = getVisibleMethods(
+      this.allMethods,
+      this.activeCategory
+    )
     this.route.params.subscribe(routeParams => {
       this.onRouteChange(routeParams.method)
     })
@@ -68,8 +72,11 @@ export class WholeComponent implements OnInit {
 
     this.data = this.dataService.getMethod(method)
     this.explanation = parseExplanation(this.data.explanation)
+    this.activeCategoryIndexes = this.dataService.getActiveCategoryIndexes(
+      method,
+      this.data.categories
+    )
 
-    console.log(this.data.explanation.includes('\n'))
     if (this.codeSnippetMode !== 'source') {
       this.codeSnippetMode = 'source'
     }
@@ -104,8 +111,8 @@ export class WholeComponent implements OnInit {
     this.selectedMethod = input.mode
   }
 
-  selectCategory(newCategory: Category){
-    if(this.activeCategory === newCategory) return
+  selectCategory(newCategory: Category) {
+    if (this.activeCategory === newCategory) return
 
     this.activeCategory = newCategory
   }
