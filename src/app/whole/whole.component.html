@@ -15,7 +15,7 @@
 			[debug]="true"
 			[height]="3"
 			[topLeft]="{x:0,y:1}"
-			[width]="16"
+			[width]="4"
 		>
 			<p>R.{{selectedMethod}}</p>
 			<p>Filter by {{activeCategory}}</p>
@@ -23,8 +23,7 @@
 				(click)="selectCategory(singleCategory)"
 				*ngFor="let singleCategory of allCategories"
 				class="select__mode"
-				>{{singleCategory}}
-			</span>
+			>{{singleCategory}}</span>
 		</cell>
 		<cell
 			[debug]="true"
@@ -34,7 +33,7 @@
 			class="sidebar"
 		>
 			<p
-				*ngFor="let singleMethodKey of allMethods"
+				*ngFor="let singleMethodKey of visibleMethods"
 				class="sidebar__cell"
 			>
 				<a
@@ -75,7 +74,10 @@
 			[topLeft]="{x:0,y:0}"
 			[width]="7"
 		>
-			<wired-card fill="#e2e2e2">
+			<wired-card
+				*ngIf="explanation.length > 0"
+				fill="#e2e2e2"
+			>
 				<p
 					*ngFor="let explanationLine of explanation"
 				>{{explanationLine}}</p>
@@ -88,7 +90,7 @@
 			[topLeft]="{x:0,y:3}"
 			[width]="7"
 		>
-			<wired-card id="foo" [fill]="highlightBackground">
+			<wired-card [fill]="highlightBackground">
 				<div [innerHTML]="allTypings | purehtml"></div>
 			</wired-card>
 		</cell>

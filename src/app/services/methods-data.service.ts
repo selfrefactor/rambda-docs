@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core'
-import {interpolate, switcher, replace, equals} from 'rambdax'
+import {interpolate, switcher, replace, equals, filter } from 'rambdax'
 // WITH_RAMBDAX
 // import allMethods from '../../../new-data-rambdax.json'
 // WITHOUT_RAMBDAX
@@ -14,6 +14,7 @@ import {
   CodeSnippet,
   Data,
   DataCategory,
+  SingleMethod,
 } from './methods-data.service.interfaces';
 
 @Injectable({
@@ -29,7 +30,7 @@ export class MethodsDataService {
   getAllKeys() {
     return Object.keys(this.data)
   }
-  getMethod(prop: string) {
+  getMethod(prop: string): SingleMethod {
     return this.data[prop]
   }
   getCategoryMethods(category: Category) {
@@ -38,31 +39,38 @@ export class MethodsDataService {
 
     return this.categories[category]
   }
-  getActiveCategoryIndexes(input: {
-    // prevState: number[],
+  getCategoryData(input: {
     currentFilter: Category, 
     prop: keyof Data, 
     methodCategories: string[]
-  }) {
+  }): {activeIndex: number, methodIndexes: number[], visibleMethods: string[]} {
+    
+    const methodIndexes = []
+    
+    ALL_CATEGORIES.forEach((category, i) => {
+      if(input.methodCategories.includes(category)){
+        methodIndexes.push(i)
+      }
+    })
+    
     if(input.currentFilter === 'All'){
-      const methodIndexes = []
-      
-      ALL_CATEGORIES.forEach((category, i) => {
-        console.log({category, i}, input.methodCategories)
-        if(input.methodCategories.includes(category)){
-          methodIndexes.push(i)
-        }
-      })
 
       return {
         activeIndex: 0,
-        methodIndexes
+        methodIndexes,
+        visibleMethods: this.getAllKeys()
       }
     }
-    // const isGenericState = equals([0], input.prevState)
-    // if(isGenericState)
-    // console.log({prop, methodCategories})  
+
+    const activeIndex = ALL_CATEGORIES.indexOf(input.currentFilter)
+    const visibleMethods = this.categories[input.currentFilter]
+    return {
+      activeIndex,
+      methodIndexes,
+      visibleMethods
+    }
   }
+
   applyHighlighter(input: string) {
     return interpolate(input, resolver)
   }

@@ -17,14 +17,10 @@ import {
 import {SingleMethod} from '../services/methods-data.service.interfaces'
 
 function parseExplanation(explanation) {
-  if (!explanation) return ['']
+  if (!explanation) return []
   if (!explanation.includes('\n')) return [explanation]
 
   return explanation.split('\n')
-}
-
-function getVisibleMethods(allMethods: string[], activeCategory: Category) {
-  return allMethods
 }
 
 @Component({
@@ -58,10 +54,7 @@ export class WholeComponent implements OnInit {
 
   ngOnInit() {
     this.allMethods = this.dataService.getAllKeys()
-    this.visibleMethods = getVisibleMethods(
-      this.allMethods,
-      this.activeCategory
-    )
+    this.visibleMethods = []
     this.route.params.subscribe(routeParams => {
       this.onRouteChange(routeParams.method)
     })
@@ -72,10 +65,12 @@ export class WholeComponent implements OnInit {
 
     this.data = this.dataService.getMethod(method)
     this.explanation = parseExplanation(this.data.explanation)
-    this.activeCategoryIndexes = this.dataService.getActiveCategoryIndexes(
-      method,
-      this.data.categories
-    )
+    const categoryData = this.dataService.getCategoryData({
+      currentFilter: this.activeCategory,
+      prop: method,
+      methodCategories: this.data.categories,
+    })
+    this.visibleMethods = categoryData.visibleMethods
 
     if (this.codeSnippetMode !== 'source') {
       this.codeSnippetMode = 'source'
@@ -91,7 +86,7 @@ export class WholeComponent implements OnInit {
   }
 
   onRouteChange(method: string) {
-    if (!this.allMethods.includes(method)) return
+    if (!this.allMethods.includes(method)) return console.log('skip')
 
     this.selectMethod(method)
   }

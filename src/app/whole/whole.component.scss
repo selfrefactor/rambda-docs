@@ -4,10 +4,10 @@ ngx-monaco-editor {
 }
 
 .select__mode {
+  font-size: 1vh;
   cursor: pointer;
   padding: 5px;
   &:nth-child(odd) {
-    font-size: 110%;
     color: red;
   }
 }
