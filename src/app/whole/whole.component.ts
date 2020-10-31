@@ -11,6 +11,8 @@ import {
   EmptyMethod,
   SingleMode,
   SnippetMode,
+  Category,
+  ALL_CATEGORIES,
 } from './whole.component.interfaces'
 import {SingleMethod} from '../services/methods-data.service.interfaces'
 
@@ -21,6 +23,10 @@ function parseExplanation(explanation) {
   return explanation.split('\n')
 }
 
+function getVisibleMethods(allMethods: string[], activeCategory: Category){
+  
+}
+
 @Component({
   selector: 'app-whole',
   templateUrl: './whole.component.html',
@@ -28,7 +34,9 @@ function parseExplanation(explanation) {
 })
 export class WholeComponent implements OnInit {
   activeMethod: string
+  activeCategory: Category = 'all'
   allMethods: string[]
+  visibleMethods: string[]
   data: SingleMethod = EmptyMethod
   replEvaluateLock = false
   replResult = ''
@@ -39,6 +47,7 @@ export class WholeComponent implements OnInit {
   allTypings = ''
   selectedMode: Mode = 'repl'
   allModes = ALL_MODES
+  allCategories = ALL_CATEGORIES
 
   constructor(
     private route: ActivatedRoute,
@@ -47,7 +56,7 @@ export class WholeComponent implements OnInit {
 
   ngOnInit() {
     this.allMethods = this.dataService.getAllKeys()
-
+    this.visibleMethods = getVisibleMethods(this.allMethods, this.activeCategory)
     this.route.params.subscribe(routeParams => {
       this.onRouteChange(routeParams.method)
     })
@@ -79,8 +88,6 @@ export class WholeComponent implements OnInit {
     this.selectMethod(method)
   }
 
-  ngAfterViewInit() {}
-
   async onReplChange(newReplContent: string) {
     // Safeguard for async methods combined with change of mode
     // ============================================
@@ -94,5 +101,11 @@ export class WholeComponent implements OnInit {
 
   selectMode(input: SingleMode) {
     this.selectedMethod = input.mode
+  }
+
+  selectCategory(newCategory: Category){
+    if(this.activeCategory === newCategory) return
+
+    this.activeCategory = newCategory
   }
 }

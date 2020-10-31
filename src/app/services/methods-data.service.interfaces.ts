@@ -15,3 +15,7 @@ export interface SingleMethod extends CodeSnippet {
 export interface Data {
   [key: string]: SingleMethod,
 }
+
+export interface DataCategory {
+  [key: string]: string[],
+}
