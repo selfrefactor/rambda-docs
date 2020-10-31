@@ -3,13 +3,39 @@ ngx-monaco-editor {
   height: 100%;
 }
 
-.select__mode {
-  font-size: 1vh;
-  cursor: pointer;
-  padding: 5px;
-  &:nth-child(odd) {
-    color: red;
+.category {
+  &__item {
+    cursor: pointer;
+    font-size: 1.4vh;
+    padding: 5px;
   }
+  &__active {
+    &--method {
+      @extend .category__item
+          !optional;
+      outline: 2px solid #33aa66;
+      color: #33aa66;
+    }
+    &--category {
+      @extend .category_item
+          !optional;
+      border: 1px dashed #4477aa;
+      color: #4477aa;
+    }
+  }
+  &__container {
+    width: 15.34vw;
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    & > div {
+      flex: auto;
+      width: 5rem;
+    }
+  }
+  // &:nth-child(odd) {
+  //   color: red;
+  // }
 }
 
 .sidebar {

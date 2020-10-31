@@ -30,7 +30,8 @@ function parseExplanation(explanation) {
 })
 export class WholeComponent implements OnInit {
   activeMethod: string
-  activeCategoryIndexes: number[] = [0]
+  activeCategoryIndex = 0
+  methodCategoriesIndexes: number[] = []
   activeCategory: Category = 'All'
   allMethods: string[]
   visibleMethods: string[]
@@ -71,6 +72,8 @@ export class WholeComponent implements OnInit {
       methodCategories: this.data.categories,
     })
     this.visibleMethods = categoryData.visibleMethods
+    this.methodCategoriesIndexes = categoryData.methodIndexes
+    this.activeCategoryIndex = categoryData.activeIndex
 
     if (this.codeSnippetMode !== 'source') {
       this.codeSnippetMode = 'source'
@@ -110,5 +113,16 @@ export class WholeComponent implements OnInit {
     if (this.activeCategory === newCategory) return
 
     this.activeCategory = newCategory
+  }
+
+  getCategoryClass(category: Category, index: number) {
+    if (this.activeCategoryIndex === index) {
+      return 'category__active--category'
+    }
+    if (this.methodCategoriesIndexes.includes(index)) {
+      return 'category__active--method'
+    }
+    console.log({category, index})
+    return 'category__item'
   }
 }
