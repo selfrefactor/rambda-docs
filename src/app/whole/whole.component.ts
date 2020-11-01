@@ -14,7 +14,6 @@ import {
   DefaultSnippetMode,
 } from './whole.component.interfaces'
 import {SingleMethod} from '../services/methods-data.service.interfaces'
-import {produce, switcher} from 'rambdax'
 
 function parseExplanation(explanation) {
   if (!explanation) return []
@@ -24,7 +23,7 @@ function parseExplanation(explanation) {
 }
 
 function fixReplInput(replInput: string) {
-  if (replInput.startsWith('const result')) return replInput
+  if (replInput.includes('const result')) return replInput
 
   return `const result = ${replInput}`
 }
@@ -131,7 +130,6 @@ export class WholeComponent implements OnInit {
       this.codeSnippetMode = DefaultSnippetMode
     }
 
-
     const prop = this.dataService.getDataKey(this.codeSnippetMode)
     this.currentCodeSnippet = this.dataService.applyHighlighter(
       this.data[prop]
@@ -175,14 +173,6 @@ export class WholeComponent implements OnInit {
 
     this.router
       .navigate([`/${this.selectedMethod}${SEPARATOR}${newCategory}`])
-      .then(e => {
-        if (e) {
-          console.log('Navigation is successful!')
-        } else {
-          console.log('Navigation has failed!')
-        }
-      })
-    // this.activeCategory = newCategory
   }
 
   getCategoryClass(category: Category, index: number) {
@@ -198,5 +188,4 @@ export class WholeComponent implements OnInit {
 
 /*
 					<!-- [class.activeClass]="codeSnippetMode===singleMode.mode" -->
-  
 */

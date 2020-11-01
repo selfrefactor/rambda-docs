@@ -1,4 +1,4 @@
-import {RambdaTypes, anyPass, includes, replace, type, unless, when} from 'rambdax'
+import {RambdaTypes, anyPass, includes, replace, type, unless} from 'rambdax'
 
 const replaceRambdaRef = replace(/R\./gm, 'RMock.')
 

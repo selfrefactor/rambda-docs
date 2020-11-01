@@ -132,7 +132,8 @@
     "partialCurry",
     "piped",
     "produceAsync",
-    "throttle"
+    "throttle",
+    "tryCatchAsync"
   ],
   "Logic": [
     "and",
@@ -282,6 +283,7 @@
     "produceAsync",
     "tapAsync",
     "wait",
-    "waitFor"
+    "waitFor",
+    "tryCatchAsync"
   ]
 }

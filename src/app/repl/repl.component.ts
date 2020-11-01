@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http'
 import {
   Component,
   EventEmitter,
@@ -8,8 +9,9 @@ import {
   ViewEncapsulation,
   OnChanges,
 } from '@angular/core'
-import {MonacoEditorComponent} from '@materia-ui/ngx-monaco-editor'
+import {MonacoEditorComponent, MonacoEditorLoaderService} from '@materia-ui/ngx-monaco-editor'
 import {OnChange} from 'property-watch-decorator'
+import { delay } from 'rambdax'
 
 @Component({
   selector: 'app-repl',
@@ -49,15 +51,37 @@ export class ReplComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.code = this.initialState
   }
-  ngOnInit() {
+  attachToCode(){
     setTimeout(() => {
       this.code = this.initialState
-    }, 0)
+    }, 10)
+  }
+  async loadTypescript(){
+    await delay(1000)
+
+    this.httpClient
+            .get('files/index.d.ts', { responseType: 'text' })
+            .subscribe({
+              next: data => {
+                if((window as any).monaco === undefined) return console.log('skip definitions load');
+
+                console.log('loaded definitions');
+
+                (window as any).monaco.languages.typescript.typescriptDefaults.addExtraLib(
+                  data,
+                  ''
+                );
+              }
+            });
   }
 
-  // changeMonacoSettings() {
-  //   setTimeout(() => {
-  // this.editor.editor?.focus();
-  //   }, 0);
-  // }
+  ngOnInit() {
+    this.attachToCode()
+    this.loadTypescript()
+  }
+
+  constructor(
+    private monacoLoader: MonacoEditorLoaderService,
+    private httpClient: HttpClient,
+  ){}
 }
