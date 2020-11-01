@@ -13,6 +13,7 @@ import {
   SnippetMode,
   Category,
   ALL_CATEGORIES,
+  DefaultMode,
 } from './whole.component.interfaces'
 import {SingleMethod} from '../services/methods-data.service.interfaces'
 
@@ -31,24 +32,24 @@ const SEPARATOR = '--'
   styleUrls: ['./whole.component.scss'],
 })
 export class WholeComponent implements OnInit {
-  activeMethod: string
-  activeCategoryIndex = 0
-  methodCategoriesIndexes: number[] = []
   activeCategory: Category = 'All'
+  activeCategoryIndex = 0
+  activeMethod: string
+  allCategories = ALL_CATEGORIES
   allMethods: string[]
-  visibleMethods: string[]
+  allModes = ALL_MODES
+  allTypings = ''
+  codeSnippetMode: SnippetMode = DefaultMode
+  currentCodeSnippet = ''
   data: SingleMethod = EmptyMethod
+  explanation: string[] = []
+  highlightBackground = '#25252A'
+  methodCategoriesIndexes: number[] = []
   replEvaluateLock = false
   replResult = ''
   selectedMethod = ''
-  explanation: string[] = []
-  currentCodeSnippet = ''
-  codeSnippetMode: SnippetMode = 'source'
-  allTypings = ''
-  selectedMode: Mode = 'repl'
-  allModes = ALL_MODES
-  allCategories = ALL_CATEGORIES
-  highlightBackground = '#25252A'
+  selectedMode: Mode = DefaultMode
+  visibleMethods: string[]
 
   constructor(
     private route: ActivatedRoute,
@@ -67,7 +68,22 @@ export class WholeComponent implements OnInit {
     })
   }
 
-  selectMethod(method: string, category?: Category) {
+  onRouteChange(method?: string, category?: string) {
+    console.log({method, category})
+
+    if (!method && category) {
+      // No method selected; only filter methods on home page
+      // ============================================
+      return this.handleHomePageFilter(category)
+    }
+
+    if (!this.allMethods.includes(method)) return console.log('skip')
+    
+    const actualCategory = this.dataService.isValidCategory(category) ? category : 'All'
+    this.selectMethod(method, actualCategory)
+  }
+
+  selectMethod(method: string, category: Category) {
     this.selectedMethod = method
 
     this.data = this.dataService.getMethod(method)
@@ -82,8 +98,8 @@ export class WholeComponent implements OnInit {
     this.methodCategoriesIndexes = categoryData.methodIndexes
     this.activeCategoryIndex = categoryData.activeIndex
 
-    if (this.codeSnippetMode !== 'source') {
-      this.codeSnippetMode = 'source'
+    if (this.codeSnippetMode !== DefaultMode) {
+      this.codeSnippetMode = DefaultMode
     }
 
     const prop = this.dataService.getDataKey(this.codeSnippetMode)
@@ -109,25 +125,7 @@ export class WholeComponent implements OnInit {
     this.methodCategoriesIndexes = categoryData.methodIndexes
   }
 
-  onRouteChange(method?: string, category?: string) {
-    console.log({method, category})
-
-    if (!method && category) {
-      // No method selected; only filter methods on home page
-      // ============================================
-      return this.handleHomePageFilter(category)
-    }
-
-    if (!this.allMethods.includes(method)) return console.log('skip')
-
-    this.selectMethod(method, category)
-  }
-
   async onReplChange(newReplContent: string) {
-    // Safeguard for async methods combined with change of mode
-    // ============================================
-    if (this.selectedMode !== 'repl') return
-
     if (this.replEvaluateLock) return
     this.replEvaluateLock = true
     this.replResult = await handleReplChange(newReplContent)
@@ -135,7 +133,8 @@ export class WholeComponent implements OnInit {
   }
 
   selectMode(input: SingleMode) {
-    this.selectedMethod = input.mode
+    console.log({input, a: this.codeSnippetMode})
+    // this.selectedMethod = input.mode
   }
 
   selectCategory(newCategory: Category) {
@@ -163,3 +162,8 @@ export class WholeComponent implements OnInit {
     return 'category__item'
   }
 }
+
+/*
+					<!-- [class.activeClass]="codeSnippetMode===singleMode.mode" -->
+  
+*/

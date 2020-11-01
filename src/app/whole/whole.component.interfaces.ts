@@ -16,7 +16,8 @@ export type Category =
   | 'List'
   | 'Function'
   | 'Logic'
-export type Mode = 'repl' | 'all.typings' | 'tests' | 'typings.tests'
+export type Mode = 'source' | 'all.typings' | 'tests' | 'typings.tests'
+export const DefaultMode: Mode = 'source'
 
 export type SnippetMode =
   | 'source'
@@ -29,7 +30,7 @@ export interface SingleMode {
   mode: Mode,
 }
 export const ALL_MODES: SingleMode[] = [
-  {text: 'REPL', mode: 'repl'},
+  {text: 'Source', mode: 'source'},
   {
     text: 'Typescript definitions',
     mode: 'all.typings',

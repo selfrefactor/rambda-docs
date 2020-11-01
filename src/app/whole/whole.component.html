@@ -123,8 +123,11 @@
 			<wired-card>
 				<span
 					(click)="selectMode(singleMode.mode)"
-					*ngFor="let singleMode of allModes"
-					class="select__mode"
+					*ngFor="let singleMode of allModes;let i = index"
+					[ngClass]="{
+						'snippet__item--active':codeSnippetMode===singleMode.mode,
+						'snippet__item':codeSnippetMode!==singleMode.mode
+					}"
 				>{{singleMode.text}}</span>
 			</wired-card>
 		</cell>

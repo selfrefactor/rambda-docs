@@ -3,6 +3,19 @@ ngx-monaco-editor {
   height: 100%;
 }
 
+.snippet{
+  &__item {
+    cursor: pointer;
+    font-size: 1.5vh;
+    padding: 6px;
+    color: #33f;
+    &--active{
+      color: #33aa66;
+    }
+  }
+
+}
+
 .category {
   &__item {
     cursor: pointer;
@@ -33,9 +46,6 @@ ngx-monaco-editor {
       width: 5rem;
     }
   }
-  // &:nth-child(odd) {
-  //   color: red;
-  // }
 }
 
 .sidebar {
@@ -53,3 +63,7 @@ ngx-monaco-editor {
     }
   }
 }
+
+// &:nth-child(odd) {
+//   color: red;
+// }

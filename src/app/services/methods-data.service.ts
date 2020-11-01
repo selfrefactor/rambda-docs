@@ -39,7 +39,8 @@ export class MethodsDataService {
 
     return this.categories[category]
   }
-  isValidCategory(category: string) : category is Category {
+  isValidCategory(category: any) : category is Category {
+    if(!category) return false
     return this.categories[category] !== undefined
   }
   getCategoryData(input: {
