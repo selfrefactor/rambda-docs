@@ -39,19 +39,24 @@ export class MethodsDataService {
 
     return this.categories[category]
   }
+  isValidCategory(category: string) : category is Category {
+    return this.categories[category] !== undefined
+  }
   getCategoryData(input: {
     currentFilter: Category, 
-    prop: keyof Data, 
+    prop?: keyof Data, 
     methodCategories: string[]
   }): {activeIndex: number, methodIndexes: number[], visibleMethods: string[]} {
     
     const methodIndexes = []
     
-    ALL_CATEGORIES.forEach((category, i) => {
-      if(input.methodCategories.includes(category)){
-        methodIndexes.push(i)
-      }
-    })
+    if(input.methodCategories.length > 0){
+      ALL_CATEGORIES.forEach((category, i) => {
+        if(input.methodCategories.includes(category)){
+          methodIndexes.push(i)
+        }
+      })
+    }
     
     if(input.currentFilter === 'All'){
 

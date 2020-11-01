@@ -1,4 +1,4 @@
-import {ActivatedRoute} from '@angular/router'
+import {ActivatedRoute, Router} from '@angular/router'
 // import roughjs from 'roughjs/bin/rough'
 // https://github.com/selfrefactor/rambda-docs/blob/4456ae2b9a513df560680485f8b080574e845331/src/app/app.module.ts
 import 'wired-elements'
@@ -23,6 +23,8 @@ function parseExplanation(explanation) {
   return explanation.split('\n')
 }
 
+const SEPARATOR = '--'
+
 @Component({
   selector: 'app-whole',
   templateUrl: './whole.component.html',
@@ -39,7 +41,7 @@ export class WholeComponent implements OnInit {
   replEvaluateLock = false
   replResult = ''
   selectedMethod = ''
-  explanation: string[] = ['']
+  explanation: string[] = []
   currentCodeSnippet = ''
   codeSnippetMode: SnippetMode = 'source'
   allTypings = ''
@@ -50,22 +52,27 @@ export class WholeComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private dataService: MethodsDataService
+    private dataService: MethodsDataService,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.allMethods = this.dataService.getAllKeys()
-    this.visibleMethods = []
+    this.visibleMethods = this.allMethods
     this.route.params.subscribe(routeParams => {
-      this.onRouteChange(routeParams.method)
+      if (routeParams.method === undefined) return
+
+      const [method, category] = routeParams.method.split(SEPARATOR)
+      this.onRouteChange(method, category)
     })
   }
 
-  selectMethod(method) {
+  selectMethod(method: string, category?: Category) {
     this.selectedMethod = method
 
     this.data = this.dataService.getMethod(method)
     this.explanation = parseExplanation(this.data.explanation)
+
     const categoryData = this.dataService.getCategoryData({
       currentFilter: this.activeCategory,
       prop: method,
@@ -88,10 +95,32 @@ export class WholeComponent implements OnInit {
     this.allTypings = this.dataService.applyHighlighter(this.data.allTypings)
   }
 
-  onRouteChange(method: string) {
+  handleHomePageFilter(category: string) {
+    if (!this.dataService.isValidCategory(category)) return
+    const categoryData = this.dataService.getCategoryData({
+      currentFilter: category,
+      prop: undefined,
+      methodCategories: [],
+    })
+
+    this.activeCategory = category
+    this.visibleMethods = categoryData.visibleMethods
+    this.activeCategoryIndex = categoryData.activeIndex
+    this.methodCategoriesIndexes = categoryData.methodIndexes
+  }
+
+  onRouteChange(method?: string, category?: string) {
+    console.log({method, category})
+
+    if (!method && category) {
+      // No method selected; only filter methods on home page
+      // ============================================
+      return this.handleHomePageFilter(category)
+    }
+
     if (!this.allMethods.includes(method)) return console.log('skip')
 
-    this.selectMethod(method)
+    this.selectMethod(method, category)
   }
 
   async onReplChange(newReplContent: string) {
@@ -112,7 +141,16 @@ export class WholeComponent implements OnInit {
   selectCategory(newCategory: Category) {
     if (this.activeCategory === newCategory) return
 
-    this.activeCategory = newCategory
+    this.router
+      .navigate([`/${this.selectedMethod}${SEPARATOR}${newCategory}`])
+      .then(e => {
+        if (e) {
+          console.log('Navigation is successful!')
+        } else {
+          console.log('Navigation has failed!')
+        }
+      })
+    // this.activeCategory = newCategory
   }
 
   getCategoryClass(category: Category, index: number) {
@@ -122,7 +160,6 @@ export class WholeComponent implements OnInit {
     if (this.methodCategoriesIndexes.includes(index)) {
       return 'category__active--method'
     }
-    console.log({category, index})
     return 'category__item'
   }
 }
