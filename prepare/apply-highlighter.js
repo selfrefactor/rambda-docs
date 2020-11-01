@@ -3,7 +3,7 @@ const shiki = require('shiki')
 const tripTankTheme = shiki.loadTheme(`${__dirname}/assets/TripTank.json`)
 const initialResolver = {
   '{{LINE}}':'<span class="line">',
-  '{{START}}':'<pre class="shiki" style="background-color: #2e3440">',
+  '{{START}}':'<pre class="shiki" style="background-color: #25252A">',
   '{{END}}':'</span></span></code></pre>'
 }
 
@@ -61,6 +61,7 @@ class ApplyHighlighter {
       const all = {}
       all.rambdaSource = this.codeToHtml(data.rambdaSource, 'js')
       all.rambdaSpecs = data.rambdaSpecs ? this.codeToHtml(data.rambdaSpecs, 'js'): ''
+      all.failedRamdaSpecs = data.failedRamdaSpecs ? this.codeToHtml(data.failedRamdaSpecs, 'js'): ''
       all.allTypings = data.allTypings ? this.codeToHtml(data.allTypings, 'ts'): ''
       all.typescriptDefinitionTest = data.typescriptDefinitionTest ? this.codeToHtml(data.typescriptDefinitionTest, 'ts'): ''
 
