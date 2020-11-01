@@ -26,10 +26,10 @@ export class ReplComponent implements OnInit, OnChanges {
     fontSize: 17,
     contextmenu:false,
     codeLens: false,
-    quickSuggestionsDelay: 1000,
+    quickSuggestionsDelay: 700,
     showUnused: false,
     copyWithSyntaxHighlighting: false,
-    lineHeight: 19,
+    lineHeight: 19, // should be dynamic
     disableMonospaceOptimizations: true,
     cursorBlinking: 'smooth', // "blink" | "smooth" | "phase" | "expand" | "solid"
     lineNumbers: false,

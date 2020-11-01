@@ -100,7 +100,7 @@
 		<cell [height]="9" [topLeft]="{x:0,y:6}" [width]="7">
 			<app-repl
 				(outputReplEvent)="onReplChange($event)"
-				[initialState]="data.example"
+				[initialState]="replInitialState"
 			></app-repl>
 		</cell>
 

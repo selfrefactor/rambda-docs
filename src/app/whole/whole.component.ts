@@ -24,6 +24,12 @@ function parseExplanation(explanation) {
   return explanation.split('\n')
 }
 
+function fixReplInput(replInput: string) {  
+  if(replInput.startsWith('const result')) return replInput
+
+  return `const result = ${replInput}`
+}
+
 const SEPARATOR = '--'
 
 @Component({
@@ -50,6 +56,7 @@ export class WholeComponent implements OnInit {
   selectedMethod = ''
   selectedMode: Mode = DefaultMode
   visibleMethods: string[]
+  replInitialState: string
 
   constructor(
     private route: ActivatedRoute,
@@ -87,6 +94,8 @@ export class WholeComponent implements OnInit {
     this.selectedMethod = method
 
     this.data = this.dataService.getMethod(method)
+    this.replInitialState = fixReplInput(this.data.example)
+    
     this.explanation = parseExplanation(this.data.explanation)
 
     const categoryData = this.dataService.getCategoryData({
