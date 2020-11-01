@@ -6,16 +6,15 @@ import {Component, OnInit} from '@angular/core'
 import {handleReplChange} from '../_modules/handle-repl-change'
 import {MethodsDataService} from '../services/methods-data.service'
 import {
-  Mode,
-  ALL_MODES,
+  ALL_SNIPPET_MODES,
   EmptyMethod,
-  SingleMode,
   SnippetMode,
   Category,
   ALL_CATEGORIES,
-  DefaultMode,
+  DefaultSnippetMode,
 } from './whole.component.interfaces'
 import {SingleMethod} from '../services/methods-data.service.interfaces'
+import {produce, switcher} from 'rambdax'
 
 function parseExplanation(explanation) {
   if (!explanation) return []
@@ -24,10 +23,14 @@ function parseExplanation(explanation) {
   return explanation.split('\n')
 }
 
-function fixReplInput(replInput: string) {  
-  if(replInput.startsWith('const result')) return replInput
+function fixReplInput(replInput: string) {
+  if (replInput.startsWith('const result')) return replInput
 
   return `const result = ${replInput}`
+}
+
+function getVisibleSnippetModes(input: SingleMethod): SnippetMode[] {
+  return ALL_SNIPPET_MODES.filter(snippetMode => Boolean(input[snippetMode.mode]))
 }
 
 const SEPARATOR = '--'
@@ -43,9 +46,9 @@ export class WholeComponent implements OnInit {
   activeMethod: string
   allCategories = ALL_CATEGORIES
   allMethods: string[]
-  allModes = ALL_MODES
   allTypings = ''
-  codeSnippetMode: SnippetMode = DefaultMode
+  codeSnippetMode: SnippetMode = DefaultSnippetMode
+  currentSnippetModes: SnippetMode[] = []
   currentCodeSnippet = ''
   data: SingleMethod = EmptyMethod
   explanation: string[] = []
@@ -54,7 +57,7 @@ export class WholeComponent implements OnInit {
   replEvaluateLock = false
   replResult = ''
   selectedMethod = ''
-  selectedMode: Mode = DefaultMode
+  selectedSnippedMode: SnippetMode = DefaultSnippetMode
   visibleMethods: string[]
   replInitialState: string
 
@@ -85,8 +88,10 @@ export class WholeComponent implements OnInit {
     }
 
     if (!this.allMethods.includes(method)) return console.log('skip')
-    
-    const actualCategory = this.dataService.isValidCategory(category) ? category : 'All'
+
+    const actualCategory = this.dataService.isValidCategory(category)
+      ? category
+      : 'All'
     this.selectMethod(method, actualCategory)
   }
 
@@ -94,9 +99,21 @@ export class WholeComponent implements OnInit {
     this.selectedMethod = method
 
     this.data = this.dataService.getMethod(method)
+
+    /*
+      Can be removed once all examples are fixed
+    */
     this.replInitialState = fixReplInput(this.data.example)
-    
+
+    /*
+      Need better solution
+    */
     this.explanation = parseExplanation(this.data.explanation)
+
+    /*
+      Show only code snippet modes that we have data for
+    */
+    this.currentSnippetModes = getVisibleSnippetModes(this.data)
 
     const categoryData = this.dataService.getCategoryData({
       currentFilter: this.activeCategory,
@@ -107,15 +124,18 @@ export class WholeComponent implements OnInit {
     this.methodCategoriesIndexes = categoryData.methodIndexes
     this.activeCategoryIndex = categoryData.activeIndex
 
-    if (this.codeSnippetMode !== DefaultMode) {
-      this.codeSnippetMode = DefaultMode
+    /*
+      This defines that each method change resets snippet mode - this might change
+    */
+    if (this.codeSnippetMode !== DefaultSnippetMode) {
+      this.codeSnippetMode = DefaultSnippetMode
     }
+
 
     const prop = this.dataService.getDataKey(this.codeSnippetMode)
     this.currentCodeSnippet = this.dataService.applyHighlighter(
       this.data[prop]
     )
-    if (!this.data.allTypings) return
 
     this.allTypings = this.dataService.applyHighlighter(this.data.allTypings)
   }
@@ -141,9 +161,13 @@ export class WholeComponent implements OnInit {
     this.replEvaluateLock = false
   }
 
-  selectMode(input: SingleMode) {
-    console.log({input, a: this.codeSnippetMode})
-    // this.selectedMethod = input.mode
+  selectMode(newMode: SnippetMode) {
+    if (newMode.mode === this.codeSnippetMode.mode) return
+
+    this.currentCodeSnippet = this.dataService.applyHighlighter(
+      this.data[newMode.mode]
+    )
+    this.codeSnippetMode = newMode
   }
 
   selectCategory(newCategory: Category) {

@@ -16,31 +16,37 @@ export type Category =
   | 'List'
   | 'Function'
   | 'Logic'
-export type Mode = 'source' | 'all.typings' | 'tests' | 'typings.tests'
-export const DefaultMode: Mode = 'source'
 
-export type SnippetMode =
-  | 'source'
-  | 'tests'
-  | 'all.typings'
-  | 'typings.tests'
+type SnippetModeProp =
+  | 'rambdaSource'
+  | 'rambdaSpecs'
+  | 'allTypings'
+  | 'failedRamdaSpecs'
+  | 'typescriptDefinitionTest'
 
-export interface SingleMode {
+export interface SnippetMode {
   text: string,
-  mode: Mode,
+  mode: SnippetModeProp,
 }
-export const ALL_MODES: SingleMode[] = [
-  {text: 'Source', mode: 'source'},
+export const ALL_SNIPPET_MODES: SnippetMode[] = [
+  {text: 'Source', mode: 'rambdaSource'},
   {
     text: 'Typescript definitions',
-    mode: 'all.typings',
+    mode: 'allTypings',
+
   },
-  {text: 'Tests', mode: 'tests'},
+  {text: 'Tests', mode: 'rambdaSpecs'},
   {
     text: 'Typescript definitions tests',
-    mode: 'typings.tests',
+    mode: 'typescriptDefinitionTest',
+  },
+  {
+    text: 'Failed Ramda tests',
+    mode: 'failedRamdaSpecs',
   },
 ]
+export const DefaultSnippetMode: SnippetMode = ALL_SNIPPET_MODES[0]
+
 export const ALL_CATEGORIES: Category[] = [
   'All',
   'Async',

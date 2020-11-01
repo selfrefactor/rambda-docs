@@ -125,11 +125,11 @@
 			<wired-card>
 				<div class="snippet__container">
 					<div
-						(click)="selectMode(singleMode.mode)"
-						*ngFor="let singleMode of allModes;let i = index"
+						(click)="selectMode(singleMode)"
+						*ngFor="let singleMode of currentSnippetModes;let i = index"
 						[ngClass]="{
-							'snippet__item--active':codeSnippetMode===singleMode.mode,
-							'snippet__item':codeSnippetMode!==singleMode.mode
+							'snippet__item--active':codeSnippetMode.mode===singleMode.mode,
+							'snippet__item':codeSnippetMode.mode!==singleMode.mode
 						}"
 					>{{singleMode.text}}</div>
 				</div>
