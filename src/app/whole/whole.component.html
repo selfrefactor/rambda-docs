@@ -114,23 +114,29 @@
 		</cell>
 
 		<!-- second sidebar -->
+
+		<!-- snippet modes -->
 		<cell
 			[debug]="false"
-			[height]="5"
+			[height]="1"
 			[topLeft]="{x:8,y:0}"
-			[width]="8"
+			[width]="7"
 		>
 			<wired-card>
-				<span
-					(click)="selectMode(singleMode.mode)"
-					*ngFor="let singleMode of allModes;let i = index"
-					[ngClass]="{
-						'snippet__item--active':codeSnippetMode===singleMode.mode,
-						'snippet__item':codeSnippetMode!==singleMode.mode
-					}"
-				>{{singleMode.text}}</span>
+				<div class="snippet__container">
+					<div
+						(click)="selectMode(singleMode.mode)"
+						*ngFor="let singleMode of allModes;let i = index"
+						[ngClass]="{
+							'snippet__item--active':codeSnippetMode===singleMode.mode,
+							'snippet__item':codeSnippetMode!==singleMode.mode
+						}"
+					>{{singleMode.text}}</div>
+				</div>
 			</wired-card>
 		</cell>
+
+		<!-- current code snippet -->
 		<cell
 			[debug]="false"
 			[height]="14"
