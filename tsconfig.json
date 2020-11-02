@@ -23,10 +23,6 @@
       "dom"
     ]
   },
-  "include": ["src/**/*.ts"],
-  "exclude":[
-    "src/**/*mocks.ts"
-  ],
   "angularCompilerOptions": {
     "enableIvy": true,
     "fullTemplateTypeCheck": true,
