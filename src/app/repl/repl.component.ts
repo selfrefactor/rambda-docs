@@ -23,7 +23,7 @@ export class ReplComponent implements OnInit, OnChanges {
   @ViewChild(MonacoEditorComponent, {static: false})
   editor: MonacoEditorComponent
   editorOptions = {
-    theme: 'hc-black', // 'vs' 'hc-black' 'vs-dark'
+    theme: 'vs-dark',// 'hc-black', // 'vs' 'hc-black' 'vs-dark'
     language: 'typescript',
     fontSize: 14,
     contextmenu:false,

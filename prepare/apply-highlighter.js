@@ -63,6 +63,7 @@ class ApplyHighlighter {
       all.rambdaSpecs = data.rambdaSpecs ? this.codeToHtml(data.rambdaSpecs, 'js'): ''
       all.failedRamdaSpecs = data.failedRamdaSpecs ? this.codeToHtml(data.failedRamdaSpecs, 'js'): ''
       all.allTypings = data.allTypings ? this.codeToHtml(data.allTypings, 'ts'): ''
+      all.typing = data.typing ? this.codeToHtml(data.typing.trim(), 'ts'): ''
       all.typescriptDefinitionTest = data.typescriptDefinitionTest ? this.codeToHtml(data.typescriptDefinitionTest, 'ts'): ''
 
       const parsedData = piped(

@@ -1,4 +1,5 @@
 export interface CodeSnippet {
+  typing: string,
   allTypings: string,
   rambdaSource: string,
   typescriptDefinitionTest?: string,

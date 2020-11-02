@@ -11,3 +11,7 @@ Build with Angular10
 ## Update deps
 
 `Angular-material` is limiting update as its cdk version should match that of this project
+
+## TODO
+
+extract shortest definition; otherwise there is no point of code snippet mode

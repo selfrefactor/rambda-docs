@@ -47,7 +47,7 @@ export class WholeComponent implements OnInit {
   activeMethod: string
   allCategories = ALL_CATEGORIES
   allMethods: string[]
-  allTypings = ''
+  typescriptDefinition = ''
   codeSnippetMode: SnippetMode = DefaultSnippetMode
   currentSnippetModes: SnippetMode[] = []
   currentCodeSnippet = ''
@@ -139,7 +139,7 @@ export class WholeComponent implements OnInit {
       this.data[prop]
     )
 
-    this.allTypings = this.dataService.applyHighlighter(this.data.allTypings)
+    this.typescriptDefinition = this.dataService.applyHighlighter(this.data.typing)
   }
 
   handleHomePageFilter(category: string) {
