@@ -197,9 +197,6 @@
   "clamp": {
     "typing": "\nclamp(min: number, max: number, input: number): number",
     "allTypings": "clamp(min: number, max: number, input: number): number;\nclamp(min: number, max: number): (input: number) => number;",
-    "categories": [
-      "Other"
-    ],
     "rambdaSource": "import { curry } from './curry'\n\nfunction clampFn(\n  min, max, input\n){\n  if (min > max){\n    throw new Error('min must not be greater than max in clamp(min, max, value)')\n  }\n  if (input >= min && input <= max) return input\n\n  if (input > max) return max\n  if (input < min) return min\n}\n\nexport const clamp = curry(clampFn)",
     "rambdaSpecs": "import { clamp } from './clamp'\n\ntest('when min is greater than max', () => {\n  expect(() => clamp(\n    -5, -10, 5\n  )).toThrowWithMessage(Error,\n    'min must not be greater than max in clamp(min, max, value)')\n})\n\ntest('rambda specs', () => {\n  expect(clamp(\n    1, 10, 0\n  )).toEqual(1)\n  expect(clamp(\n    3, 12, 1\n  )).toEqual(3)\n  expect(clamp(\n    -15, 3, -100\n  )).toEqual(-15)\n  expect(clamp(\n    1, 10, 20\n  )).toEqual(10)\n  expect(clamp(\n    3, 12, 23\n  )).toEqual(12)\n  expect(clamp(\n    -15, 3, 16\n  )).toEqual(3)\n  expect(clamp(\n    1, 10, 4\n  )).toEqual(4)\n  expect(clamp(\n    3, 12, 6\n  )).toEqual(6)\n  expect(clamp(\n    -15, 3, 0\n  )).toEqual(0)\n})",
     "explanation": "Restrict a number `input` to be within `min` and `max` limits.\n\nIf `input` is bigger than `max`, then the result is `max`.\n\nIf `input` is smaller than `min`, then the result is `min`.",
@@ -1822,7 +1819,6 @@
     "typing": "\ntryCatch<T, U>(\n  fn: (input: T) => U,\n  fallback: U\n): (input: T) => U",
     "allTypings": "tryCatch<T, U>(\n  fn: (input: T) => U,\n  fallback: U\n): (input: T) => U;\ntryCatch<T, U>(\n  fn: (input: T) => U,\n  fallback: (input: T) => U\n): (input: T) => U;\ntryCatch<T>(\n  fn: (input: any) => Promise<any>,\n  fallback: T\n): (input: any) => Promise<T>;\ntryCatch<T>(\n  fn: (input: any) => Promise<any>,\n  fallback: (input: any) => Promise<any>,\n): (input: any) => Promise<T>;",
     "categories": [
-      "Async",
       "Function"
     ],
     "notes": "Please check the tests of `R.tryCatch` to fully understand how this method works.",

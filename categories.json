@@ -163,9 +163,6 @@
     "evolve",
     "eqProps"
   ],
-  "Other": [
-    "clamp"
-  ],
   "String": [
     "concat",
     "drop",
@@ -206,8 +203,5 @@
     "over",
     "set",
     "view"
-  ],
-  "Async": [
-    "tryCatch"
   ]
 }

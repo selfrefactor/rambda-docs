@@ -86,6 +86,12 @@ export class WholeComponent implements OnInit {
       return this.handleHomePageFilter(category)
     }
 
+    if(method === this.activeMethod && category){
+      /*
+        Selected category while on method page
+      */
+     return this.handleMethodPageFilter(category)
+    }
     if (!this.allMethods.includes(method)) return console.log('skip')
 
     const actualCategory = this.dataService.isValidCategory(category)
@@ -116,7 +122,6 @@ export class WholeComponent implements OnInit {
 
     const categoryData = this.dataService.getCategoryData({
       currentFilter: this.activeCategory,
-      prop: method,
       methodCategories: this.data.categories,
     })
     this.visibleMethods = categoryData.visibleMethods
@@ -142,7 +147,6 @@ export class WholeComponent implements OnInit {
     if (!this.dataService.isValidCategory(category)) return
     const categoryData = this.dataService.getCategoryData({
       currentFilter: category,
-      prop: undefined,
       methodCategories: [],
     })
 
@@ -150,6 +154,19 @@ export class WholeComponent implements OnInit {
     this.visibleMethods = categoryData.visibleMethods
     this.activeCategoryIndex = categoryData.activeIndex
     this.methodCategoriesIndexes = categoryData.methodIndexes
+  }
+
+  handleMethodPageFilter(category: string){
+    if (!this.dataService.isValidCategory(category)) return
+
+    const categoryData = this.dataService.getCategoryData({
+      currentFilter: category,
+      methodCategories: this.data.categories,
+    })
+    this.visibleMethods = categoryData.visibleMethods
+    this.methodCategoriesIndexes = categoryData.methodIndexes
+    this.activeCategoryIndex = categoryData.activeIndex
+    this.activeCategory = category
   }
 
   async onReplChange(newReplContent: string) {

@@ -60,7 +60,7 @@ export class ReplComponent implements OnInit, OnChanges {
     await delay(1000)
 
     this.httpClient
-            .get('files/index.d.ts', { responseType: 'text' })
+            .get('files/rambda', { responseType: 'text' })
             .subscribe({
               next: data => {
                 if((window as any).monaco === undefined) return console.log('skip definitions load');

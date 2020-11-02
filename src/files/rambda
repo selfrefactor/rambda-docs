@@ -1,4 +1,6 @@
-type RambdaTypes = "Object" | "Number" | "Boolean" | "String" | "Null" | "Array" | "RegExp" | "NaN" | "Function" | "Undefined" | "Async" | "Promise" | "Symbol";
+declare namespace R {
+  
+  type RambdaTypes = "Object" | "Number" | "Boolean" | "String" | "Null" | "Array" | "RegExp" | "NaN" | "Function" | "Undefined" | "Async" | "Promise" | "Symbol";
 
 type CommonKeys<T1, T2> = keyof T1 & keyof T2;
 
@@ -1501,3 +1503,5 @@ export function takeWhile<T>(fn: Predicate<T>): (iterable: readonly T[]) => T[];
 export function eqProps<T, U>(prop: string, obj1: T, obj2: U): boolean;
 export function eqProps<P extends string>(prop: P): <T, U>(obj1: Record<P, T>, obj2: Record<P, U>) => boolean;
 export function eqProps<T>(prop: string, obj1: T): <U>(obj2: U) => boolean;
+
+}

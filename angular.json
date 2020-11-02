@@ -51,7 +51,7 @@
             "assets": [
               "src/favicon.ico",
               "src/files/rx6.d.ts",
-              "src/files/index.d.ts",
+              "src/files/rambda",
               {
                 "glob": "**/*",
                 "input": "node_modules/monaco-editor",
@@ -105,30 +105,6 @@
             "production": {
               "browserTarget": "rambda-docs:build:production"
             }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "rambda-docs:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
-              "src/styles.scss"
-            ],
-            "scripts": []
           }
         },
         "lint": {

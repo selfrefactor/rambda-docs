@@ -45,7 +45,6 @@ export class MethodsDataService {
   }
   getCategoryData(input: {
     currentFilter: Category, 
-    prop?: keyof Data, 
     methodCategories: string[]
   }): {activeIndex: number, methodIndexes: number[], visibleMethods: string[]} {
     
