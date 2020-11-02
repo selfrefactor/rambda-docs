@@ -22,7 +22,6 @@ describe("MethodsDataService", () => {
     it("active category is number", () => {
       const prop = "add";
       const result = service.getCategoryData({
-        prop,
         methodCategories: service.getMethod(prop).categories,
         currentFilter: "Number",
       });
