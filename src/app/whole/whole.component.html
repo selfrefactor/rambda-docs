@@ -22,7 +22,7 @@
 			<div class="category__container">
 				<div
 					(click)="selectCategory(singleCategory, i)"
-					[class]="getCategoryClass(singleCategory,i)"
+					[class]="getCategoryClass(i)"
 					*ngFor="let singleCategory of allCategories;let i=index"
 				> {{singleCategory}}</div>
 			</div>

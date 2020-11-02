@@ -41,6 +41,7 @@ export class MethodsDataService {
   }
   isValidCategory(category: any) : category is Category {
     if(!category) return false
+    if(category === 'All') return true
     return this.categories[category] !== undefined
   }
   getFirstMethodForCategory(category: Category){

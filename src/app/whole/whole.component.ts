@@ -29,7 +29,9 @@ function fixReplInput(replInput: string) {
 }
 
 function getVisibleSnippetModes(input: SingleMethod): SnippetMode[] {
-  return ALL_SNIPPET_MODES.filter(snippetMode => Boolean(input[snippetMode.mode]))
+  return ALL_SNIPPET_MODES.filter(snippetMode =>
+    Boolean(input[snippetMode.mode])
+  )
 }
 
 const SEPARATOR = '--'
@@ -84,23 +86,20 @@ export class WholeComponent implements OnInit {
       return this.handleHomePageFilter(category)
     }
 
-    if(method === this.activeMethod && category) return console.log('skip')
-    if(method !== this.activeMethod && category){
+    if (method === this.activeMethod && category) return console.log('skip')
+    if (method !== this.activeMethod && category) {
       /*
         Selected category while on method page
       */
-     return this.handleMethodPageFilter(method,category)
+      return this.handleMethodPageFilter(method, category)
     }
 
     if (!this.allMethods.includes(method)) return console.log('skip')
 
-    const actualCategory = this.dataService.isValidCategory(category)
-      ? category
-      : 'All'
-    this.selectMethod(method, actualCategory)
+    this.selectMethod(method)
   }
 
-  selectMethod(method: string, category: Category) {
+  selectMethod(method: string) {
     this.selectedMethod = method
 
     this.data = this.dataService.getMethod(method)
@@ -156,11 +155,12 @@ export class WholeComponent implements OnInit {
     this.methodCategoriesIndexes = categoryData.methodIndexes
   }
 
-  handleMethodPageFilter(method: string, category: string){
-    if (!this.dataService.isValidCategory(category)) return
+  handleMethodPageFilter(method: string, category: string) {
+    if (!this.dataService.isValidCategory(category))
+      return console.log('skip valid category')
     this.activeCategory = category
 
-    this.selectMethod(method, category)
+    this.selectMethod(method)
   }
 
   async onReplChange(newReplContent: string) {
@@ -180,36 +180,31 @@ export class WholeComponent implements OnInit {
   }
 
   getRedirectPath(category: Category, i: number) {
-    const requireMethodChange = !this.methodCategoriesIndexes.includes(i) && category !== 'All'
+    const requireMethodChange =
+      !this.methodCategoriesIndexes.includes(i) && category !== 'All'
 
-    if(requireMethodChange){
+    if (requireMethodChange) {
       const newMethod = this.dataService.getFirstMethodForCategory(category)
-      
+
       return `/${newMethod}${SEPARATOR}${category}`
     }
-    
+
     return `/${this.selectedMethod}${SEPARATOR}${category}`
   }
 
   selectCategory(newCategory: Category, i: number) {
-    if (this.activeCategory === newCategory) return console.log('skip select category');
+    if (this.activeCategory === newCategory)
+      return console.log('skip select category')
 
-    if(newCategory === 'All'){
-      this.activeCategory = 'All'
-      this.visibleMethods = this.allMethods
-      this.activeCategoryIndex = 0
-    }
-
-    this.router
-        .navigate([
-          this.getRedirectPath(newCategory, i)
-        ])
+    this.router.navigate([this.getRedirectPath(newCategory, i)])
   }
 
-  getCategoryClass(category: Category, index: number) {
-    const methodCategoriesIndexes = [0,...this.methodCategoriesIndexes]
-    if (this.activeCategoryIndex === index&&methodCategoriesIndexes.includes(index)) {
-
+  getCategoryClass(index: number) {
+    const methodCategoriesIndexes = [0, ...this.methodCategoriesIndexes]
+    if (
+      this.activeCategoryIndex === index &&
+      methodCategoriesIndexes.includes(index)
+    ) {
       return 'category__active--both'
     }
     if (this.activeCategoryIndex === index) {
@@ -221,7 +216,3 @@ export class WholeComponent implements OnInit {
     return 'category__item'
   }
 }
-
-/*
-					<!-- [class.activeClass]="codeSnippetMode===singleMode.mode" -->
-*/
