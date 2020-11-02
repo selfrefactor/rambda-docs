@@ -33,14 +33,13 @@ export interface SnippetMode {
 }
 export const ALL_SNIPPET_MODES: SnippetMode[] = [
   {text: 'Source', mode: 'rambdaSource'},
-  {
-    text: 'Typescript definitions',
-    mode: 'allTypings',
-
-  },
   {text: 'Tests', mode: 'rambdaSpecs'},
   {
-    text: 'Typescript definitions tests',
+    text: 'All TS definitions',
+    mode: 'allTypings',
+  },
+  {
+    text: 'TS definitions tests',
     mode: 'typescriptDefinitionTest',
   },
   {
