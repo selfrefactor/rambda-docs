@@ -23,15 +23,15 @@ export class ReplComponent implements OnInit, OnChanges {
   @ViewChild(MonacoEditorComponent, {static: false})
   editor: MonacoEditorComponent
   editorOptions = {
-    theme: 'vs', // 'vs-dark' 'hc-black' 'vs'
+    theme: 'hc-black', // 'vs' 'hc-black' 'vs-dark'
     language: 'typescript',
-    fontSize: 17,
+    fontSize: 14,
     contextmenu:false,
     codeLens: false,
     quickSuggestionsDelay: 700,
     showUnused: false,
     copyWithSyntaxHighlighting: false,
-    lineHeight: 19, // should be dynamic
+    lineHeight: 18, // should be dynamic
     disableMonospaceOptimizations: true,
     cursorBlinking: 'smooth', // "blink" | "smooth" | "phase" | "expand" | "solid"
     lineNumbers: false,
@@ -56,6 +56,11 @@ export class ReplComponent implements OnInit, OnChanges {
       this.code = this.initialState
     }, 10)
   }
+  /*
+    `delay` and `if(window.monaco)` are required in order to protect against previous bugs
+
+    `files/ramda` is without extension on purpose as otherwise Angular CLI parses it
+  */
   async loadTypescript(){
     await delay(1000)
 
@@ -63,9 +68,7 @@ export class ReplComponent implements OnInit, OnChanges {
             .get('files/rambda', { responseType: 'text' })
             .subscribe({
               next: data => {
-                if((window as any).monaco === undefined) return console.log('skip definitions load');
-
-                console.log('loaded definitions');
+                if((window as any).monaco === undefined) return console.log('error in definitions load');
 
                 (window as any).monaco.languages.typescript.typescriptDefaults.addExtraLib(
                   data,

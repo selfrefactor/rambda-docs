@@ -199,7 +199,7 @@ export class WholeComponent implements OnInit {
       this.visibleMethods = this.allMethods
       this.activeCategoryIndex = 0
     }
-    
+
     this.router
         .navigate([
           this.getRedirectPath(newCategory, i)
