@@ -78,20 +78,20 @@ export class WholeComponent implements OnInit {
   }
 
   onRouteChange(method?: string, category?: string) {
-    console.log({method, category})
-
     if (!method && category) {
       // No method selected; only filter methods on home page
       // ============================================
       return this.handleHomePageFilter(category)
     }
 
-    if(method === this.activeMethod && category){
+    if(method === this.activeMethod && category) return console.log('skip')
+    if(method !== this.activeMethod && category){
       /*
         Selected category while on method page
       */
-     return this.handleMethodPageFilter(category)
+     return this.handleMethodPageFilter(method,category)
     }
+
     if (!this.allMethods.includes(method)) return console.log('skip')
 
     const actualCategory = this.dataService.isValidCategory(category)
@@ -156,17 +156,11 @@ export class WholeComponent implements OnInit {
     this.methodCategoriesIndexes = categoryData.methodIndexes
   }
 
-  handleMethodPageFilter(category: string){
+  handleMethodPageFilter(method: string, category: string){
     if (!this.dataService.isValidCategory(category)) return
-
-    const categoryData = this.dataService.getCategoryData({
-      currentFilter: category,
-      methodCategories: this.data.categories,
-    })
-    this.visibleMethods = categoryData.visibleMethods
-    this.methodCategoriesIndexes = categoryData.methodIndexes
-    this.activeCategoryIndex = categoryData.activeIndex
     this.activeCategory = category
+
+    this.selectMethod(method, category)
   }
 
   async onReplChange(newReplContent: string) {
@@ -185,18 +179,43 @@ export class WholeComponent implements OnInit {
     this.codeSnippetMode = newMode
   }
 
-  selectCategory(newCategory: Category) {
-    if (this.activeCategory === newCategory) return
+  getRedirectPath(category: Category, i: number) {
+    const requireMethodChange = !this.methodCategoriesIndexes.includes(i) && category !== 'All'
 
+    if(requireMethodChange){
+      const newMethod = this.dataService.getFirstMethodForCategory(category)
+      
+      return `/${newMethod}${SEPARATOR}${category}`
+    }
+    
+    return `/${this.selectedMethod}${SEPARATOR}${category}`
+  }
+
+  selectCategory(newCategory: Category, i: number) {
+    if (this.activeCategory === newCategory) return console.log('skip select category');
+
+    if(newCategory === 'All'){
+      this.activeCategory = 'All'
+      this.visibleMethods = this.allMethods
+      this.activeCategoryIndex = 0
+    }
+    
     this.router
-      .navigate([`/${this.selectedMethod}${SEPARATOR}${newCategory}`])
+        .navigate([
+          this.getRedirectPath(newCategory, i)
+        ])
   }
 
   getCategoryClass(category: Category, index: number) {
+    const methodCategoriesIndexes = [0,...this.methodCategoriesIndexes]
+    if (this.activeCategoryIndex === index&&methodCategoriesIndexes.includes(index)) {
+
+      return 'category__active--both'
+    }
     if (this.activeCategoryIndex === index) {
       return 'category__active--category'
     }
-    if (this.methodCategoriesIndexes.includes(index)) {
+    if (methodCategoriesIndexes.includes(index)) {
       return 'category__active--method'
     }
     return 'category__item'

@@ -21,7 +21,7 @@
 			<div>Filter by {{activeCategory}}</div>
 			<div class="category__container">
 				<div
-					(click)="selectCategory(singleCategory)"
+					(click)="selectCategory(singleCategory, i)"
 					[class]="getCategoryClass(singleCategory,i)"
 					*ngFor="let singleCategory of allCategories;let i=index"
 				> {{singleCategory}}</div>

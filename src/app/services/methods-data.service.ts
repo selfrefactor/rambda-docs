@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core'
-import {interpolate, switcher, replace, equals, filter } from 'rambdax'
+import {interpolate, switcher, head } from 'rambdax'
 // WITH_RAMBDAX
 // import allMethods from '../../../new-data-rambdax.json'
 // WITHOUT_RAMBDAX
@@ -43,6 +43,12 @@ export class MethodsDataService {
     if(!category) return false
     return this.categories[category] !== undefined
   }
+  getFirstMethodForCategory(category: Category){
+    return head(
+      this.categories[category]
+    )
+  }
+
   getCategoryData(input: {
     currentFilter: Category, 
     methodCategories: string[]

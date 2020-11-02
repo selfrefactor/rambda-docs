@@ -9,13 +9,16 @@ export const EmptyMethod: SingleMethod = {
 export type Category =
   | 'All'
   | 'String'
-  | 'Async'
   | 'Lenses'
   | 'Object'
   | 'Number'
   | 'List'
   | 'Function'
   | 'Logic'
+
+export type RambdaxCategory =
+  | Category
+  | 'Async'
 
 type SnippetModeProp =
   | 'rambdaSource'
@@ -49,7 +52,6 @@ export const DefaultSnippetMode: SnippetMode = ALL_SNIPPET_MODES[0]
 
 export const ALL_CATEGORIES: Category[] = [
   'All',
-  'Async',
   'Lenses',
   'Function',
   'List',
