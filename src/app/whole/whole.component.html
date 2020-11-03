@@ -108,16 +108,18 @@
 		<cell
 			[debug]="false"
 			[height]="3"
-			[topLeft]="{x:1,y:12}"
+			[topLeft]="{x:0,y:12}"
 			[width]="6"
 		>
-			<wired-card fill="#f2f2f2">
-				<div class="repl-result">
-					<code>
-						<pre>{{replResult}}</pre>
-					</code>
-				</div>
-			</wired-card>
+			<div class="repl-result__container">
+				<wired-card fill="#f2f2f2">
+					<div class="repl-result">
+						<code>
+							<pre>{{replResult}}</pre>
+						</code>
+					</div>
+				</wired-card>
+			</div>
 		</cell>
 
 		<!-- second sidebar -->

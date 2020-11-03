@@ -3,7 +3,7 @@ ngx-monaco-editor {
   height: 100%;
 }
 
-.snippet{
+.snippet {
   &__container {
     width: 34.34vw;
     display: flex;
@@ -11,21 +11,20 @@ ngx-monaco-editor {
     flex-flow: row wrap;
     & > div {
       flex: auto;
-      min-width:3vw;
+      min-width: 3vw;
     }
   }
   &__item {
     cursor: pointer;
     font-size: 2vh;
     color: #33f;
-    &--active{
+    &--active {
       @extend .snippet__item
-      !optional;
+          !optional;
       color: #331166;
       font-weight: bold;
     }
   }
-
 }
 
 .category {
@@ -81,6 +80,9 @@ ngx-monaco-editor {
   }
 }
 
-.repl-result{
-  padding: 10px;
+.repl-result {
+  padding: 1vmin;
+  &__container {
+    padding-left: 1vw;
+  }
 }
