@@ -103,6 +103,10 @@ export class WholeComponent implements OnInit {
   }
 
   onRouteChange(method?: string, category?: string) {
+    if (this.searchActive) {
+      this.searchActive = false
+      this.searchInput.nativeElement.value = ''
+    }
     if (!method && category) {
       /*
       No method selected; only filter methods on home page
