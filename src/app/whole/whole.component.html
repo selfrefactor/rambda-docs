@@ -6,16 +6,10 @@
 		[width]="5"
 	>
 		<cell
-			[debug]="false"
-			[height]="1"
-			[topLeft]="{x:0,y:0}"
-			[width]="16"
-		>1</cell>
-		<cell
 			[debug]="true"
 			[height]="3"
-			[topLeft]="{x:0,y:1}"
-			[width]="4"
+			[topLeft]="{x:0,y:0}"
+			[width]="16"
 		>
 			<div>R.{{selectedMethod}}</div>
 			<div>Filter by {{activeCategory}}</div>
@@ -24,9 +18,16 @@
 					(click)="selectCategory(singleCategory, i)"
 					[class]="getCategoryClass(i)"
 					*ngFor="let singleCategory of allCategories;let i=index"
-				> {{singleCategory}}</div>
+				>{{singleCategory}}</div>
 			</div>
 		</cell>
+
+		<cell
+			[debug]="true"
+			[height]="1"
+			[topLeft]="{x:0,y:3}"
+			[width]="16"
+		>1</cell>
 		<cell
 			[debug]="true"
 			[height]="11"
@@ -110,7 +111,13 @@
 			[topLeft]="{x:1,y:12}"
 			[width]="6"
 		>
-			<wired-card fill="#f2f2f2"><div class="repl-result"><code><pre>{{replResult}}</pre></code></div></wired-card>
+			<wired-card fill="#f2f2f2">
+				<div class="repl-result">
+					<code>
+						<pre>{{replResult}}</pre>
+					</code>
+				</div>
+			</wired-card>
 		</cell>
 
 		<!-- second sidebar -->
@@ -126,11 +133,11 @@
 				<div class="snippet__container">
 					<div
 						(click)="selectMode(singleMode)"
-						*ngFor="let singleMode of currentSnippetModes;let i = index"
 						[ngClass]="{
 							'snippet__item--active':codeSnippetMode.mode===singleMode.mode,
 							'snippet__item':codeSnippetMode.mode!==singleMode.mode
 						}"
+						*ngFor="let singleMode of currentSnippetModes;let i = index"
 					>{{singleMode.text}}</div>
 				</div>
 			</wired-card>
