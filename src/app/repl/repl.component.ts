@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http'
+import {HttpClient} from '@angular/common/http'
 import {
   Component,
   EventEmitter,
@@ -9,10 +9,12 @@ import {
   ViewEncapsulation,
   OnChanges,
 } from '@angular/core'
-import {MonacoEditorComponent, MonacoEditorLoaderService} from '@materia-ui/ngx-monaco-editor'
+import {
+  MonacoEditorComponent,
+  MonacoEditorLoaderService,
+} from '@materia-ui/ngx-monaco-editor'
 import {OnChange} from 'property-watch-decorator'
-import { delay } from 'rambdax'
-
+import {take, filter} from 'rxjs/operators'
 @Component({
   selector: 'app-repl',
   templateUrl: './repl.component.html',
@@ -23,10 +25,10 @@ export class ReplComponent implements OnInit, OnChanges {
   @ViewChild(MonacoEditorComponent, {static: false})
   editor: MonacoEditorComponent
   editorOptions = {
-    theme: 'vs-dark',// 'hc-black', // 'vs' 'hc-black' 'vs-dark'
+    theme: 'vs-dark', // 'hc-black', // 'vs' 'hc-black' 'vs-dark'
     language: 'typescript',
     fontSize: 14,
-    contextmenu:false,
+    contextmenu: false,
     codeLens: false,
     quickSuggestionsDelay: 700,
     showUnused: false,
@@ -51,31 +53,39 @@ export class ReplComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.code = this.initialState
   }
-  attachToCode(){
+  attachToCode() {
     setTimeout(() => {
       this.code = this.initialState
     }, 10)
   }
   /*
-    `delay` and `if(window.monaco)` are required in order to protect against previous bugs
+    if(window.monaco)` are required in order to protect against previous bugs
 
     `files/ramda` is without extension on purpose as otherwise Angular CLI parses it
   */
-  async loadTypescript(){
-    await delay(1000)
-
-    this.httpClient
-            .get('files/rambda', { responseType: 'text' })
+  async loadTypescript() {
+    this.monacoLoader.isMonacoLoaded$
+      .pipe(
+        filter(isLoaded => isLoaded),
+        take(1)
+      )
+      .subscribe({
+        next: () => {
+          this.httpClient
+            .get('files/rambda', {responseType: 'text'})
             .subscribe({
               next: data => {
-                if((window as any).monaco === undefined) return console.log('error in definitions load');
-
+                if ((window as any).monaco === undefined) {
+                  return console.log('error in definitions load')
+                }
                 (window as any).monaco.languages.typescript.typescriptDefaults.addExtraLib(
                   data,
                   ''
-                );
-              }
-            });
+                )
+              },
+            })
+        },
+      })
   }
 
   ngOnInit() {
@@ -85,6 +95,6 @@ export class ReplComponent implements OnInit, OnChanges {
 
   constructor(
     private monacoLoader: MonacoEditorLoaderService,
-    private httpClient: HttpClient,
-  ){}
+    private httpClient: HttpClient
+  ) {}
 }

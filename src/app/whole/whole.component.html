@@ -27,7 +27,14 @@
 			[height]="1"
 			[topLeft]="{x:0,y:3}"
 			[width]="16"
-		>1</cell>
+			class="search__container"
+		>
+			<input
+				(keyup)="onSearchChange($event)"
+				class="search__input"
+				placeholder="Search for a method"
+			/>
+		</cell>
 		<cell
 			[debug]="true"
 			[height]="11"

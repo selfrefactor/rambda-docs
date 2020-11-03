@@ -48,6 +48,7 @@ export class WholeComponent implements OnInit {
   allCategories = ALL_CATEGORIES
   allMethods: string[]
   typescriptDefinition = ''
+  searchText = ''
   codeSnippetMode: SnippetMode = DefaultSnippetMode
   currentSnippetModes: SnippetMode[] = []
   currentCodeSnippet = ''
@@ -139,7 +140,9 @@ export class WholeComponent implements OnInit {
       this.data[prop]
     )
 
-    this.typescriptDefinition = this.dataService.applyHighlighter(this.data.typing)
+    this.typescriptDefinition = this.dataService.applyHighlighter(
+      this.data.typing
+    )
   }
 
   handleHomePageFilter(category: string) {
@@ -157,9 +160,9 @@ export class WholeComponent implements OnInit {
 
   handleMethodPageFilter(method: string, category: string) {
     if (!this.dataService.isValidCategory(category))
-      return console.log('skip valid category')
-    this.activeCategory = category
+      return console.log('skip as invalid category')
 
+    this.activeCategory = category
     this.selectMethod(method)
   }
 
@@ -177,6 +180,9 @@ export class WholeComponent implements OnInit {
       this.data[newMode.mode]
     )
     this.codeSnippetMode = newMode
+  }
+  onSearchChange(e: {target: HTMLInputElement}) {
+    console.log(e.target.value)
   }
 
   getRedirectPath(category: Category, i: number) {
