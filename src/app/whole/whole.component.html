@@ -30,9 +30,10 @@
 			class="search__container"
 		>
 			<input
-				(keyup)="onSearchChange($event)"
+				#searchInput
 				class="search__input"
 				placeholder="Search for a method"
+				type="text"
 			/>
 		</cell>
 		<cell
@@ -42,14 +43,26 @@
 			[width]="16"
 			class="sidebar"
 		>
-			<p
-				*ngFor="let singleMethodKey of visibleMethods"
-				class="sidebar__cell"
-			>
-				<a
-					routerLink="/{{singleMethodKey}}"
-				>{{ singleMethodKey }}</a>
-			</p>
+			<div *ngIf="!searchActive">
+				<p
+					*ngFor="let singleMethodKey of visibleMethods"
+					class="sidebar__cell"
+				>
+					<a
+						routerLink="/{{singleMethodKey}}"
+					>{{ singleMethodKey }}</a>
+				</p>
+			</div>
+			<div *ngIf="searchActive">
+				<p
+					*ngFor="let singleMethodKey of searchResults"
+					class="sidebar__cell"
+				>
+					<a
+						routerLink="/{{singleMethodKey}}"
+					>{{ singleMethodKey }}</a>
+				</p>
+			</div>
 		</cell>
 	</sub-grid>
 

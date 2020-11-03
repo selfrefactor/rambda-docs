@@ -2,7 +2,7 @@ import {ActivatedRoute, Router} from '@angular/router'
 // import roughjs from 'roughjs/bin/rough'
 // https://github.com/selfrefactor/rambda-docs/blob/4456ae2b9a513df560680485f8b080574e845331/src/app/app.module.ts
 import 'wired-elements'
-import {Component, OnInit} from '@angular/core'
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core'
 import {handleReplChange} from '../_modules/handle-repl-change'
 import {MethodsDataService} from '../services/methods-data.service'
 import {
@@ -14,6 +14,13 @@ import {
   DefaultSnippetMode,
 } from './whole.component.interfaces'
 import {SingleMethod} from '../services/methods-data.service.interfaces'
+import {fromEvent} from 'rxjs'
+import {
+  filter,
+  map,
+  debounceTime,
+  distinctUntilChanged,
+} from 'rxjs/operators'
 
 function parseExplanation(explanation) {
   if (!explanation) return []
@@ -61,7 +68,10 @@ export class WholeComponent implements OnInit {
   selectedMethod = ''
   selectedSnippedMode: SnippetMode = DefaultSnippetMode
   visibleMethods: string[]
+  searchActive = false
+  searchResults: string[]
   replInitialState: string
+  @ViewChild('searchInput', {static: true}) searchInput: ElementRef
 
   constructor(
     private route: ActivatedRoute,
@@ -72,18 +82,31 @@ export class WholeComponent implements OnInit {
   ngOnInit() {
     this.allMethods = this.dataService.getAllKeys()
     this.visibleMethods = this.allMethods
+
     this.route.params.subscribe(routeParams => {
       if (routeParams.method === undefined) return
 
       const [method, category] = routeParams.method.split(SEPARATOR)
       this.onRouteChange(method, category)
     })
+
+    fromEvent(this.searchInput.nativeElement, 'keyup')
+      .pipe(
+        // get value
+        map((event: any) => {
+          return event.target.value
+        }),
+        debounceTime(700),
+        distinctUntilChanged()
+      )
+      .subscribe(text => this.applySearch(text))
   }
 
   onRouteChange(method?: string, category?: string) {
     if (!method && category) {
-      // No method selected; only filter methods on home page
-      // ============================================
+      /*
+      No method selected; only filter methods on home page
+      */
       return this.handleHomePageFilter(category)
     }
 
@@ -181,9 +204,6 @@ export class WholeComponent implements OnInit {
     )
     this.codeSnippetMode = newMode
   }
-  onSearchChange(e: {target: HTMLInputElement}) {
-    console.log(e.target.value)
-  }
 
   getRedirectPath(category: Category, i: number) {
     const requireMethodChange =
@@ -203,6 +223,15 @@ export class WholeComponent implements OnInit {
       return console.log('skip select category')
 
     this.router.navigate([this.getRedirectPath(newCategory, i)])
+  }
+
+  applySearch(searchString) {
+    if (searchString === '') {
+      return this.searchActive = false
+    }
+
+    this.searchResults = this.dataService.applySearch(searchString)
+    if (!this.searchActive) this.searchActive = true
   }
 
   getCategoryClass(index: number) {

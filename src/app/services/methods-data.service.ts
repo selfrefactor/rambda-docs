@@ -83,6 +83,9 @@ export class MethodsDataService {
     }
   }
 
+  applySearch(searchString: string) {
+    return this.getAllKeys().filter(x => x.includes(searchString))
+  }
   applyHighlighter(input: string) {
     return interpolate(input, resolver)
   }
