@@ -10,21 +10,18 @@ describe("MethodsDataService", () => {
   });
 
   it("should be created", () => {
-    expect(service.getAllKeys()).toMatchSnapshot();
+    expect(service.getAllKeys()).toBeDefined();
   });
-  it.only("should be created", () => {
-    expect(service.applySearch("for")).toMatchInlineSnapshot(`
-      Array [
-        "or",
-        "forEach",
-        "xor",
-        "filter",
-        "pathOr",
-        "propOr",
-        "F",
-      ]
-    `);
+  it("search should return less results", () => {
+    // service.applySearch("rus")
     // expect(service.applySearch('flitr')).toBeDefined();
+  });
+  describe("search", () => {
+    ['rus',"flitn", "filr", "flitr", "fli", "flit",'foe', 'for', 'fora'].forEach((searchInput, i) => {
+      it(`input - ${searchInput}`, () => {
+        expect(service.applySearch(searchInput)).toMatchSnapshot();
+      });
+    });
   });
 
   describe("getCategoryData", () => {
