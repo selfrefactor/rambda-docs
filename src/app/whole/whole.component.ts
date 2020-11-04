@@ -103,7 +103,7 @@ export class WholeComponent implements OnInit {
   }
 
   onRouteChange(method?: string, category?: string) {
-    if (this.searchActive) {
+    if (this.searchActive) { 
       this.searchActive = false
       this.searchInput.nativeElement.value = ''
     }
@@ -113,7 +113,7 @@ export class WholeComponent implements OnInit {
       */
       return this.handleHomePageFilter(category)
     }
-
+ 
     if (method === this.activeMethod && category) return console.log('skip')
     if (method !== this.activeMethod && category) {
       /*

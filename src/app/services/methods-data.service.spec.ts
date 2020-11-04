@@ -12,6 +12,20 @@ describe("MethodsDataService", () => {
   it("should be created", () => {
     expect(service.getAllKeys()).toMatchSnapshot();
   });
+  it.only("should be created", () => {
+    expect(service.applySearch("for")).toMatchInlineSnapshot(`
+      Array [
+        "or",
+        "forEach",
+        "xor",
+        "filter",
+        "pathOr",
+        "propOr",
+        "F",
+      ]
+    `);
+    // expect(service.applySearch('flitr')).toBeDefined();
+  });
 
   describe("getCategoryData", () => {
     const parseResult = (x) => ({
@@ -27,9 +41,9 @@ describe("MethodsDataService", () => {
       });
       expect(parseResult(result)).toMatchInlineSnapshot(`
         Object {
-          "activeIndex": 5,
+          "activeIndex": 4,
           "methodIndexes": Array [
-            5,
+            4,
           ],
           "visibleMethods": 10,
         }
@@ -39,7 +53,6 @@ describe("MethodsDataService", () => {
     it("active category is default one", () => {
       const prop = "add";
       const result = service.getCategoryData({
-        prop,
         methodCategories: service.getMethod(prop).categories,
         currentFilter: "All",
       });
@@ -47,7 +60,7 @@ describe("MethodsDataService", () => {
         Object {
           "activeIndex": 0,
           "methodIndexes": Array [
-            5,
+            4,
           ],
           "visibleMethods": 168,
         }

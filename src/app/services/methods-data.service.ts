@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core'
-import {interpolate, switcher, head } from 'rambdax'
+import {interpolate, switcher, head} from 'rambdax'
 // WITH_RAMBDAX
 // import allMethods from '../../../new-data-rambdax.json'
 // WITHOUT_RAMBDAX
@@ -9,13 +9,22 @@ import allMethods from '../../../new-data.json'
 // WITH_RAMBDAX
 // import allCategories from '../../../categories-rambdax.json'
 import resolver from '../../../resolver.json'
-import {ALL_CATEGORIES, Category, SnippetMode} from '../whole/whole.component.interfaces'
+import {
+  ALL_CATEGORIES,
+  Category,
+  SnippetMode,
+} from '../whole/whole.component.interfaces'
 import {
   CodeSnippet,
   Data,
   DataCategory,
   SingleMethod,
-} from './methods-data.service.interfaces';
+} from './methods-data.service.interfaces'
+import FuzzySet from 'fuzzyset'
+
+interface Fuzzy{
+  get: (x:string)=> [number, string][]
+}
 
 @Injectable({
   providedIn: 'root',
@@ -23,9 +32,11 @@ import {
 export class MethodsDataService {
   data: Data
   categories: DataCategory
+  fuzzy: Fuzzy
   constructor() {
     this.data = allMethods
     this.categories = allCategories
+    this.fuzzy = FuzzySet(Object.keys(allMethods), false, 1, 2)
   }
   getAllKeys() {
     return Object.keys(this.data)
@@ -39,38 +50,38 @@ export class MethodsDataService {
 
     return this.categories[category]
   }
-  isValidCategory(category: any) : category is Category {
-    if(!category) return false
-    if(category === 'All') return true
+  isValidCategory(category: any): category is Category {
+    if (!category) return false
+    if (category === 'All') return true
     return this.categories[category] !== undefined
   }
-  getFirstMethodForCategory(category: Category){
-    return head(
-      this.categories[category]
-    )
+  getFirstMethodForCategory(category: Category) {
+    return head(this.categories[category])
   }
 
   getCategoryData(input: {
-    currentFilter: Category, 
-    methodCategories: string[]
-  }): {activeIndex: number, methodIndexes: number[], visibleMethods: string[]} {
-    
+    currentFilter: Category,
+    methodCategories: string[],
+  }): {
+      activeIndex: number,
+      methodIndexes: number[],
+      visibleMethods: string[],
+    } {
     const methodIndexes = []
-    
-    if(input.methodCategories.length > 0){
+
+    if (input.methodCategories.length > 0) {
       ALL_CATEGORIES.forEach((category, i) => {
-        if(input.methodCategories.includes(category)){
+        if (input.methodCategories.includes(category)) {
           methodIndexes.push(i)
         }
       })
     }
-    
-    if(input.currentFilter === 'All'){
 
+    if (input.currentFilter === 'All') {
       return {
         activeIndex: 0,
         methodIndexes,
-        visibleMethods: this.getAllKeys()
+        visibleMethods: this.getAllKeys(),
       }
     }
 
@@ -79,12 +90,15 @@ export class MethodsDataService {
     return {
       activeIndex,
       methodIndexes,
-      visibleMethods
+      visibleMethods,
     }
   }
 
   applySearch(searchString: string) {
-    return this.getAllKeys().filter(x => x.includes(searchString))
+    const fuzzyResult = this.fuzzy.get(searchString)
+      .map(([, x]) => x)
+    
+    return fuzzyResult
   }
   applyHighlighter(input: string) {
     return interpolate(input, resolver)
