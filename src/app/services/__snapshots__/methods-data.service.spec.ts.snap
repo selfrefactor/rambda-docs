@@ -66,4 +66,15 @@ Array [
 ]
 `;
 
+exports[`MethodsDataService search input - ini 1`] = `
+Array [
+  "init",
+  "inc",
+  "isNil",
+  "indexBy",
+  "indexOf",
+  "includes",
+]
+`;
+
 exports[`MethodsDataService search input - rus 1`] = `Array []`;

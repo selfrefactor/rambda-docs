@@ -26,6 +26,9 @@ interface Fuzzy{
   get: (x:string)=> [number, string][]
 }
 
+const FUZZY_LIMIT = 0.3
+const FUZZY_CONSERVATIVE_LIMIT = 0.5
+
 @Injectable({
   providedIn: 'root',
 })
@@ -33,12 +36,12 @@ export class MethodsDataService {
   data: Data
   categories: DataCategory
   fuzzy: Fuzzy
-  fuzzySecond: Fuzzy
+  fuzzyConservative: Fuzzy
   constructor() {
     this.data = allMethods
     this.categories = allCategories
     this.fuzzy = FuzzySet(Object.keys(allMethods), false, 1, 2)
-    this.fuzzySecond = FuzzySet(Object.keys(allMethods), true, 2, 3)
+    this.fuzzyConservative = FuzzySet(Object.keys(allMethods), true, 2, 3)
   }
   getAllKeys() {
     return Object.keys(this.data)
@@ -97,16 +100,14 @@ export class MethodsDataService {
   }
 
   applySearch(searchString: string) {
-    const limit = 0.3
     const fuzzyResult = this.fuzzy.get(searchString)
-      .filter(([score]) => score > limit)
+      .filter(([score]) => score > FUZZY_LIMIT)
       .map(([, x]) => x)
-    const fuzzyResultx = this.fuzzySecond.get(searchString)
-      .filter(([score]) => score > 0.5)
-      // .map(([, x]) => x)
+    const fuzzyResultConservative = this.fuzzyConservative.get(searchString)
+      .filter(([score]) => score > FUZZY_CONSERVATIVE_LIMIT)
 
-      const diff =  fuzzyResult.length - fuzzyResultx.length
-      if(diff > 20 && fuzzyResultx.length === 0) return []
+      const diff =  fuzzyResult.length - fuzzyResultConservative.length
+      if(diff > 20 && fuzzyResultConservative.length === 0) return []
       
     return fuzzyResult
   }
