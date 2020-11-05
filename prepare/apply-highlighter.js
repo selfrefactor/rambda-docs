@@ -1,10 +1,20 @@
-const {mapAsync, match, remove, forEach, replace, piped, map, interpolate} = require('rambdax')
+const {mapAsync, omit, merge, match, remove, forEach, replace, piped, map, interpolate, path} = require('rambdax')
 const shiki = require('shiki')
 const tripTankTheme = shiki.loadTheme(`${__dirname}/assets/TripTank.json`)
 const initialResolver = {
   '{{LINE}}':'<span class="line">',
   '{{START}}':'<pre class="shiki" style="background-color: #25252A">',
   '{{END}}':'</span></span></code></pre>'
+}
+
+function finalFix(x){
+  const benchmarkSummary = path('benchmarkInfo.methodSummary', x) ? path('benchmarkInfo.methodSummary',x) : ''
+  if(!benchmarkSummary) return x
+
+  return {
+    ...omit('benchmarkInfo', x),
+    benchmarkSummary
+  } 
 }
 
 class ApplyHighlighter {
@@ -59,6 +69,7 @@ class ApplyHighlighter {
   async apply(source) {
     const iterator = async (data) => {
       const all = {}
+      all.benchmarkSource = path('benchmarkInfo.benchmarkContent', data) ? this.codeToHtml(path('benchmarkInfo.benchmarkContent',data), 'js'):''
       all.rambdaSource = this.codeToHtml(data.rambdaSource, 'js')
       all.rambdaSpecs = data.rambdaSpecs ? this.codeToHtml(data.rambdaSpecs, 'js'): ''
       all.failedRamdaSpecs = data.failedRamdaSpecs ? this.codeToHtml(data.failedRamdaSpecs, 'js'): ''
@@ -71,7 +82,7 @@ class ApplyHighlighter {
         map(x => this.appendToResolver(x)),
       )
 
-      return {...data, ...parsedData}
+      return finalFix({...data, ...parsedData})
 
       /*
         forEach(x => this.appendToResolver(x), all)
