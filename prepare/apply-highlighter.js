@@ -1,20 +1,45 @@
-const {mapAsync, omit, merge, match, remove, forEach, replace, piped, map, interpolate, path} = require('rambdax')
+const {
+  mapAsync,
+  omit,
+  match,
+  remove,
+  forEach,
+  replace,
+  piped,
+  map,
+  trim,
+  interpolate,
+  path,
+} = require('rambdax')
 const shiki = require('shiki')
 const tripTankTheme = shiki.loadTheme(`${__dirname}/assets/TripTank.json`)
 const initialResolver = {
-  '{{LINE}}':'<span class="line">',
-  '{{START}}':'<pre class="shiki" style="background-color: #25252A">',
-  '{{END}}':'</span></span></code></pre>'
+  '{{LINE}}': '<span class="line">',
+  '{{START}}': '<pre class="shiki" style="background-color: #25252A">',
+  '{{END}}': '</span></span></code></pre>',
 }
 
-function finalFix(x){
-  const benchmarkSummary = path('benchmarkInfo.methodSummary', x) ? path('benchmarkInfo.methodSummary',x) : ''
-  if(!benchmarkSummary) return x
+function fixBenchmarkSource(input) {
+  return piped(
+    input,
+    remove([
+      `const R = require('../../dist/rambda.js')`,
+      `const R = require('../../dist/rambda.js');`,
+    ]),
+    trim
+  )
+}
+
+function finalFix(x) {
+  const benchmarkSummary = path('benchmarkInfo.methodSummary', x)
+    ? path('benchmarkInfo.methodSummary', x)
+    : ''
+  if (!benchmarkSummary) return x
 
   return {
     ...omit('benchmarkInfo', x),
-    benchmarkSummary
-  } 
+    benchmarkSummary,
+  }
 }
 
 class ApplyHighlighter {
@@ -24,7 +49,7 @@ class ApplyHighlighter {
     }
     this.resolver = initialResolver
   }
-  
+
   async init() {
     const {codeToHtml} = await shiki.getHighlighter({
       theme: tripTankTheme,
@@ -33,32 +58,38 @@ class ApplyHighlighter {
     this.codeToHtml = codeToHtml
   }
 
-  findColor(input){
+  findColor(input) {
     const [colorPart] = match(/color:\s#[a-fA-F0-9]{6,8}/, input)
-    if(!colorPart) return
+    if (!colorPart) return
 
     return remove('color: #', colorPart)
   }
 
-  appendToResolver(highlighted){
-    if(!highlighted) return
+  appendToResolver(highlighted) {
+    if (!highlighted) return
 
-    const found = match(/<span\sstyle="color:\s#[a-fA-F0-9]{6,8}">/gm, highlighted)
+    const found = match(
+      /<span\sstyle="color:\s#[a-fA-F0-9]{6,8}">/gm,
+      highlighted
+    )
 
-    if(found.length === 0) return
+    if (found.length === 0) return
     let template = highlighted
 
     found.forEach(singleMatch => {
       const color = this.findColor(singleMatch)
-      if(!color) return
+      if (!color) return
 
-      if(this.resolver[color] === undefined){
-
+      if (this.resolver[color] === undefined) {
         this.resolver[color] = singleMatch
       }
-      template = replace(new RegExp(singleMatch, 'g'), `{{${color}}}`, template)
+      template = replace(
+        new RegExp(singleMatch, 'g'),
+        `{{${color}}}`,
+        template
+      )
     })
-    
+
     forEach((x, prop) => {
       template = replace(new RegExp(x, 'g'), prop, template)
     })(initialResolver)
@@ -67,19 +98,34 @@ class ApplyHighlighter {
   }
 
   async apply(source) {
-    const iterator = async (data) => {
+    const iterator = async data => {
       const all = {}
-      all.benchmarkSource = path('benchmarkInfo.benchmarkContent', data) ? this.codeToHtml(path('benchmarkInfo.benchmarkContent',data), 'js'):''
+      all.benchmarkSource = path('benchmarkInfo.benchmarkContent', data)
+        ? this.codeToHtml(
+            fixBenchmarkSource(path('benchmarkInfo.benchmarkContent', data)),
+            'js'
+          )
+        : ''
       all.rambdaSource = this.codeToHtml(data.rambdaSource, 'js')
-      all.rambdaSpecs = data.rambdaSpecs ? this.codeToHtml(data.rambdaSpecs, 'js'): ''
-      all.failedRamdaSpecs = data.failedRamdaSpecs ? this.codeToHtml(data.failedRamdaSpecs, 'js'): ''
-      all.allTypings = data.allTypings ? this.codeToHtml(data.allTypings, 'ts'): ''
-      all.typing = data.typing ? this.codeToHtml(data.typing.trim(), 'ts'): ''
-      all.typescriptDefinitionTest = data.typescriptDefinitionTest ? this.codeToHtml(data.typescriptDefinitionTest, 'ts'): ''
+      all.rambdaSpecs = data.rambdaSpecs
+        ? this.codeToHtml(data.rambdaSpecs, 'js')
+        : ''
+      all.failedRamdaSpecs = data.failedRamdaSpecs
+        ? this.codeToHtml(data.failedRamdaSpecs, 'js')
+        : ''
+      all.allTypings = data.allTypings
+        ? this.codeToHtml(data.allTypings, 'ts')
+        : ''
+      all.typing = data.typing
+        ? this.codeToHtml(data.typing.trim(), 'ts')
+        : ''
+      all.typescriptDefinitionTest = data.typescriptDefinitionTest
+        ? this.codeToHtml(data.typescriptDefinitionTest, 'ts')
+        : ''
 
       const parsedData = piped(
         all,
-        map(x => this.appendToResolver(x)),
+        map(x => this.appendToResolver(x))
       )
 
       return finalFix({...data, ...parsedData})
@@ -96,14 +142,14 @@ class ApplyHighlighter {
 
     const resolverObject = {}
     forEach((x, prop) => {
-      const newKey = remove(['{{','}}'], prop)
+      const newKey = remove(['{{', '}}'], prop)
       resolverObject[newKey] = x
     })(this.resolver)
 
     return {toSave, resolver: resolverObject}
   }
 
-  render(input, resolver){
+  render(input, resolver) {
     return interpolate(input, resolver)
   }
 }

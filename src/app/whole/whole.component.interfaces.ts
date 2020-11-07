@@ -24,8 +24,9 @@ type SnippetModeProp =
   | 'rambdaSource'
   | 'rambdaSpecs'
   | 'allTypings'
-  | 'failedRamdaSpecs'
   | 'typescriptDefinitionTest'
+  | 'benchmarkSource'
+  | 'failedRamdaSpecs'
 
 export interface SnippetMode {
   text: string,
@@ -42,6 +43,7 @@ export const ALL_SNIPPET_MODES: SnippetMode[] = [
     text: 'TS definitions tests',
     mode: 'typescriptDefinitionTest',
   },
+  {text: 'Benchmarks', mode: 'benchmarkSource'},
   {
     text: 'Failed Ramda tests',
     mode: 'failedRamdaSpecs',

@@ -41,6 +41,7 @@
     "@angular/router": "10.1.6",
     "grid-fn": "0.2.2",
     "rambdax": "7.0.1",
+    "string-fn": "3.1.0",
     "rxjs": "7.0.0-beta.0",
     "tslib": "2.0.3",
     "zone.js": "0.11.2"
