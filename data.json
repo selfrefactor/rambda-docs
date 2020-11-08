@@ -1,7 +1,7 @@
 {
   "add": {
     "typing": "\nadd(a: number, b: number): number",
-    "allTypings": "add(a: number, b: number): number;\nadd(a: number): (b: number) => number;",
+    "allTypings": "function add(a: number, b: number): number;\nfunction add(a: number): (b: number) => number;",
     "categories": [
       "Number"
     ],
@@ -18,7 +18,7 @@
   },
   "adjust": {
     "typing": "\nadjust<T>(index: number, replaceFn: (x: T) => T, list: T[]): T[]",
-    "allTypings": "adjust<T>(index: number, replaceFn: (x: T) => T, list: T[]): T[];\nadjust<T>(index: number, replaceFn: (x: T) => T): (list: T[]) => T[];",
+    "allTypings": "function adjust<T>(index: number, replaceFn: (x: T) => T, list: T[]): T[];\nfunction adjust<T>(index: number, replaceFn: (x: T) => T): (list: T[]) => T[];",
     "categories": [
       "List"
     ],
@@ -36,7 +36,7 @@
   },
   "all": {
     "typing": "\nall<T>(predicate: (x: T) => boolean, list: T[]): boolean",
-    "allTypings": "all<T>(predicate: (x: T) => boolean, list: T[]): boolean;\nall<T>(predicate: (x: T) => boolean): (list: T[]) => boolean;",
+    "allTypings": "function all<T>(predicate: (x: T) => boolean, list: T[]): boolean;\nfunction all<T>(predicate: (x: T) => boolean): (list: T[]) => boolean;",
     "categories": [
       "List"
     ],
@@ -52,7 +52,7 @@
   },
   "allPass": {
     "typing": "\nallPass<T>(predicates: ((x: T) => boolean)[]): (input: T) => boolean",
-    "allTypings": "allPass<T>(predicates: ((x: T) => boolean)[]): (input: T) => boolean;",
+    "allTypings": "function allPass<T>(predicates: ((x: T) => boolean)[]): (input: T) => boolean;",
     "categories": [
       "Function"
     ],
@@ -71,7 +71,7 @@
   },
   "always": {
     "typing": "\nalways<T>(x: T): () => T",
-    "allTypings": "always<T>(x: T): () => T;",
+    "allTypings": "function always<T>(x: T): () => T;",
     "categories": [
       "Function"
     ],
@@ -83,7 +83,7 @@
   },
   "and": {
     "typing": "\nand<T, U>(x: T, y: U): T | U",
-    "allTypings": "and<T, U>(x: T, y: U): T | U;\nand<T>(x: T): <U>(y: U) => T | U;",
+    "allTypings": "function and<T, U>(x: T, y: U): T | U;\nfunction and<T>(x: T): <U>(y: U) => T | U;",
     "categories": [
       "Logic"
     ],
@@ -99,7 +99,7 @@
   },
   "or": {
     "typing": "\nor<T, U>(a: T, b: U): T | U",
-    "allTypings": "or<T, U>(a: T, b: U): T | U;\nor<T>(a: T): <U>(b: U) => T | U;",
+    "allTypings": "function or<T, U>(a: T, b: U): T | U;\nfunction or<T>(a: T): <U>(b: U) => T | U;",
     "categories": [
       "Logic"
     ],
@@ -111,7 +111,7 @@
   },
   "any": {
     "typing": "\nany<T>(predicate: (x: T) => boolean, list: readonly T[]): boolean",
-    "allTypings": "any<T>(predicate: (x: T) => boolean, list: readonly T[]): boolean;\nany<T>(predicate: (x: T) => boolean): (list: readonly T[]) => boolean;",
+    "allTypings": "function any<T>(predicate: (x: T) => boolean, list: readonly T[]): boolean;\nfunction any<T>(predicate: (x: T) => boolean): (list: readonly T[]) => boolean;",
     "categories": [
       "List"
     ],
@@ -127,7 +127,7 @@
   },
   "anyPass": {
     "typing": "\nanyPass<T>(predicates: SafePred<T>[]): SafePred<T>",
-    "allTypings": "anyPass<T>(predicates: SafePred<T>[]): SafePred<T>;",
+    "allTypings": "function anyPass<T>(predicates: SafePred<T>[]): SafePred<T>;",
     "categories": [
       "Function"
     ],
@@ -146,7 +146,7 @@
   },
   "append": {
     "typing": "\nappend<T>(x: T, list: readonly T[]): T[]",
-    "allTypings": "append<T>(x: T, list: readonly T[]): T[];\nappend<T>(x: T): <T>(list: readonly T[]) => T[];",
+    "allTypings": "function append<T>(x: T, list: readonly T[]): T[];\nfunction append<T>(x: T): <T>(list: readonly T[]) => T[];",
     "categories": [
       "List"
     ],
@@ -162,7 +162,7 @@
   },
   "applySpec": {
     "typing": "\napplySpec<Spec extends Record<string, (...args: readonly any[]) => any>>(\n  spec: Spec\n): (\n  ...args: Parameters<ValueOfRecord<Spec>>\n) => { [Key in keyof Spec]: ReturnType<Spec[Key]> }",
-    "allTypings": "applySpec<Spec extends Record<string, (...args: readonly any[]) => any>>(\n  spec: Spec\n): (\n  ...args: Parameters<ValueOfRecord<Spec>>\n) => { [Key in keyof Spec]: ReturnType<Spec[Key]> };\napplySpec<T>(spec: any): (...args: readonly any[]) => T;",
+    "allTypings": "function applySpec<Spec extends Record<string, (...args: readonly any[]) => any>>(\n  spec: Spec\n): (\n  ...args: Parameters<ValueOfRecord<Spec>>\n) => { [Key in keyof Spec]: ReturnType<Spec[Key]> };\nfunction applySpec<T>(spec: any): (...args: readonly any[]) => T;",
     "categories": [
       "Function"
     ],
@@ -178,7 +178,7 @@
   },
   "assoc": {
     "typing": "\nassoc<T, U, K extends string>(prop: K, val: T, obj: U): Record<K, T> & U",
-    "allTypings": "assoc<T, U, K extends string>(prop: K, val: T, obj: U): Record<K, T> & U;\nassoc<T, K extends string>(prop: K, val: T): <U>(obj: U) => Record<K, T> & U;\nassoc<K extends string>(prop: K): AssocPartialOne<K>;",
+    "allTypings": "function assoc<T, U, K extends string>(prop: K, val: T, obj: U): Record<K, T> & U;\nfunction assoc<T, K extends string>(prop: K, val: T): <U>(obj: U) => Record<K, T> & U;\nfunction assoc<K extends string>(prop: K): AssocPartialOne<K>;",
     "categories": [
       "Object"
     ],
@@ -195,7 +195,7 @@
   },
   "assocPath": {
     "typing": "\nassocPath<Output>(path: Path, newValue: any, obj: object): Output",
-    "allTypings": "assocPath<Output>(path: Path, newValue: any, obj: object): Output;\nassocPath<Output>(path: Path, newValue: any): (obj: object) => Output;\nassocPath<Output>(path: Path): FunctionToolbelt.Curry<(newValue: any, obj: object) => Output>;",
+    "allTypings": "function assocPath<Output>(path: Path, newValue: any, obj: object): Output;\nfunction assocPath<Output>(path: Path, newValue: any): (obj: object) => Output;\nfunction assocPath<Output>(path: Path): FunctionToolbelt.Curry<(newValue: any, obj: object) => Output>;",
     "categories": [
       "Object"
     ],
@@ -207,7 +207,7 @@
   },
   "both": {
     "typing": "\nboth(pred1: Pred, pred2: Pred): Pred",
-    "allTypings": "both(pred1: Pred, pred2: Pred): Pred;\nboth<T>(pred1: Predicate<T>, pred2: Predicate<T>): Predicate<T>;\nboth<T>(pred1: Predicate<T>): (pred2: Predicate<T>) => Predicate<T>;\nboth(pred1: Pred): (pred2: Pred) => Pred;",
+    "allTypings": "function both(pred1: Pred, pred2: Pred): Pred;\nfunction both<T>(pred1: Predicate<T>, pred2: Predicate<T>): Predicate<T>;\nfunction both<T>(pred1: Predicate<T>): (pred2: Predicate<T>) => Predicate<T>;\nfunction both(pred1: Pred): (pred2: Pred) => Pred;",
     "categories": [
       "Function"
     ],
@@ -222,7 +222,7 @@
   },
   "chain": {
     "typing": "\nchain<T, U>(fn: (n: T) => U[], list: readonly T[]): U[]",
-    "allTypings": "chain<T, U>(fn: (n: T) => U[], list: readonly T[]): U[];\nchain<T, U>(fn: (n: T) => U[]): (list: readonly T[]) => U[];\nchain<X0, X1, R>(fn: (x0: X0, x1: X1) => R, fn1: (x1: X1) => X0): (x1: X1) => R;",
+    "allTypings": "function chain<T, U>(fn: (n: T) => U[], list: readonly T[]): U[];\nfunction chain<T, U>(fn: (n: T) => U[]): (list: readonly T[]) => U[];\nfunction chain<X0, X1, R>(fn: (x0: X0, x1: X1) => R, fn1: (x1: X1) => X0): (x1: X1) => R;",
     "categories": [
       "List"
     ],
@@ -236,7 +236,7 @@
   },
   "clamp": {
     "typing": "\nclamp(min: number, max: number, input: number): number",
-    "allTypings": "clamp(min: number, max: number, input: number): number;\nclamp(min: number, max: number): (input: number) => number;",
+    "allTypings": "function clamp(min: number, max: number, input: number): number;\nfunction clamp(min: number, max: number): (input: number) => number;",
     "rambdaSource": "import { curry } from './curry'\n\nfunction clampFn(\n  min, max, input\n){\n  if (min > max){\n    throw new Error('min must not be greater than max in clamp(min, max, value)')\n  }\n  if (input >= min && input <= max) return input\n\n  if (input > max) return max\n  if (input < min) return min\n}\n\nexport const clamp = curry(clampFn)",
     "rambdaSpecs": "import { clamp } from './clamp'\n\ntest('when min is greater than max', () => {\n  expect(() => clamp(\n    -5, -10, 5\n  )).toThrowWithMessage(Error,\n    'min must not be greater than max in clamp(min, max, value)')\n})\n\ntest('rambda specs', () => {\n  expect(clamp(\n    1, 10, 0\n  )).toEqual(1)\n  expect(clamp(\n    3, 12, 1\n  )).toEqual(3)\n  expect(clamp(\n    -15, 3, -100\n  )).toEqual(-15)\n  expect(clamp(\n    1, 10, 20\n  )).toEqual(10)\n  expect(clamp(\n    3, 12, 23\n  )).toEqual(12)\n  expect(clamp(\n    -15, 3, 16\n  )).toEqual(3)\n  expect(clamp(\n    1, 10, 4\n  )).toEqual(4)\n  expect(clamp(\n    3, 12, 6\n  )).toEqual(6)\n  expect(clamp(\n    -15, 3, 0\n  )).toEqual(0)\n})",
     "explanation": "Restrict a number `input` to be within `min` and `max` limits.\n\nIf `input` is bigger than `max`, then the result is `max`.\n\nIf `input` is smaller than `min`, then the result is `min`.",
@@ -245,7 +245,7 @@
   },
   "clone": {
     "typing": "\nclone<T>(input: T): T",
-    "allTypings": "clone<T>(input: T): T;\nclone<T>(input: readonly T[]): T[];",
+    "allTypings": "function clone<T>(input: T): T;\nfunction clone<T>(input: readonly T[]): T[];",
     "categories": [
       "Object"
     ],
@@ -264,7 +264,7 @@
   },
   "complement": {
     "typing": "\ncomplement<T extends any[]>(pred: (...args: T) => boolean): (...args: T) => boolean",
-    "allTypings": "complement<T extends any[]>(pred: (...args: T) => boolean): (...args: T) => boolean;",
+    "allTypings": "function complement<T extends any[]>(pred: (...args: T) => boolean): (...args: T) => boolean;",
     "categories": [
       "Function"
     ],
@@ -279,7 +279,7 @@
   },
   "compose": {
     "typing": "\ncompose<T1>(fn0: () => T1): () => T1",
-    "allTypings": "compose<T1>(fn0: () => T1): () => T1;\ncompose<V0, T1>(fn0: (x0: V0) => T1): (x0: V0) => T1;\ncompose<V0, V1, T1>(fn0: (x0: V0, x1: V1) => T1): (x0: V0, x1: V1) => T1;\ncompose<V0, V1, V2, T1>(fn0: (x0: V0, x1: V1, x2: V2) => T1): (x0: V0, x1: V1, x2: V2) => T1;\n\ncompose<T1, T2>(fn1: (x: T1) => T2, fn0: () => T1): () => T2;\ncompose<V0, T1, T2>(fn1: (x: T1) => T2, fn0: (x0: V0) => T1): (x0: V0) => T2;\ncompose<V0, V1, T1, T2>(fn1: (x: T1) => T2, fn0: (x0: V0, x1: V1) => T1): (x0: V0, x1: V1) => T2;\ncompose<V0, V1, V2, T1, T2>(fn1: (x: T1) => T2, fn0: (x0: V0, x1: V1, x2: V2) => T1): (x0: V0, x1: V1, x2: V2) => T2;\n\ncompose<T1, T2, T3>(fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: () => T1): () => T3;\ncompose<V0, T1, T2, T3>(fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: (x: V0) => T1): (x: V0) => T3;\ncompose<V0, V1, T1, T2, T3>(fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: (x0: V0, x1: V1) => T1): (x0: V0, x1: V1) => T3;\ncompose<V0, V1, V2, T1, T2, T3>(fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: (x0: V0, x1: V1, x2: V2) => T1): (x0: V0, x1: V1, x2: V2) => T3;\n\ncompose<T1, T2, T3, T4>(fn3: (x: T3) => T4, fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: () => T1): () => T4;\ncompose<V0, T1, T2, T3, T4>(fn3: (x: T3) => T4, fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: (x: V0) => T1): (x: V0) => T4;\ncompose<V0, V1, T1, T2, T3, T4>(fn3: (x: T3) => T4, fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: (x0: V0, x1: V1) => T1): (x0: V0, x1: V1) => T4;\ncompose<V0, V1, V2, T1, T2, T3, T4>(fn3: (x: T3) => T4, fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: (x0: V0, x1: V1, x2: V2) => T1): (x0: V0, x1: V1, x2: V2) => T4;\n\ncompose<T1, T2, T3, T4, T5>(fn4: (x: T4) => T5, fn3: (x: T3) => T4, fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: () => T1): () => T5;\ncompose<V0, T1, T2, T3, T4, T5>(fn4: (x: T4) => T5, fn3: (x: T3) => T4, fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: (x: V0) => T1): (x: V0) => T5;\ncompose<V0, V1, T1, T2, T3, T4, T5>(fn4: (x: T4) => T5, fn3: (x: T3) => T4, fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: (x0: V0, x1: V1) => T1): (x0: V0, x1: V1) => T5;\ncompose<V0, V1, V2, T1, T2, T3, T4, T5>(fn4: (x: T4) => T5, fn3: (x: T3) => T4, fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: (x0: V0, x1: V1, x2: V2) => T1): (x0: V0, x1: V1, x2: V2) => T5;\n\ncompose<T1, T2, T3, T4, T5, T6>(fn5: (x: T5) => T6, fn4: (x: T4) => T5, fn3: (x: T3) => T4, fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: () => T1): () => T6;\ncompose<V0, T1, T2, T3, T4, T5, T6>(fn5: (x: T5) => T6, fn4: (x: T4) => T5, fn3: (x: T3) => T4, fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: (x: V0) => T1): (x: V0) => T6;\ncompose<V0, V1, T1, T2, T3, T4, T5, T6>(\n  fn5: (x: T5) => T6,\n  fn4: (x: T4) => T5,\n  fn3: (x: T3) => T4,\n  fn2: (x: T2) => T3,\n  fn1: (x: T1) => T2,\n  fn0: (x0: V0, x1: V1) => T1): (x0: V0, x1: V1) => T6;\ncompose<V0, V1, V2, T1, T2, T3, T4, T5, T6>(\n  fn5: (x: T5) => T6,\n  fn4: (x: T4) => T5,\n  fn3: (x: T3) => T4,\n  fn2: (x: T2) => T3,\n  fn1: (x: T1) => T2,\n  fn0: (x0: V0, x1: V1, x2: V2) => T1): (x0: V0, x1: V1, x2: V2) => T6;",
+    "allTypings": "function compose<T1>(fn0: () => T1): () => T1;\nfunction compose<V0, T1>(fn0: (x0: V0) => T1): (x0: V0) => T1;\nfunction compose<V0, V1, T1>(fn0: (x0: V0, x1: V1) => T1): (x0: V0, x1: V1) => T1;\nfunction compose<V0, V1, V2, T1>(fn0: (x0: V0, x1: V1, x2: V2) => T1): (x0: V0, x1: V1, x2: V2) => T1;\n\nfunction compose<T1, T2>(fn1: (x: T1) => T2, fn0: () => T1): () => T2;\nfunction compose<V0, T1, T2>(fn1: (x: T1) => T2, fn0: (x0: V0) => T1): (x0: V0) => T2;\nfunction compose<V0, V1, T1, T2>(fn1: (x: T1) => T2, fn0: (x0: V0, x1: V1) => T1): (x0: V0, x1: V1) => T2;\nfunction compose<V0, V1, V2, T1, T2>(fn1: (x: T1) => T2, fn0: (x0: V0, x1: V1, x2: V2) => T1): (x0: V0, x1: V1, x2: V2) => T2;\n\nfunction compose<T1, T2, T3>(fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: () => T1): () => T3;\nfunction compose<V0, T1, T2, T3>(fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: (x: V0) => T1): (x: V0) => T3;\nfunction compose<V0, V1, T1, T2, T3>(fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: (x0: V0, x1: V1) => T1): (x0: V0, x1: V1) => T3;\nfunction compose<V0, V1, V2, T1, T2, T3>(fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: (x0: V0, x1: V1, x2: V2) => T1): (x0: V0, x1: V1, x2: V2) => T3;\n\nfunction compose<T1, T2, T3, T4>(fn3: (x: T3) => T4, fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: () => T1): () => T4;\nfunction compose<V0, T1, T2, T3, T4>(fn3: (x: T3) => T4, fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: (x: V0) => T1): (x: V0) => T4;\nfunction compose<V0, V1, T1, T2, T3, T4>(fn3: (x: T3) => T4, fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: (x0: V0, x1: V1) => T1): (x0: V0, x1: V1) => T4;\nfunction compose<V0, V1, V2, T1, T2, T3, T4>(fn3: (x: T3) => T4, fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: (x0: V0, x1: V1, x2: V2) => T1): (x0: V0, x1: V1, x2: V2) => T4;\n\nfunction compose<T1, T2, T3, T4, T5>(fn4: (x: T4) => T5, fn3: (x: T3) => T4, fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: () => T1): () => T5;\nfunction compose<V0, T1, T2, T3, T4, T5>(fn4: (x: T4) => T5, fn3: (x: T3) => T4, fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: (x: V0) => T1): (x: V0) => T5;\nfunction compose<V0, V1, T1, T2, T3, T4, T5>(fn4: (x: T4) => T5, fn3: (x: T3) => T4, fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: (x0: V0, x1: V1) => T1): (x0: V0, x1: V1) => T5;\nfunction compose<V0, V1, V2, T1, T2, T3, T4, T5>(fn4: (x: T4) => T5, fn3: (x: T3) => T4, fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: (x0: V0, x1: V1, x2: V2) => T1): (x0: V0, x1: V1, x2: V2) => T5;\n\nfunction compose<T1, T2, T3, T4, T5, T6>(fn5: (x: T5) => T6, fn4: (x: T4) => T5, fn3: (x: T3) => T4, fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: () => T1): () => T6;\nfunction compose<V0, T1, T2, T3, T4, T5, T6>(fn5: (x: T5) => T6, fn4: (x: T4) => T5, fn3: (x: T3) => T4, fn2: (x: T2) => T3, fn1: (x: T1) => T2, fn0: (x: V0) => T1): (x: V0) => T6;\nfunction compose<V0, V1, T1, T2, T3, T4, T5, T6>(\n  fn5: (x: T5) => T6,\n  fn4: (x: T4) => T5,\n  fn3: (x: T3) => T4,\n  fn2: (x: T2) => T3,\n  fn1: (x: T1) => T2,\n  fn0: (x0: V0, x1: V1) => T1): (x0: V0, x1: V1) => T6;\nfunction compose<V0, V1, V2, T1, T2, T3, T4, T5, T6>(\n  fn5: (x: T5) => T6,\n  fn4: (x: T4) => T5,\n  fn3: (x: T3) => T4,\n  fn2: (x: T2) => T3,\n  fn1: (x: T1) => T2,\n  fn0: (x0: V0, x1: V1, x2: V2) => T1): (x0: V0, x1: V1, x2: V2) => T6;",
     "categories": [
       "Function"
     ],
@@ -298,7 +298,7 @@
   },
   "concat": {
     "typing": "\nconcat<T>(x: readonly T[], y: readonly T[]): T[]",
-    "allTypings": "concat<T>(x: readonly T[], y: readonly T[]): T[];\nconcat<T>(x: readonly T[]): (y: readonly T[]) => T[];\nconcat(x: string, y: string): string;\nconcat(x: string): (y: string) => string;",
+    "allTypings": "function concat<T>(x: readonly T[], y: readonly T[]): T[];\nfunction concat<T>(x: readonly T[]): (y: readonly T[]) => T[];\nfunction concat(x: string, y: string): string;\nfunction concat(x: string): (y: string) => string;",
     "categories": [
       "List",
       "String"
@@ -314,7 +314,7 @@
   },
   "cond": {
     "typing": "\ncond(conditions: [Pred, (...a: readonly any[]) => any][]): (...x: readonly any[]) => any",
-    "allTypings": "cond(conditions: [Pred, (...a: readonly any[]) => any][]): (...x: readonly any[]) => any;\ncond<A, B>(conditions: [SafePred<A>, (...a: readonly A[]) => B][]): (...x: readonly A[]) => B;",
+    "allTypings": "function cond(conditions: [Pred, (...a: readonly any[]) => any][]): (...x: readonly any[]) => any;\nfunction cond<A, B>(conditions: [SafePred<A>, (...a: readonly A[]) => B][]): (...x: readonly A[]) => B;",
     "categories": [
       "Function"
     ],
@@ -329,7 +329,7 @@
   },
   "converge": {
     "typing": "\nconverge(after: ((...a: any[]) => any), fns: Array<((...x: any[]) => any)>): (...y: any[]) => any",
-    "allTypings": "converge(after: ((...a: any[]) => any), fns: Array<((...x: any[]) => any)>): (...y: any[]) => any;",
+    "allTypings": "function converge(after: ((...a: any[]) => any), fns: Array<((...x: any[]) => any)>): (...y: any[]) => any;",
     "categories": [
       "Function"
     ],
@@ -346,7 +346,7 @@
   },
   "curry": {
     "typing": "\ncurry(fn: (...args: any[]) => any): (...a: any[]) => any",
-    "allTypings": "curry(fn: (...args: any[]) => any): (...a: any[]) => any;",
+    "allTypings": "function curry(fn: (...args: any[]) => any): (...a: any[]) => any;",
     "categories": [
       "Function"
     ],
@@ -365,7 +365,7 @@
   },
   "curryN": {
     "typing": "\ncurryN(length: number, fn: (...args: readonly any[]) => any): (...a: readonly any[]) => any",
-    "allTypings": "curryN(length: number, fn: (...args: readonly any[]) => any): (...a: readonly any[]) => any;",
+    "allTypings": "function curryN(length: number, fn: (...args: readonly any[]) => any): (...a: readonly any[]) => any;",
     "categories": [
       "Function"
     ],
@@ -380,7 +380,7 @@
   },
   "dec": {
     "typing": "\ndec(x: number): number",
-    "allTypings": "dec(x: number): number;",
+    "allTypings": "function dec(x: number): number;",
     "categories": [
       "Number"
     ],
@@ -390,7 +390,7 @@
   },
   "defaultTo": {
     "typing": "\ndefaultTo<T>(defaultValue: T): (...inputArguments: (T | null | undefined)[]) => T",
-    "allTypings": "defaultTo<T>(defaultValue: T): (...inputArguments: (T | null | undefined)[]) => T;\ndefaultTo<T>(defaultValue: T, ...inputArguments: (T | null | undefined)[]): T;\ndefaultTo<T, U>(defaultValue: T | U, ...inputArguments: (T | U | null | undefined)[]): T | U;",
+    "allTypings": "function defaultTo<T>(defaultValue: T): (...inputArguments: (T | null | undefined)[]) => T;\nfunction defaultTo<T>(defaultValue: T, ...inputArguments: (T | null | undefined)[]): T;\nfunction defaultTo<T, U>(defaultValue: T | U, ...inputArguments: (T | U | null | undefined)[]): T | U;",
     "categories": [
       "Logic"
     ],
@@ -407,7 +407,7 @@
   },
   "difference": {
     "typing": "\ndifference<T>(a: readonly T[], b: readonly T[]): T[]",
-    "allTypings": "difference<T>(a: readonly T[], b: readonly T[]): T[];\ndifference<T>(a: readonly T[]): (b: readonly T[]) => T[];",
+    "allTypings": "function difference<T>(a: readonly T[], b: readonly T[]): T[];\nfunction difference<T>(a: readonly T[]): (b: readonly T[]) => T[];",
     "categories": [
       "List"
     ],
@@ -420,7 +420,7 @@
   },
   "dissoc": {
     "typing": "\ndissoc<T>(prop: string, obj: any): T",
-    "allTypings": "dissoc<T>(prop: string, obj: any): T;\ndissoc<T>(prop: string): (obj: any) => T;",
+    "allTypings": "function dissoc<T>(prop: string, obj: any): T;\nfunction dissoc<T>(prop: string): (obj: any) => T;",
     "categories": [
       "Object"
     ],
@@ -432,7 +432,7 @@
   },
   "divide": {
     "typing": "\ndivide(x: number, y: number): number",
-    "allTypings": "divide(x: number, y: number): number;\ndivide(x: number): (y: number) => number;",
+    "allTypings": "function divide(x: number, y: number): number;\nfunction divide(x: number): (y: number) => number;",
     "categories": [
       "Number"
     ],
@@ -442,7 +442,7 @@
   },
   "drop": {
     "typing": "\ndrop<T>(howMany: number, input: readonly T[]): T[]",
-    "allTypings": "drop<T>(howMany: number, input: readonly T[]): T[];\ndrop(howMany: number, input: string): string;\ndrop<T>(howMany: number): {\n  <T>(input: readonly T[]): T[];\n  (input: string): string;\n};",
+    "allTypings": "function drop<T>(howMany: number, input: readonly T[]): T[];\nfunction drop(howMany: number, input: string): string;\nfunction drop<T>(howMany: number): {\n  <T>(input: readonly T[]): T[];\n  (input: string): string;\n};",
     "categories": [
       "List",
       "String"
@@ -459,7 +459,7 @@
   },
   "dropLast": {
     "typing": "\ndropLast<T>(howMany: number, input: readonly T[]): T[]",
-    "allTypings": "dropLast<T>(howMany: number, input: readonly T[]): T[];\ndropLast(howMany: number, input: string): string;\ndropLast<T>(howMany: number): {\n  <T>(input: readonly T[]): T[];\n  (input: string): string;\n};",
+    "allTypings": "function dropLast<T>(howMany: number, input: readonly T[]): T[];\nfunction dropLast(howMany: number, input: string): string;\nfunction dropLast<T>(howMany: number): {\n  <T>(input: readonly T[]): T[];\n  (input: string): string;\n};",
     "categories": [
       "List",
       "String"
@@ -479,7 +479,7 @@
   },
   "either": {
     "typing": "\neither(firstPredicate: Pred, secondPredicate: Pred): Pred",
-    "allTypings": "either(firstPredicate: Pred, secondPredicate: Pred): Pred;\neither<T>(firstPredicate: Predicate<T>, secondPredicate: Predicate<T>): Predicate<T>;\neither<T>(firstPredicate: Predicate<T>): (secondPredicate: Predicate<T>) => Predicate<T>;\neither(firstPredicate: Pred): (secondPredicate: Pred) => Pred;",
+    "allTypings": "function either(firstPredicate: Pred, secondPredicate: Pred): Pred;\nfunction either<T>(firstPredicate: Predicate<T>, secondPredicate: Predicate<T>): Predicate<T>;\nfunction either<T>(firstPredicate: Predicate<T>): (secondPredicate: Predicate<T>) => Predicate<T>;\nfunction either(firstPredicate: Pred): (secondPredicate: Pred) => Pred;",
     "categories": [
       "Function"
     ],
@@ -494,7 +494,7 @@
   },
   "endsWith": {
     "typing": "\nendsWith(target: string, str: string): boolean",
-    "allTypings": "endsWith(target: string, str: string): boolean;\nendsWith(target: string): (str: string) => boolean;",
+    "allTypings": "function endsWith(target: string, str: string): boolean;\nfunction endsWith(target: string): (str: string) => boolean;",
     "categories": [
       "String"
     ],
@@ -510,7 +510,7 @@
   },
   "equals": {
     "typing": "\nequals<T>(x: T, y: T): boolean",
-    "allTypings": "equals<T>(x: T, y: T): boolean;\nequals<T>(x: T): (y: T) => boolean;",
+    "allTypings": "function equals<T>(x: T, y: T): boolean;\nfunction equals<T>(x: T): (y: T) => boolean;",
     "categories": [
       "Logic"
     ],
@@ -530,13 +530,13 @@
   },
   "F": {
     "typing": "\nF(): boolean",
-    "allTypings": "F(): boolean;",
+    "allTypings": "function F(): boolean;",
     "rambdaSource": "export function F(){\n  return false\n}",
     "example": "F() // => false"
   },
   "filter": {
     "typing": "\nfilter<T>(predicate: Predicate<T>): (input: readonly T[]) => T[]",
-    "allTypings": "filter<T>(predicate: Predicate<T>): (input: readonly T[]) => T[];\nfilter<T>(predicate: Predicate<T>, input: readonly T[]): T[];\nfilter<T, U>(predicate: ObjectPredicate<T>): (x: Dictionary<T>) => Dictionary<T>;\nfilter<T>(predicate: ObjectPredicate<T>, x: Dictionary<T>): Dictionary<T>;",
+    "allTypings": "function filter<T>(predicate: Predicate<T>): (input: readonly T[]) => T[];\nfunction filter<T>(predicate: Predicate<T>, input: readonly T[]): T[];\nfunction filter<T, U>(predicate: ObjectPredicate<T>): (x: Dictionary<T>) => Dictionary<T>;\nfunction filter<T>(predicate: ObjectPredicate<T>, x: Dictionary<T>): Dictionary<T>;",
     "categories": [
       "List",
       "Object"
@@ -556,7 +556,7 @@
   },
   "find": {
     "typing": "\nfind<T>(predicate: (x: T) => boolean, list: readonly T[]): T | undefined",
-    "allTypings": "find<T>(predicate: (x: T) => boolean, list: readonly T[]): T | undefined;\nfind<T>(predicate: (x: T) => boolean): (list: readonly T[]) => T | undefined;",
+    "allTypings": "function find<T>(predicate: (x: T) => boolean, list: readonly T[]): T | undefined;\nfunction find<T>(predicate: (x: T) => boolean): (list: readonly T[]) => T | undefined;",
     "categories": [
       "List"
     ],
@@ -572,7 +572,7 @@
   },
   "findIndex": {
     "typing": "\nfindIndex<T>(predicate: (x: T) => boolean, list: readonly T[]): number",
-    "allTypings": "findIndex<T>(predicate: (x: T) => boolean, list: readonly T[]): number;\nfindIndex<T>(predicate: (x: T) => boolean): (list: readonly T[]) => number;",
+    "allTypings": "function findIndex<T>(predicate: (x: T) => boolean, list: readonly T[]): number;\nfunction findIndex<T>(predicate: (x: T) => boolean): (list: readonly T[]) => number;",
     "categories": [
       "List"
     ],
@@ -588,7 +588,7 @@
   },
   "findLast": {
     "typing": "\nfindLast<T>(fn: (x: T) => boolean, list: readonly T[]): T | undefined",
-    "allTypings": "findLast<T>(fn: (x: T) => boolean, list: readonly T[]): T | undefined;\nfindLast<T>(fn: (x: T) => boolean): (list: readonly T[]) => T | undefined;",
+    "allTypings": "function findLast<T>(fn: (x: T) => boolean, list: readonly T[]): T | undefined;\nfunction findLast<T>(fn: (x: T) => boolean): (list: readonly T[]) => T | undefined;",
     "categories": [
       "List"
     ],
@@ -600,7 +600,7 @@
   },
   "findLastIndex": {
     "typing": "\nfindLastIndex<T>(predicate: (x: T) => boolean, list: readonly T[]): number",
-    "allTypings": "findLastIndex<T>(predicate: (x: T) => boolean, list: readonly T[]): number;\nfindLastIndex<T>(predicate: (x: T) => boolean): (list: readonly T[]) => number;",
+    "allTypings": "function findLastIndex<T>(predicate: (x: T) => boolean, list: readonly T[]): number;\nfunction findLastIndex<T>(predicate: (x: T) => boolean): (list: readonly T[]) => number;",
     "categories": [
       "List"
     ],
@@ -612,7 +612,7 @@
   },
   "flatten": {
     "typing": "\nflatten<T>(list: readonly any[]): T[]",
-    "allTypings": "flatten<T>(list: readonly any[]): T[];",
+    "allTypings": "function flatten<T>(list: readonly any[]): T[];",
     "categories": [
       "List"
     ],
@@ -628,7 +628,7 @@
   },
   "flip": {
     "typing": "\nflip<T, U, TResult>(fn: (arg0: T, arg1: U) => TResult): (arg1: U, arg0?: T) => TResult",
-    "allTypings": "flip<T, U, TResult>(fn: (arg0: T, arg1: U) => TResult): (arg1: U, arg0?: T) => TResult;\nflip<F extends (...args: any) => any, P extends FunctionToolbelt.Parameters<F>>(fn: F): FunctionToolbelt.Curry<(...args: ListToolbelt.Merge<[P[1], P[0]], P>) => FunctionToolbelt.Return<F>>;",
+    "allTypings": "function flip<T, U, TResult>(fn: (arg0: T, arg1: U) => TResult): (arg1: U, arg0?: T) => TResult;\nfunction flip<F extends (...args: any) => any, P extends FunctionToolbelt.Parameters<F>>(fn: F): FunctionToolbelt.Curry<(...args: ListToolbelt.Merge<[P[1], P[0]], P>) => FunctionToolbelt.Return<F>>;",
     "categories": [
       "Function"
     ],
@@ -644,7 +644,7 @@
   },
   "forEach": {
     "typing": "\nforEach<T>(fn: Iterator<T, void>, list: readonly T[]): T[]",
-    "allTypings": "forEach<T>(fn: Iterator<T, void>, list: readonly T[]): T[];\nforEach<T>(fn: Iterator<T, void>): (list: readonly T[]) => T[];\nforEach<T>(fn: ObjectIterator<T, void>, list: Dictionary<T>): Dictionary<T>;\nforEach<T, U>(fn: ObjectIterator<T, void>): (list: Dictionary<T>) => Dictionary<T>;",
+    "allTypings": "function forEach<T>(fn: Iterator<T, void>, list: readonly T[]): T[];\nfunction forEach<T>(fn: Iterator<T, void>): (list: readonly T[]) => T[];\nfunction forEach<T>(fn: ObjectIterator<T, void>, list: Dictionary<T>): Dictionary<T>;\nfunction forEach<T, U>(fn: ObjectIterator<T, void>): (list: Dictionary<T>) => Dictionary<T>;",
     "categories": [
       "List",
       "Object"
@@ -661,7 +661,7 @@
   },
   "fromPairs": {
     "typing": "\nfromPairs<V>(listOfPairs: KeyValuePair<string, V>[]): { [index: string]: V }",
-    "allTypings": "fromPairs<V>(listOfPairs: KeyValuePair<string, V>[]): { [index: string]: V };\nfromPairs<V>(listOfPairs: KeyValuePair<number, V>[]): { [index: number]: V };",
+    "allTypings": "function fromPairs<V>(listOfPairs: KeyValuePair<string, V>[]): { [index: string]: V };\nfunction fromPairs<V>(listOfPairs: KeyValuePair<number, V>[]): { [index: number]: V };",
     "categories": [
       "List"
     ],
@@ -673,7 +673,7 @@
   },
   "groupBy": {
     "typing": "\ngroupBy<T>(groupFn: (x: T) => string, list: readonly T[]): { [index: string]: T[] }",
-    "allTypings": "groupBy<T>(groupFn: (x: T) => string, list: readonly T[]): { [index: string]: T[] };\ngroupBy<T>(groupFn: (x: T) => string): (list: readonly T[]) => { [index: string]: T[] };",
+    "allTypings": "function groupBy<T>(groupFn: (x: T) => string, list: readonly T[]): { [index: string]: T[] };\nfunction groupBy<T>(groupFn: (x: T) => string): (list: readonly T[]) => { [index: string]: T[] };",
     "categories": [
       "List"
     ],
@@ -688,7 +688,7 @@
   },
   "groupWith": {
     "typing": "\ngroupWith<T>(compareFn: (x: T, y: T) => boolean): (input: readonly T[]) => T[][]",
-    "allTypings": "groupWith<T>(compareFn: (x: T, y: T) => boolean): (input: readonly T[]) => T[][];\ngroupWith<T>(compareFn: (x: T, y: T) => boolean, input: readonly T[]): T[][];\ngroupWith<T>(compareFn: (x: T, y: T) => boolean, input: string): string[];",
+    "allTypings": "function groupWith<T>(compareFn: (x: T, y: T) => boolean): (input: readonly T[]) => T[][];\nfunction groupWith<T>(compareFn: (x: T, y: T) => boolean, input: readonly T[]): T[][];\nfunction groupWith<T>(compareFn: (x: T, y: T) => boolean, input: string): string[];",
     "categories": [
       "List",
       "String"
@@ -704,7 +704,7 @@
   },
   "has": {
     "typing": "\nhas<T>(prop: string, obj: T): boolean",
-    "allTypings": "has<T>(prop: string, obj: T): boolean;\nhas(prop: string): <T>(obj: T) => boolean;",
+    "allTypings": "function has<T>(prop: string, obj: T): boolean;\nfunction has(prop: string): <T>(obj: T) => boolean;",
     "categories": [
       "Object"
     ],
@@ -719,7 +719,7 @@
   },
   "hasPath": {
     "typing": "\nhasPath<T>(\n  path: string | readonly string[],\n  input: object\n): boolean",
-    "allTypings": "hasPath<T>(\n  path: string | readonly string[],\n  input: object\n): boolean;\nhasPath<T>(\n  path: string | readonly string[]\n): (input: object) => boolean;",
+    "allTypings": "function hasPath<T>(\n  path: string | readonly string[],\n  input: object\n): boolean;\nfunction hasPath<T>(\n  path: string | readonly string[]\n): (input: object) => boolean;",
     "categories": [
       "Object"
     ],
@@ -731,7 +731,7 @@
   },
   "head": {
     "typing": "\nhead<T>(input: readonly T[]): T | undefined",
-    "allTypings": "head<T>(input: readonly T[]): T | undefined;\nhead(input: string): string;",
+    "allTypings": "function head<T>(input: readonly T[]): T | undefined;\nfunction head(input: string): string;",
     "categories": [
       "List",
       "String"
@@ -744,7 +744,7 @@
   },
   "identical": {
     "typing": "\nidentical<T>(x: T, y: T): boolean",
-    "allTypings": "identical<T>(x: T, y: T): boolean;\nidentical<T>(x: T): (y: T) => boolean;",
+    "allTypings": "function identical<T>(x: T, y: T): boolean;\nfunction identical<T>(x: T): (y: T) => boolean;",
     "categories": [
       "Logic"
     ],
@@ -757,7 +757,7 @@
   },
   "identity": {
     "typing": "\nidentity<T>(input: T): T",
-    "allTypings": "identity<T>(input: T): T;",
+    "allTypings": "function identity<T>(input: T): T;",
     "notes": "Logic",
     "rambdaSource": "export function identity(input){\n  return input\n}",
     "rambdaSpecs": "import { identity } from './identity'\n\ntest('happy', () => {\n  expect(identity(7)).toEqual(7)\n  expect(identity(true)).toEqual(true)\n  expect(identity({ a : 1 })).toEqual({ a : 1 })\n})",
@@ -767,7 +767,7 @@
   },
   "ifElse": {
     "typing": "\nifElse<T, U>(\n  condition: (x: T) => boolean, \n  onTrue: (x: T) => U, \n  onFalse: (x: T) => U, \n): (x: T) => U",
-    "allTypings": "ifElse<T, U>(\n  condition: (x: T) => boolean, \n  onTrue: (x: T) => U, \n  onFalse: (x: T) => U, \n): (x: T) => U;\nifElse<T, K, U>(\n  condition: (x: T, y: K) => boolean, \n  onTrue: (x: T, y: K) => U, \n  onFalse: (x: T, y: K) => U, \n): (x: T, y: K) => U;",
+    "allTypings": "function ifElse<T, U>(\n  condition: (x: T) => boolean, \n  onTrue: (x: T) => U, \n  onFalse: (x: T) => U, \n): (x: T) => U;\nfunction ifElse<T, K, U>(\n  condition: (x: T, y: K) => boolean, \n  onTrue: (x: T, y: K) => U, \n  onFalse: (x: T, y: K) => U, \n): (x: T, y: K) => U;",
     "categories": [
       "Function"
     ],
@@ -786,7 +786,7 @@
   },
   "inc": {
     "typing": "\ninc(x: number): number",
-    "allTypings": "inc(x: number): number;",
+    "allTypings": "function inc(x: number): number;",
     "categories": [
       "Number"
     ],
@@ -797,7 +797,7 @@
   },
   "includes": {
     "typing": "\nincludes(valueToFind: string, input: readonly string[] | string): boolean",
-    "allTypings": "includes(valueToFind: string, input: readonly string[] | string): boolean;\nincludes(valueToFind: string): (input: readonly string[] | string) => boolean;\nincludes<T>(valueToFind: T, input: readonly T[]): boolean;\nincludes<T>(valueToFind: T): (input: readonly T[]) => boolean;",
+    "allTypings": "function includes(valueToFind: string, input: readonly string[] | string): boolean;\nfunction includes(valueToFind: string): (input: readonly string[] | string) => boolean;\nfunction includes<T>(valueToFind: T, input: readonly T[]): boolean;\nfunction includes<T>(valueToFind: T): (input: readonly T[]) => boolean;",
     "categories": [
       "List",
       "String"
@@ -817,7 +817,7 @@
   },
   "indexBy": {
     "typing": "\nindexBy<T, K extends string | number = string>(condition: (key: T) => K, list: readonly T[]): { [key in K]: T }",
-    "allTypings": "indexBy<T, K extends string | number = string>(condition: (key: T) => K, list: readonly T[]): { [key in K]: T };\nindexBy<T, K extends string | number | undefined = string>(condition: (key: T) => K, list: readonly T[]): { [key in NonNullable<K>]?: T };\nindexBy<T, K extends string | number = string>(condition: (key: T) => K): (list: readonly T[]) => { [key in K]: T };\nindexBy<T, K extends string | number | undefined = string>(condition: (key: T) => K | undefined): (list: readonly T[]) => { [key in NonNullable<K>]?: T };\nindexBy<T>(condition: string, list: readonly T[]): { [key: string]: T };\nindexBy<T>(condition: string): (list: readonly T[]) => { [key: string]: T };",
+    "allTypings": "function indexBy<T, K extends string | number = string>(condition: (key: T) => K, list: readonly T[]): { [key in K]: T };\nfunction indexBy<T, K extends string | number | undefined = string>(condition: (key: T) => K, list: readonly T[]): { [key in NonNullable<K>]?: T };\nfunction indexBy<T, K extends string | number = string>(condition: (key: T) => K): (list: readonly T[]) => { [key in K]: T };\nfunction indexBy<T, K extends string | number | undefined = string>(condition: (key: T) => K | undefined): (list: readonly T[]) => { [key in NonNullable<K>]?: T };\nfunction indexBy<T>(condition: string, list: readonly T[]): { [key: string]: T };\nfunction indexBy<T>(condition: string): (list: readonly T[]) => { [key: string]: T };",
     "categories": [
       "List"
     ],
@@ -832,7 +832,7 @@
   },
   "indexOf": {
     "typing": "\nindexOf<T>(valueToFind: T, list: readonly T[]): number",
-    "allTypings": "indexOf<T>(valueToFind: T, list: readonly T[]): number;\nindexOf<T>(valueToFind: T): (list: readonly T[]) => number;",
+    "allTypings": "function indexOf<T>(valueToFind: T, list: readonly T[]): number;\nfunction indexOf<T>(valueToFind: T): (list: readonly T[]) => number;",
     "categories": [
       "List"
     ],
@@ -851,7 +851,7 @@
   },
   "init": {
     "typing": "\ninit<T>(input: readonly T[]): T[]",
-    "allTypings": "init<T>(input: readonly T[]): T[];\ninit(input: string): string;",
+    "allTypings": "function init<T>(input: readonly T[]): T[];\nfunction init(input: string): string;",
     "categories": [
       "List",
       "String"
@@ -868,7 +868,7 @@
   },
   "intersection": {
     "typing": "\nintersection<T>(listA: readonly T[], listB: readonly T[]): T[]",
-    "allTypings": "intersection<T>(listA: readonly T[], listB: readonly T[]): T[];\nintersection<T>(listA: readonly T[]): (listB: readonly T[]) => T[];",
+    "allTypings": "function intersection<T>(listA: readonly T[], listB: readonly T[]): T[];\nfunction intersection<T>(listA: readonly T[]): (listB: readonly T[]) => T[];",
     "categories": [
       "List"
     ],
@@ -881,7 +881,7 @@
   },
   "intersperse": {
     "typing": "\nintersperse<T>(separator: T, list: readonly T[]): T[]",
-    "allTypings": "intersperse<T>(separator: T, list: readonly T[]): T[];\nintersperse<T>(separator: T): (list: readonly T[]) => T[];",
+    "allTypings": "function intersperse<T>(separator: T, list: readonly T[]): T[];\nfunction intersperse<T>(separator: T): (list: readonly T[]) => T[];",
     "categories": [
       "List"
     ],
@@ -894,7 +894,7 @@
   },
   "is": {
     "typing": "\nis(targetPrototype: any, x: any): boolean",
-    "allTypings": "is(targetPrototype: any, x: any): boolean;\nis(targetPrototype: any): (x: any) => boolean;",
+    "allTypings": "function is(targetPrototype: any, x: any): boolean;\nfunction is(targetPrototype: any): (x: any) => boolean;",
     "categories": [
       "Logic"
     ],
@@ -910,7 +910,7 @@
   },
   "isEmpty": {
     "typing": "\nisEmpty<T>(x: T): boolean",
-    "allTypings": "isEmpty<T>(x: T): boolean;",
+    "allTypings": "function isEmpty<T>(x: T): boolean;",
     "categories": [
       "Logic"
     ],
@@ -929,7 +929,7 @@
   },
   "isNil": {
     "typing": "\nisNil(x: any): x is null | undefined",
-    "allTypings": "isNil(x: any): x is null | undefined;",
+    "allTypings": "function isNil(x: any): x is null | undefined;",
     "categories": [
       "Logic"
     ],
@@ -940,7 +940,7 @@
   },
   "join": {
     "typing": "\njoin<T>(glue: string, list: readonly T[]): string",
-    "allTypings": "join<T>(glue: string, list: readonly T[]): string;\njoin<T>(glue: string): (list: readonly T[]) => string;",
+    "allTypings": "function join<T>(glue: string, list: readonly T[]): string;\nfunction join<T>(glue: string): (list: readonly T[]) => string;",
     "categories": [
       "List"
     ],
@@ -952,7 +952,7 @@
   },
   "keys": {
     "typing": "\nkeys<T extends object>(x: T): (keyof T)[]",
-    "allTypings": "keys<T extends object>(x: T): (keyof T)[];\nkeys<T>(x: T): string[];",
+    "allTypings": "function keys<T extends object>(x: T): (keyof T)[];\nfunction keys<T>(x: T): string[];",
     "categories": [
       "Object"
     ],
@@ -967,7 +967,7 @@
   },
   "last": {
     "typing": "\nlast(str: string): string",
-    "allTypings": "last(str: string): string;\nlast(emptyList: []): undefined;\nlast<T extends any>(list: readonly T[]): T | undefined;",
+    "allTypings": "function last(str: string): string;\nfunction last(emptyList: []): undefined;\nfunction last<T extends any>(list: readonly T[]): T | undefined;",
     "categories": [
       "List",
       "String"
@@ -984,7 +984,7 @@
   },
   "lastIndexOf": {
     "typing": "\nlastIndexOf<T>(target: T, list: readonly T[]): number",
-    "allTypings": "lastIndexOf<T>(target: T, list: readonly T[]): number;\nlastIndexOf<T>(target: T): (list: readonly T[]) => number;",
+    "allTypings": "function lastIndexOf<T>(target: T, list: readonly T[]): number;\nfunction lastIndexOf<T>(target: T): (list: readonly T[]) => number;",
     "categories": [
       "List"
     ],
@@ -1003,7 +1003,7 @@
   },
   "length": {
     "typing": "\nlength<T>(input: readonly T[]): number",
-    "allTypings": "length<T>(input: readonly T[]): number;",
+    "allTypings": "function length<T>(input: readonly T[]): number;",
     "categories": [
       "List",
       "String"
@@ -1018,7 +1018,7 @@
   },
   "lens": {
     "typing": "\nlens<T, U, V>(getter: (s: T) => U, setter: (a: U, s: T) => V): Lens",
-    "allTypings": "lens<T, U, V>(getter: (s: T) => U, setter: (a: U, s: T) => V): Lens;",
+    "allTypings": "function lens<T, U, V>(getter: (s: T) => U, setter: (a: U, s: T) => V): Lens;",
     "categories": [
       "Lenses"
     ],
@@ -1029,7 +1029,7 @@
   },
   "lensIndex": {
     "typing": "\nlensIndex(index: number): Lens",
-    "allTypings": "lensIndex(index: number): Lens;",
+    "allTypings": "function lensIndex(index: number): Lens;",
     "categories": [
       "Lenses"
     ],
@@ -1041,7 +1041,7 @@
   },
   "lensPath": {
     "typing": "\nlensPath(path: RamdaPath): Lens",
-    "allTypings": "lensPath(path: RamdaPath): Lens;\nlensPath(path: string): Lens;",
+    "allTypings": "function lensPath(path: RamdaPath): Lens;\nfunction lensPath(path: string): Lens;",
     "categories": [
       "Lenses"
     ],
@@ -1053,7 +1053,7 @@
   },
   "lensProp": {
     "typing": "\nlensProp(prop: string): {\n  <T, U>(obj: T): U",
-    "allTypings": "lensProp(prop: string): {\n  <T, U>(obj: T): U;\n  set<T, U, V>(val: T, obj: U): V;\n};",
+    "allTypings": "function lensProp(prop: string): {\n  <T, U>(obj: T): U;\n  set<T, U, V>(val: T, obj: U): V;\n};",
     "categories": [
       "Lenses"
     ],
@@ -1065,7 +1065,7 @@
   },
   "over": {
     "typing": "\nover<T>(lens: Lens, fn: Arity1Fn, value: T): T",
-    "allTypings": "over<T>(lens: Lens, fn: Arity1Fn, value: T): T;\nover<T>(lens: Lens, fn: Arity1Fn, value: readonly T[]): T[];\nover(lens: Lens, fn: Arity1Fn): <T>(value: T) => T;\nover(lens: Lens, fn: Arity1Fn): <T>(value: readonly T[]) => T[];\nover(lens: Lens): <T>(fn: Arity1Fn, value: T) => T;\nover(lens: Lens): <T>(fn: Arity1Fn, value: readonly T[]) => T[];",
+    "allTypings": "function over<T>(lens: Lens, fn: Arity1Fn, value: T): T;\nfunction over<T>(lens: Lens, fn: Arity1Fn, value: readonly T[]): T[];\nfunction over(lens: Lens, fn: Arity1Fn): <T>(value: T) => T;\nfunction over(lens: Lens, fn: Arity1Fn): <T>(value: readonly T[]) => T[];\nfunction over(lens: Lens): <T>(fn: Arity1Fn, value: T) => T;\nfunction over(lens: Lens): <T>(fn: Arity1Fn, value: readonly T[]) => T[];",
     "categories": [
       "Lenses"
     ],
@@ -1080,7 +1080,7 @@
   },
   "set": {
     "typing": "\nset<T, U>(lens: Lens, replacer: U, obj: T): T",
-    "allTypings": "set<T, U>(lens: Lens, replacer: U, obj: T): T;\nset<U>(lens: Lens, replacer: U): <T>(obj: T) => T;\nset(lens: Lens): <T, U>(replacer: U, obj: T) => T;",
+    "allTypings": "function set<T, U>(lens: Lens, replacer: U, obj: T): T;\nfunction set<U>(lens: Lens, replacer: U): <T>(obj: T) => T;\nfunction set(lens: Lens): <T, U>(replacer: U, obj: T) => T;",
     "categories": [
       "Lenses"
     ],
@@ -1095,7 +1095,7 @@
   },
   "view": {
     "typing": "\nview<T, U>(lens: Lens): (target: T) => U",
-    "allTypings": "view<T, U>(lens: Lens): (target: T) => U;\nview<T, U>(lens: Lens, target: T): U;",
+    "allTypings": "function view<T, U>(lens: Lens): (target: T) => U;\nfunction view<T, U>(lens: Lens, target: T): U;",
     "categories": [
       "Lenses"
     ],
@@ -1111,7 +1111,7 @@
   },
   "map": {
     "typing": "\nmap<T, U>(fn: ObjectIterator<T, U>, iterable: Dictionary<T>): Dictionary<U>",
-    "allTypings": "map<T, U>(fn: ObjectIterator<T, U>, iterable: Dictionary<T>): Dictionary<U>;\nmap<T, U>(fn: Iterator<T, U>, iterable: readonly T[]): U[];\nmap<T, U>(fn: Iterator<T, U>): (iterable: readonly T[]) => U[];\nmap<T, U, S>(fn: ObjectIterator<T, U>): (iterable: Dictionary<T>) => Dictionary<U>;\nmap<T>(fn: Iterator<T, T>): (iterable: readonly T[]) => T[];\nmap<T>(fn: Iterator<T, T>, iterable: readonly T[]): T[];",
+    "allTypings": "function map<T, U>(fn: ObjectIterator<T, U>, iterable: Dictionary<T>): Dictionary<U>;\nfunction map<T, U>(fn: Iterator<T, U>, iterable: readonly T[]): U[];\nfunction map<T, U>(fn: Iterator<T, U>): (iterable: readonly T[]) => U[];\nfunction map<T, U, S>(fn: ObjectIterator<T, U>): (iterable: Dictionary<T>) => Dictionary<U>;\nfunction map<T>(fn: Iterator<T, T>): (iterable: readonly T[]) => T[];\nfunction map<T>(fn: Iterator<T, T>, iterable: readonly T[]): T[];",
     "categories": [
       "List",
       "Object"
@@ -1129,7 +1129,7 @@
   },
   "match": {
     "typing": "\nmatch(regExpression: RegExp, str: string): string[]",
-    "allTypings": "match(regExpression: RegExp, str: string): string[];\nmatch(regExpression: RegExp): (str: string) => string[];",
+    "allTypings": "function match(regExpression: RegExp, str: string): string[];\nfunction match(regExpression: RegExp): (str: string) => string[];",
     "categories": [
       "String"
     ],
@@ -1145,7 +1145,7 @@
   },
   "mathMod": {
     "typing": "\nmathMod(x: number, y: number): number",
-    "allTypings": "mathMod(x: number, y: number): number;\nmathMod(x: number): (y: number) => number;",
+    "allTypings": "function mathMod(x: number, y: number): number;\nfunction mathMod(x: number): (y: number) => number;",
     "categories": [
       "Number"
     ],
@@ -1158,7 +1158,7 @@
   },
   "max": {
     "typing": "\nmax<T extends Ord>(x: T, y: T): T",
-    "allTypings": "max<T extends Ord>(x: T, y: T): T;\nmax<T extends Ord>(x: T): (y: T) => T;",
+    "allTypings": "function max<T extends Ord>(x: T, y: T): T;\nfunction max<T extends Ord>(x: T): (y: T) => T;",
     "categories": [
       "Logic"
     ],
@@ -1170,7 +1170,7 @@
   },
   "maxBy": {
     "typing": "\nmaxBy<T>(compareFn: (input: T) => Ord, x: T, y: T): T",
-    "allTypings": "maxBy<T>(compareFn: (input: T) => Ord, x: T, y: T): T;\nmaxBy<T>(compareFn: (input: T) => Ord, x: T): (y: T) => T;\nmaxBy<T>(compareFn: (input: T) => Ord): FunctionToolbelt.Curry<(x: T, y: T) => T>;",
+    "allTypings": "function maxBy<T>(compareFn: (input: T) => Ord, x: T, y: T): T;\nfunction maxBy<T>(compareFn: (input: T) => Ord, x: T): (y: T) => T;\nfunction maxBy<T>(compareFn: (input: T) => Ord): FunctionToolbelt.Curry<(x: T, y: T) => T>;",
     "categories": [
       "Logic"
     ],
@@ -1182,7 +1182,7 @@
   },
   "mean": {
     "typing": "\nmean(list: readonly number[]): number",
-    "allTypings": "mean(list: readonly number[]): number;",
+    "allTypings": "function mean(list: readonly number[]): number;",
     "categories": [
       "List"
     ],
@@ -1195,7 +1195,7 @@
   },
   "median": {
     "typing": "\nmedian(list: readonly number[]): number",
-    "allTypings": "median(list: readonly number[]): number;",
+    "allTypings": "function median(list: readonly number[]): number;",
     "categories": [
       "List"
     ],
@@ -1207,7 +1207,7 @@
   },
   "merge": {
     "typing": "\nmerge<O1 extends object, O2 extends object>(target: O1, newProps: O2): Merge<O2, O1, 'flat'>",
-    "allTypings": "merge<O1 extends object, O2 extends object>(target: O1, newProps: O2): Merge<O2, O1, 'flat'>;\nmerge<O1 extends object>(target: O1): <O2 extends object>(newProps: O2) => Merge<O2, O1, 'flat'>;",
+    "allTypings": "function merge<O1 extends object, O2 extends object>(target: O1, newProps: O2): Merge<O2, O1, 'flat'>;\nfunction merge<O1 extends object>(target: O1): <O2 extends object>(newProps: O2) => Merge<O2, O1, 'flat'>;",
     "categories": [
       "Object"
     ],
@@ -1223,7 +1223,7 @@
   },
   "mergeAll": {
     "typing": "\nmergeAll<T>(list: object[]): T",
-    "allTypings": "mergeAll<T>(list: object[]): T;\nmergeAll(list: object[]): object;",
+    "allTypings": "function mergeAll<T>(list: object[]): T;\nfunction mergeAll(list: object[]): object;",
     "rambdaSource": "import { map } from './map'\nimport { merge } from './merge'\n\nexport function mergeAll(arr){\n  let willReturn = {}\n  map(val => {\n    willReturn = merge(willReturn, val)\n  }, arr)\n\n  return willReturn\n}",
     "rambdaSpecs": "import { mergeAll } from './mergeAll'\n\ntest('case 1', () => {\n  const arr = [ { a : 1 }, { b : 2 }, { c : 3 } ]\n  const expectedResult = {\n    a : 1,\n    b : 2,\n    c : 3,\n  }\n  expect(mergeAll(arr)).toEqual(expectedResult)\n})\n\ntest('case 2', () => {\n  expect(mergeAll([ { foo : 1 }, { bar : 2 }, { baz : 3 } ])).toEqual({\n    foo : 1,\n    bar : 2,\n    baz : 3,\n  })\n})",
     "explanation": "It merges all objects of `list` array sequentially and returns the result.",
@@ -1232,7 +1232,7 @@
   },
   "mergeDeepRight": {
     "typing": "\nmergeDeepRight<O1 extends object, O2 extends object>(x: O1, y: O2): Merge<O2, O1, 'deep'>",
-    "allTypings": "mergeDeepRight<O1 extends object, O2 extends object>(x: O1, y: O2): Merge<O2, O1, 'deep'>;\nmergeDeepRight<O1 extends object>(x: O1): <O2 extends object>(y: O2) => Merge<O2, O1, 'deep'>;",
+    "allTypings": "function mergeDeepRight<O1 extends object, O2 extends object>(x: O1, y: O2): Merge<O2, O1, 'deep'>;\nfunction mergeDeepRight<O1 extends object>(x: O1): <O2 extends object>(y: O2) => Merge<O2, O1, 'deep'>;",
     "rambdaSource": "import { type } from './type'\n\nexport function mergeDeepRight(target, source){\n  if (arguments.length === 1){\n    return sourceHolder => mergeDeepRight(target, sourceHolder)\n  }\n\n  const willReturn = JSON.parse(JSON.stringify(target))\n\n  Object.keys(source).forEach(key => {\n    if (type(source[ key ]) === 'Object'){\n      if (type(target[ key ]) === 'Object'){\n        willReturn[ key ] = mergeDeepRight(target[ key ], source[ key ])\n      } else {\n        willReturn[ key ] = source[ key ]\n      }\n    } else {\n      willReturn[ key ] = source[ key ]\n    }\n  })\n\n  return willReturn\n}",
     "rambdaSpecs": "// import { mergeDeepRight } from 'ramda'\nimport { mergeDeepRight } from './mergeDeepRight'\n\nconst slave = {\n  name    : 'evilMe',\n  age     : 10,\n  contact : {\n    a     : 1,\n    email : 'foo@example.com',\n  },\n}\nconst master = {\n  age     : 40,\n  contact : { email : 'baz@example.com' },\n  songs   : { title : 'Remains the same' },\n}\n\ntest('happy', () => {\n  const result = mergeDeepRight(slave, master)\n  const curryResult = mergeDeepRight(slave)(master)\n  const expected = {\n    age     : 40,\n    name    : 'evilMe',\n    contact : {\n      a     : 1,\n      email : 'baz@example.com',\n    },\n    songs : { title : 'Remains the same' },\n  }\n\n  expect(result).toEqual(expected)\n  expect(curryResult).toEqual(expected)\n})\n\ntest('ramda compatible test 1', () => {\n  const a = {\n    w : 1,\n    x : 2,\n    y : { z : 3 },\n  }\n  const b = {\n    a : 4,\n    b : 5,\n    c : { d : 6 },\n  }\n  const result = mergeDeepRight(a, b)\n  const expected = {\n    w : 1,\n    x : 2,\n    y : { z : 3 },\n    a : 4,\n    b : 5,\n    c : { d : 6 },\n  }\n\n  expect(result).toEqual(expected)\n})\n\ntest('ramda compatible test 2', () => {\n  const a = {\n    a : {\n      b : 1,\n      c : 2,\n    },\n    y : 0,\n  }\n  const b = {\n    a : {\n      b : 3,\n      d : 4,\n    },\n    z : 0,\n  }\n  const result = mergeDeepRight(a, b)\n  const expected = {\n    a : {\n      b : 3,\n      c : 2,\n      d : 4,\n    },\n    y : 0,\n    z : 0,\n  }\n\n  expect(result).toEqual(expected)\n})\n\ntest('ramda compatible test 3', () => {\n  const a = {\n    w : 1,\n    x : { y : 2 },\n  }\n  const result = mergeDeepRight(a, { x : { y : 3 } })\n  const expected = {\n    w : 1,\n    x : { y : 3 },\n  }\n  expect(result).toEqual(expected)\n})",
     "explanation": "Creates a new object with the own properties of the first object merged with the own properties of the second object. If a key exists in both objects:\n\n  - and both values are objects, the two values will be recursively merged\n  - otherwise the value from the second object will be used.",
@@ -1240,7 +1240,7 @@
   },
   "mergeLeft": {
     "typing": "\nmergeLeft<O1 extends object, O2 extends object>(target: O1, newProps: O2): Merge<O2, O1, 'flat'>",
-    "allTypings": "mergeLeft<O1 extends object, O2 extends object>(target: O1, newProps: O2): Merge<O2, O1, 'flat'>;\nmergeLeft<O1 extends object>(target: O1): <O2 extends object>(newProps: O2) => Merge<O2, O1, 'flat'>;",
+    "allTypings": "function mergeLeft<O1 extends object, O2 extends object>(target: O1, newProps: O2): Merge<O2, O1, 'flat'>;\nfunction mergeLeft<O1 extends object>(target: O1): <O2 extends object>(newProps: O2) => Merge<O2, O1, 'flat'>;",
     "categories": [
       "Object"
     ],
@@ -1252,7 +1252,7 @@
   },
   "min": {
     "typing": "\nmin<T extends Ord>(x: T, y: T): T",
-    "allTypings": "min<T extends Ord>(x: T, y: T): T;\nmin<T extends Ord>(x: T): (y: T) => T;",
+    "allTypings": "function min<T extends Ord>(x: T, y: T): T;\nfunction min<T extends Ord>(x: T): (y: T) => T;",
     "categories": [
       "Logic"
     ],
@@ -1264,7 +1264,7 @@
   },
   "minBy": {
     "typing": "\nminBy<T>(compareFn: (input: T) => Ord, x: T, y: T): T",
-    "allTypings": "minBy<T>(compareFn: (input: T) => Ord, x: T, y: T): T;\nminBy<T>(compareFn: (input: T) => Ord, x: T): (y: T) => T;\nminBy<T>(compareFn: (input: T) => Ord): FunctionToolbelt.Curry<(x: T, y: T) => T>;",
+    "allTypings": "function minBy<T>(compareFn: (input: T) => Ord, x: T, y: T): T;\nfunction minBy<T>(compareFn: (input: T) => Ord, x: T): (y: T) => T;\nfunction minBy<T>(compareFn: (input: T) => Ord): FunctionToolbelt.Curry<(x: T, y: T) => T>;",
     "categories": [
       "Logic"
     ],
@@ -1276,7 +1276,7 @@
   },
   "modulo": {
     "typing": "\nmodulo(x: number, y: number): number",
-    "allTypings": "modulo(x: number, y: number): number;\nmodulo(x: number): (y: number) => number;",
+    "allTypings": "function modulo(x: number, y: number): number;\nfunction modulo(x: number): (y: number) => number;",
     "categories": [
       "Number"
     ],
@@ -1288,7 +1288,7 @@
   },
   "move": {
     "typing": "\nmove<T>(fromIndex: number, toIndex: number, list: readonly T[]): T[]",
-    "allTypings": "move<T>(fromIndex: number, toIndex: number, list: readonly T[]): T[];\nmove(fromIndex: number, toIndex: number): <T>(list: readonly T[]) => T[];\nmove(fromIndex: number): {\n    <T>(toIndex: number, list: readonly T[]): T[];\n    (toIndex: number): <T>(list: readonly T[]) => T[];\n};",
+    "allTypings": "function move<T>(fromIndex: number, toIndex: number, list: readonly T[]): T[];\nfunction move(fromIndex: number, toIndex: number): <T>(list: readonly T[]) => T[];\nfunction move(fromIndex: number): {\n    <T>(toIndex: number, list: readonly T[]): T[];\n    (toIndex: number): <T>(list: readonly T[]) => T[];\n};",
     "categories": [
       "List"
     ],
@@ -1303,7 +1303,7 @@
   },
   "multiply": {
     "typing": "\nmultiply(x: number, y: number): number",
-    "allTypings": "multiply(x: number, y: number): number;\nmultiply(x: number): (y: number) => number;",
+    "allTypings": "function multiply(x: number, y: number): number;\nfunction multiply(x: number): (y: number) => number;",
     "categories": [
       "Number"
     ],
@@ -1315,7 +1315,7 @@
   },
   "negate": {
     "typing": "\nnegate(x: number): number",
-    "allTypings": "negate(x: number): number;",
+    "allTypings": "function negate(x: number): number;",
     "categories": [
       "Number"
     ],
@@ -1325,7 +1325,7 @@
   },
   "none": {
     "typing": "\nnone<T>(predicate: (x: T) => boolean, list: readonly T[]): boolean",
-    "allTypings": "none<T>(predicate: (x: T) => boolean, list: readonly T[]): boolean;\nnone<T>(predicate: (x: T) => boolean): (list: readonly T[]) => boolean;",
+    "allTypings": "function none<T>(predicate: (x: T) => boolean, list: readonly T[]): boolean;\nfunction none<T>(predicate: (x: T) => boolean): (list: readonly T[]) => boolean;",
     "categories": [
       "List"
     ],
@@ -1341,7 +1341,7 @@
   },
   "not": {
     "typing": "\nnot(input: any): boolean",
-    "allTypings": "not(input: any): boolean;",
+    "allTypings": "function not(input: any): boolean;",
     "categories": [
       "Logic"
     ],
@@ -1353,7 +1353,7 @@
   },
   "nth": {
     "typing": "\nnth<T>(index: number, list: readonly T[]): T | undefined",
-    "allTypings": "nth<T>(index: number, list: readonly T[]): T | undefined;\t\nnth(index: number): <T>(list: readonly T[]) => T | undefined;",
+    "allTypings": "function nth<T>(index: number, list: readonly T[]): T | undefined;\t\nfunction nth(index: number): <T>(list: readonly T[]) => T | undefined;",
     "categories": [
       "List"
     ],
@@ -1365,7 +1365,7 @@
   },
   "once": {
     "typing": "\nonce<T extends (...args: any[]) => any>(func: T): T",
-    "allTypings": "once<T extends (...args: any[]) => any>(func: T): T;",
+    "allTypings": "function once<T extends (...args: any[]) => any>(func: T): T;",
     "categories": [
       "Function"
     ],
@@ -1379,7 +1379,7 @@
   },
   "omit": {
     "typing": "\nomit<T, K extends string>(propsToOmit: readonly K[], obj: T): Omit<T, K>",
-    "allTypings": "omit<T, K extends string>(propsToOmit: readonly K[], obj: T): Omit<T, K>;\nomit<K extends string>(propsToOmit: readonly K[]): <T>(obj: T) => Omit<T, K>;\nomit<T, U>(propsToOmit: string, obj: T): U;\nomit<T, U>(propsToOmit: string): (obj: T) => U;\nomit<T>(propsToOmit: string, obj: object): T;\nomit<T>(propsToOmit: string): (obj: object) => T;",
+    "allTypings": "function omit<T, K extends string>(propsToOmit: readonly K[], obj: T): Omit<T, K>;\nfunction omit<K extends string>(propsToOmit: readonly K[]): <T>(obj: T) => Omit<T, K>;\nfunction omit<T, U>(propsToOmit: string, obj: T): U;\nfunction omit<T, U>(propsToOmit: string): (obj: T) => U;\nfunction omit<T>(propsToOmit: string, obj: object): T;\nfunction omit<T>(propsToOmit: string): (obj: object) => T;",
     "categories": [
       "Object"
     ],
@@ -1396,7 +1396,7 @@
   },
   "of": {
     "typing": "\nof<T>(x: T): T[]",
-    "allTypings": "of<T>(x: T): T[];",
+    "allTypings": "function of<T>(x: T): T[];",
     "rambdaSource": "export function of(value){\n  return [ value ]\n}",
     "rambdaSpecs": "import { of } from './of'\n\ntest('happy', () => {\n  expect(of(3)).toEqual([ 3 ])\n\n  expect(of(null)).toEqual([ null ])\n})",
     "example": "R.of(null); //=> [null]\nR.of([42]); //=> [[42]]",
@@ -1404,7 +1404,7 @@
   },
   "partial": {
     "typing": "\npartial<V0, V1, T>(fn: (x0: V0, x1: V1) => T, args: [V0]): (x1: V1) => T",
-    "allTypings": "partial<V0, V1, T>(fn: (x0: V0, x1: V1) => T, args: [V0]): (x1: V1) => T;\npartial<V0, V1, V2, T>(fn: (x0: V0, x1: V1, x2: V2) => T, args: [V0, V1]): (x2: V2) => T;\npartial<V0, V1, V2, T>(fn: (x0: V0, x1: V1, x2: V2) => T, args: [V0]): (x1: V1, x2: V2) => T;\npartial<V0, V1, V2, V3, T>(fn: (x0: V0, x1: V1, x2: V2, x3: V3) => T, args: [V0, V1, V2]): (x2: V3) => T;\npartial<V0, V1, V2, V3, T>(fn: (x0: V0, x1: V1, x2: V2, x3: V3) => T, args: [V0, V1]): (x2: V2, x3: V3) => T;\npartial<V0, V1, V2, V3, T>(fn: (x0: V0, x1: V1, x2: V2, x3: V3) => T, args: [V0]): (x1: V1, x2: V2, x3: V3) => T;\npartial<T>(fn: (...a: any[]) => T, args: any[]): (...x: any[]) => T;",
+    "allTypings": "function partial<V0, V1, T>(fn: (x0: V0, x1: V1) => T, args: [V0]): (x1: V1) => T;\nfunction partial<V0, V1, V2, T>(fn: (x0: V0, x1: V1, x2: V2) => T, args: [V0, V1]): (x2: V2) => T;\nfunction partial<V0, V1, V2, T>(fn: (x0: V0, x1: V1, x2: V2) => T, args: [V0]): (x1: V1, x2: V2) => T;\nfunction partial<V0, V1, V2, V3, T>(fn: (x0: V0, x1: V1, x2: V2, x3: V3) => T, args: [V0, V1, V2]): (x2: V3) => T;\nfunction partial<V0, V1, V2, V3, T>(fn: (x0: V0, x1: V1, x2: V2, x3: V3) => T, args: [V0, V1]): (x2: V2, x3: V3) => T;\nfunction partial<V0, V1, V2, V3, T>(fn: (x0: V0, x1: V1, x2: V2, x3: V3) => T, args: [V0]): (x1: V1, x2: V2, x3: V3) => T;\nfunction partial<T>(fn: (...a: any[]) => T, args: any[]): (...x: any[]) => T;",
     "categories": [
       "Logic"
     ],
@@ -1418,7 +1418,7 @@
   },
   "partition": {
     "typing": "\npartition<T>(\n  predicate: Predicate<T>,\n  input: readonly T[]\n): [T[], T[]]",
-    "allTypings": "partition<T>(\n  predicate: Predicate<T>,\n  input: readonly T[]\n): [T[], T[]];\npartition<T>(\n  predicate: Predicate<T>\n): (input: readonly T[]) => [T[], T[]];\npartition<T>(\n  predicate: (x: T, prop?: string) => boolean,\n  input: { [key: string]: T}\n): [{ [key: string]: T}, { [key: string]: T}];\npartition<T>(\n  predicate: (x: T, prop?: string) => boolean\n): (input: { [key: string]: T}) => [{ [key: string]: T}, { [key: string]: T}];",
+    "allTypings": "function partition<T>(\n  predicate: Predicate<T>,\n  input: readonly T[]\n): [T[], T[]];\nfunction partition<T>(\n  predicate: Predicate<T>\n): (input: readonly T[]) => [T[], T[]];\nfunction partition<T>(\n  predicate: (x: T, prop?: string) => boolean,\n  input: { [key: string]: T}\n): [{ [key: string]: T}, { [key: string]: T}];\nfunction partition<T>(\n  predicate: (x: T, prop?: string) => boolean\n): (input: { [key: string]: T}) => [{ [key: string]: T}, { [key: string]: T}];",
     "categories": [
       "List",
       "Object"
@@ -1433,7 +1433,7 @@
   },
   "path": {
     "typing": "\npath<Input, T>(pathToSearch: Path, obj: Input): T | undefined",
-    "allTypings": "path<Input, T>(pathToSearch: Path, obj: Input): T | undefined;\npath<T>(pathToSearch: Path, obj: any): T | undefined;\npath<T>(pathToSearch: Path): (obj: any) => T | undefined;\npath<Input, T>(pathToSearch: Path): (obj: Input) => T | undefined;",
+    "allTypings": "function path<Input, T>(pathToSearch: Path, obj: Input): T | undefined;\nfunction path<T>(pathToSearch: Path, obj: any): T | undefined;\nfunction path<T>(pathToSearch: Path): (obj: any) => T | undefined;\nfunction path<Input, T>(pathToSearch: Path): (obj: Input) => T | undefined;",
     "categories": [
       "Object"
     ],
@@ -1453,7 +1453,7 @@
   },
   "pathEq": {
     "typing": "\npathEq(pathToSearch: Path, target: any, input: any): boolean",
-    "allTypings": "pathEq(pathToSearch: Path, target: any, input: any): boolean;\npathEq(pathToSearch: Path, target: any): (input: any) => boolean;\npathEq(pathToSearch: Path): FunctionToolbelt.Curry<(a: any, b: any) => boolean>;",
+    "allTypings": "function pathEq(pathToSearch: Path, target: any, input: any): boolean;\nfunction pathEq(pathToSearch: Path, target: any): (input: any) => boolean;\nfunction pathEq(pathToSearch: Path): FunctionToolbelt.Curry<(a: any, b: any) => boolean>;",
     "categories": [
       "Object"
     ],
@@ -1467,7 +1467,7 @@
   },
   "paths": {
     "typing": "\npaths<Input, T>(pathsToSearch: Path[], obj: Input): (T | undefined)[]",
-    "allTypings": "paths<Input, T>(pathsToSearch: Path[], obj: Input): (T | undefined)[];\npaths<Input, T>(pathsToSearch: Path[]): (obj: Input) => (T | undefined)[];\npaths<T>(pathsToSearch: Path[], obj: any): (T | undefined)[];\npaths<T>(pathsToSearch: Path[]): (obj: any) => (T | undefined)[];",
+    "allTypings": "function paths<Input, T>(pathsToSearch: Path[], obj: Input): (T | undefined)[];\nfunction paths<Input, T>(pathsToSearch: Path[]): (obj: Input) => (T | undefined)[];\nfunction paths<T>(pathsToSearch: Path[], obj: any): (T | undefined)[];\nfunction paths<T>(pathsToSearch: Path[]): (obj: any) => (T | undefined)[];",
     "categories": [
       "Object"
     ],
@@ -1482,7 +1482,7 @@
   },
   "pathOr": {
     "typing": "\npathOr<T>(defaultValue: T, pathToSearch: Path, obj: any): T",
-    "allTypings": "pathOr<T>(defaultValue: T, pathToSearch: Path, obj: any): T;\npathOr<T>(defaultValue: T, pathToSearch: Path): (obj: any) => T;\npathOr<T>(defaultValue: T): FunctionToolbelt.Curry<(a: Path, b: any) => T>;",
+    "allTypings": "function pathOr<T>(defaultValue: T, pathToSearch: Path, obj: any): T;\nfunction pathOr<T>(defaultValue: T, pathToSearch: Path): (obj: any) => T;\nfunction pathOr<T>(defaultValue: T): FunctionToolbelt.Curry<(a: Path, b: any) => T>;",
     "categories": [
       "Object"
     ],
@@ -1494,7 +1494,7 @@
   },
   "pick": {
     "typing": "\npick<T, K extends string | number | symbol>(propsToPick: readonly K[], input: T): Pick<T, Exclude<keyof T, Exclude<keyof T, K>>>",
-    "allTypings": "pick<T, K extends string | number | symbol>(propsToPick: readonly K[], input: T): Pick<T, Exclude<keyof T, Exclude<keyof T, K>>>;\npick<K extends string | number | symbol>(propsToPick: readonly K[]): <T>(input: T) => Pick<T, Exclude<keyof T, Exclude<keyof T, K>>>;\npick<T, U>(propsToPick: string, input: T): U;\npick<T, U>(propsToPick: string): (input: T) => U;\npick<T>(propsToPick: string, input: object): T;\npick<T>(propsToPick: string): (input: object) => T;",
+    "allTypings": "function pick<T, K extends string | number | symbol>(propsToPick: readonly K[], input: T): Pick<T, Exclude<keyof T, Exclude<keyof T, K>>>;\nfunction pick<K extends string | number | symbol>(propsToPick: readonly K[]): <T>(input: T) => Pick<T, Exclude<keyof T, Exclude<keyof T, K>>>;\nfunction pick<T, U>(propsToPick: string, input: T): U;\nfunction pick<T, U>(propsToPick: string): (input: T) => U;\nfunction pick<T>(propsToPick: string, input: object): T;\nfunction pick<T>(propsToPick: string): (input: object) => T;",
     "categories": [
       "Object",
       "List"
@@ -1512,7 +1512,7 @@
   },
   "pickAll": {
     "typing": "\npickAll<T, U>(propsToPick: readonly string[], input: T): U",
-    "allTypings": "pickAll<T, U>(propsToPick: readonly string[], input: T): U;\npickAll<T, U>(propsToPick: readonly string[]): (input: T) => U;\npickAll<T, U>(propsToPick: string, input: T): U;\npickAll<T, U>(propsToPick: string): (input: T) => U;",
+    "allTypings": "function pickAll<T, U>(propsToPick: readonly string[], input: T): U;\nfunction pickAll<T, U>(propsToPick: readonly string[]): (input: T) => U;\nfunction pickAll<T, U>(propsToPick: string, input: T): U;\nfunction pickAll<T, U>(propsToPick: string): (input: T) => U;",
     "categories": [
       "Object"
     ],
@@ -1525,7 +1525,7 @@
   },
   "pipe": {
     "typing": "\npipe<T1>(fn0: () => T1): () => T1",
-    "allTypings": "pipe<T1>(fn0: () => T1): () => T1;\npipe<V0, T1>(fn0: (x0: V0) => T1): (x0: V0) => T1;\npipe<V0, V1, T1>(fn0: (x0: V0, x1: V1) => T1): (x0: V0, x1: V1) => T1;\npipe<V0, V1, V2, T1>(fn0: (x0: V0, x1: V1, x2: V2) => T1): (x0: V0, x1: V1, x2: V2) => T1;\n\npipe<T1, T2>(fn0: () => T1, fn1: (x: T1) => T2): () => T2;\npipe<V0, T1, T2>(fn0: (x0: V0) => T1, fn1: (x: T1) => T2): (x0: V0) => T2;\npipe<V0, V1, T1, T2>(fn0: (x0: V0, x1: V1) => T1, fn1: (x: T1) => T2): (x0: V0, x1: V1) => T2;\npipe<V0, V1, V2, T1, T2>(fn0: (x0: V0, x1: V1, x2: V2) => T1, fn1: (x: T1) => T2): (x0: V0, x1: V1, x2: V2) => T2;\n\npipe<T1, T2, T3>(fn0: () => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3): () => T3;\npipe<V0, T1, T2, T3>(fn0: (x: V0) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3): (x: V0) => T3;\npipe<V0, V1, T1, T2, T3>(fn0: (x0: V0, x1: V1) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3): (x0: V0, x1: V1) => T3;\npipe<V0, V1, V2, T1, T2, T3>(fn0: (x0: V0, x1: V1, x2: V2) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3): (x0: V0, x1: V1, x2: V2) => T3;\n\npipe<T1, T2, T3, T4>(fn0: () => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4): () => T4;\npipe<V0, T1, T2, T3, T4>(fn0: (x: V0) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4): (x: V0) => T4;\npipe<V0, V1, T1, T2, T3, T4>(fn0: (x0: V0, x1: V1) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4): (x0: V0, x1: V1) => T4;\npipe<V0, V1, V2, T1, T2, T3, T4>(fn0: (x0: V0, x1: V1, x2: V2) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4): (x0: V0, x1: V1, x2: V2) => T4;\n\npipe<T1, T2, T3, T4, T5>(fn0: () => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4, fn4: (x: T4) => T5): () => T5;\npipe<V0, T1, T2, T3, T4, T5>(fn0: (x: V0) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4, fn4: (x: T4) => T5): (x: V0) => T5;\npipe<V0, V1, T1, T2, T3, T4, T5>(fn0: (x0: V0, x1: V1) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4, fn4: (x: T4) => T5): (x0: V0, x1: V1) => T5;\npipe<V0, V1, V2, T1, T2, T3, T4, T5>(fn0: (x0: V0, x1: V1, x2: V2) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4, fn4: (x: T4) => T5): (x0: V0, x1: V1, x2: V2) => T5;\n\npipe<T1, T2, T3, T4, T5, T6>(fn0: () => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4, fn4: (x: T4) => T5, fn5: (x: T5) => T6): () => T6;\npipe<V0, T1, T2, T3, T4, T5, T6>(fn0: (x: V0) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4, fn4: (x: T4) => T5, fn5: (x: T5) => T6): (x: V0) => T6;\npipe<V0, V1, T1, T2, T3, T4, T5, T6>(fn0: (x0: V0, x1: V1) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4, fn4: (x: T4) => T5, fn5: (x: T5) => T6): (x0: V0, x1: V1) => T6;\npipe<V0, V1, V2, T1, T2, T3, T4, T5, T6>(\n  fn0: (x0: V0, x1: V1, x2: V2) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6): (x0: V0, x1: V1, x2: V2) => T6;\n\npipe<T1, T2, T3, T4, T5, T6, T7>(\n  fn0: () => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn: (x: T6) => T7): () => T7;\npipe<V0, T1, T2, T3, T4, T5, T6, T7>(\n  fn0: (x: V0) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn: (x: T6) => T7): (x: V0) => T7;\npipe<V0, V1, T1, T2, T3, T4, T5, T6, T7>(\n  fn0: (x0: V0, x1: V1) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7): (x0: V0, x1: V1) => T7;\npipe<V0, V1, V2, T1, T2, T3, T4, T5, T6, T7>(\n  fn0: (x0: V0, x1: V1, x2: V2) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7): (x0: V0, x1: V1, x2: V2) => T7;\n\npipe<T1, T2, T3, T4, T5, T6, T7, T8>(\n  fn0: () => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn: (x: T7) => T8): () => T8;\npipe<V0, T1, T2, T3, T4, T5, T6, T7, T8>(\n  fn0: (x: V0) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn: (x: T7) => T8): (x: V0) => T8;\npipe<V0, V1, T1, T2, T3, T4, T5, T6, T7, T8>(\n  fn0: (x0: V0, x1: V1) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn7: (x: T7) => T8): (x0: V0, x1: V1) => T8;\npipe<V0, V1, V2, T1, T2, T3, T4, T5, T6, T7, T8>(\n  fn0: (x0: V0, x1: V1, x2: V2) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn7: (x: T7) => T8): (x0: V0, x1: V1, x2: V2) => T8;\n\npipe<T1, T2, T3, T4, T5, T6, T7, T8, T9>(\n  fn0: () => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn7: (x: T7) => T8,\n  fn8: (x: T8) => T9): () => T9;\npipe<V0, T1, T2, T3, T4, T5, T6, T7, T8, T9>(\n  fn0: (x0: V0) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn7: (x: T7) => T8,\n  fn8: (x: T8) => T9): (x0: V0) => T9;\npipe<V0, V1, T1, T2, T3, T4, T5, T6, T7, T8, T9>(\n  fn0: (x0: V0, x1: V1) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn7: (x: T7) => T8,\n  fn8: (x: T8) => T9): (x0: V0, x1: V1) => T9;\npipe<V0, V1, V2, T1, T2, T3, T4, T5, T6, T7, T8, T9>(\n  fn0: (x0: V0, x1: V1, x2: V2) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn7: (x: T7) => T8,\n  fn8: (x: T8) => T9): (x0: V0, x1: V1, x2: V2) => T9;\n\npipe<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(\n  fn0: () => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn7: (x: T7) => T8,\n  fn8: (x: T8) => T9,\n  fn9: (x: T9) => T10): () => T10;\npipe<V0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(\n  fn0: (x0: V0) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn7: (x: T7) => T8,\n  fn8: (x: T8) => T9,\n  fn9: (x: T9) => T10): (x0: V0) => T10;\npipe<V0, V1, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(\n  fn0: (x0: V0, x1: V1) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn7: (x: T7) => T8,\n  fn8: (x: T8) => T9,\n  fn9: (x: T9) => T10): (x0: V0, x1: V1) => T10;\npipe<V0, V1, V2, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(\n  fn0: (x0: V0, x1: V1, x2: V2) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn7: (x: T7) => T8,\n  fn8: (x: T8) => T9,\n  fn9: (x: T9) => T10): (x0: V0, x1: V1, x2: V2) => T10;",
+    "allTypings": "function pipe<T1>(fn0: () => T1): () => T1;\nfunction pipe<V0, T1>(fn0: (x0: V0) => T1): (x0: V0) => T1;\nfunction pipe<V0, V1, T1>(fn0: (x0: V0, x1: V1) => T1): (x0: V0, x1: V1) => T1;\nfunction pipe<V0, V1, V2, T1>(fn0: (x0: V0, x1: V1, x2: V2) => T1): (x0: V0, x1: V1, x2: V2) => T1;\n\nfunction pipe<T1, T2>(fn0: () => T1, fn1: (x: T1) => T2): () => T2;\nfunction pipe<V0, T1, T2>(fn0: (x0: V0) => T1, fn1: (x: T1) => T2): (x0: V0) => T2;\nfunction pipe<V0, V1, T1, T2>(fn0: (x0: V0, x1: V1) => T1, fn1: (x: T1) => T2): (x0: V0, x1: V1) => T2;\nfunction pipe<V0, V1, V2, T1, T2>(fn0: (x0: V0, x1: V1, x2: V2) => T1, fn1: (x: T1) => T2): (x0: V0, x1: V1, x2: V2) => T2;\n\nfunction pipe<T1, T2, T3>(fn0: () => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3): () => T3;\nfunction pipe<V0, T1, T2, T3>(fn0: (x: V0) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3): (x: V0) => T3;\nfunction pipe<V0, V1, T1, T2, T3>(fn0: (x0: V0, x1: V1) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3): (x0: V0, x1: V1) => T3;\nfunction pipe<V0, V1, V2, T1, T2, T3>(fn0: (x0: V0, x1: V1, x2: V2) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3): (x0: V0, x1: V1, x2: V2) => T3;\n\nfunction pipe<T1, T2, T3, T4>(fn0: () => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4): () => T4;\nfunction pipe<V0, T1, T2, T3, T4>(fn0: (x: V0) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4): (x: V0) => T4;\nfunction pipe<V0, V1, T1, T2, T3, T4>(fn0: (x0: V0, x1: V1) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4): (x0: V0, x1: V1) => T4;\nfunction pipe<V0, V1, V2, T1, T2, T3, T4>(fn0: (x0: V0, x1: V1, x2: V2) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4): (x0: V0, x1: V1, x2: V2) => T4;\n\nfunction pipe<T1, T2, T3, T4, T5>(fn0: () => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4, fn4: (x: T4) => T5): () => T5;\nfunction pipe<V0, T1, T2, T3, T4, T5>(fn0: (x: V0) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4, fn4: (x: T4) => T5): (x: V0) => T5;\nfunction pipe<V0, V1, T1, T2, T3, T4, T5>(fn0: (x0: V0, x1: V1) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4, fn4: (x: T4) => T5): (x0: V0, x1: V1) => T5;\nfunction pipe<V0, V1, V2, T1, T2, T3, T4, T5>(fn0: (x0: V0, x1: V1, x2: V2) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4, fn4: (x: T4) => T5): (x0: V0, x1: V1, x2: V2) => T5;\n\nfunction pipe<T1, T2, T3, T4, T5, T6>(fn0: () => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4, fn4: (x: T4) => T5, fn5: (x: T5) => T6): () => T6;\nfunction pipe<V0, T1, T2, T3, T4, T5, T6>(fn0: (x: V0) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4, fn4: (x: T4) => T5, fn5: (x: T5) => T6): (x: V0) => T6;\nfunction pipe<V0, V1, T1, T2, T3, T4, T5, T6>(fn0: (x0: V0, x1: V1) => T1, fn1: (x: T1) => T2, fn2: (x: T2) => T3, fn3: (x: T3) => T4, fn4: (x: T4) => T5, fn5: (x: T5) => T6): (x0: V0, x1: V1) => T6;\nfunction pipe<V0, V1, V2, T1, T2, T3, T4, T5, T6>(\n  fn0: (x0: V0, x1: V1, x2: V2) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6): (x0: V0, x1: V1, x2: V2) => T6;\n\nfunction pipe<T1, T2, T3, T4, T5, T6, T7>(\n  fn0: () => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn: (x: T6) => T7): () => T7;\nfunction pipe<V0, T1, T2, T3, T4, T5, T6, T7>(\n  fn0: (x: V0) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn: (x: T6) => T7): (x: V0) => T7;\nfunction pipe<V0, V1, T1, T2, T3, T4, T5, T6, T7>(\n  fn0: (x0: V0, x1: V1) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7): (x0: V0, x1: V1) => T7;\nfunction pipe<V0, V1, V2, T1, T2, T3, T4, T5, T6, T7>(\n  fn0: (x0: V0, x1: V1, x2: V2) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7): (x0: V0, x1: V1, x2: V2) => T7;\n\nfunction pipe<T1, T2, T3, T4, T5, T6, T7, T8>(\n  fn0: () => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn: (x: T7) => T8): () => T8;\nfunction pipe<V0, T1, T2, T3, T4, T5, T6, T7, T8>(\n  fn0: (x: V0) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn: (x: T7) => T8): (x: V0) => T8;\nfunction pipe<V0, V1, T1, T2, T3, T4, T5, T6, T7, T8>(\n  fn0: (x0: V0, x1: V1) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn7: (x: T7) => T8): (x0: V0, x1: V1) => T8;\nfunction pipe<V0, V1, V2, T1, T2, T3, T4, T5, T6, T7, T8>(\n  fn0: (x0: V0, x1: V1, x2: V2) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn7: (x: T7) => T8): (x0: V0, x1: V1, x2: V2) => T8;\n\nfunction pipe<T1, T2, T3, T4, T5, T6, T7, T8, T9>(\n  fn0: () => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn7: (x: T7) => T8,\n  fn8: (x: T8) => T9): () => T9;\nfunction pipe<V0, T1, T2, T3, T4, T5, T6, T7, T8, T9>(\n  fn0: (x0: V0) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn7: (x: T7) => T8,\n  fn8: (x: T8) => T9): (x0: V0) => T9;\nfunction pipe<V0, V1, T1, T2, T3, T4, T5, T6, T7, T8, T9>(\n  fn0: (x0: V0, x1: V1) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn7: (x: T7) => T8,\n  fn8: (x: T8) => T9): (x0: V0, x1: V1) => T9;\nfunction pipe<V0, V1, V2, T1, T2, T3, T4, T5, T6, T7, T8, T9>(\n  fn0: (x0: V0, x1: V1, x2: V2) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn7: (x: T7) => T8,\n  fn8: (x: T8) => T9): (x0: V0, x1: V1, x2: V2) => T9;\n\nfunction pipe<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(\n  fn0: () => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn7: (x: T7) => T8,\n  fn8: (x: T8) => T9,\n  fn9: (x: T9) => T10): () => T10;\nfunction pipe<V0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(\n  fn0: (x0: V0) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn7: (x: T7) => T8,\n  fn8: (x: T8) => T9,\n  fn9: (x: T9) => T10): (x0: V0) => T10;\nfunction pipe<V0, V1, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(\n  fn0: (x0: V0, x1: V1) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn7: (x: T7) => T8,\n  fn8: (x: T8) => T9,\n  fn9: (x: T9) => T10): (x0: V0, x1: V1) => T10;\nfunction pipe<V0, V1, V2, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(\n  fn0: (x0: V0, x1: V1, x2: V2) => T1,\n  fn1: (x: T1) => T2,\n  fn2: (x: T2) => T3,\n  fn3: (x: T3) => T4,\n  fn4: (x: T4) => T5,\n  fn5: (x: T5) => T6,\n  fn6: (x: T6) => T7,\n  fn7: (x: T7) => T8,\n  fn8: (x: T8) => T9,\n  fn9: (x: T9) => T10): (x0: V0, x1: V1, x2: V2) => T10;",
     "categories": [
       "Function"
     ],
@@ -1540,7 +1540,7 @@
   },
   "pluck": {
     "typing": "\npluck<K extends keyof T, T>(property: K, list: readonly T[]): Array<T[K]>",
-    "allTypings": "pluck<K extends keyof T, T>(property: K, list: readonly T[]): Array<T[K]>;\npluck<T>(property: number, list: ReadonlyArray<{ [k: number]: T }>): T[];\npluck<P extends string>(property: P): <T>(list: ReadonlyArray<Record<P, T>>) => T[];\npluck(property: number): <T>(list: ReadonlyArray<{ [k: number]: T }>) => T[];",
+    "allTypings": "function pluck<K extends keyof T, T>(property: K, list: readonly T[]): Array<T[K]>;\nfunction pluck<T>(property: number, list: ReadonlyArray<{ [k: number]: T }>): T[];\nfunction pluck<P extends string>(property: P): <T>(list: ReadonlyArray<Record<P, T>>) => T[];\nfunction pluck(property: number): <T>(list: ReadonlyArray<{ [k: number]: T }>) => T[];",
     "categories": [
       "List",
       "Object"
@@ -1556,7 +1556,7 @@
   },
   "prepend": {
     "typing": "\nprepend<T>(x: T, input: T[]): T[]",
-    "allTypings": "prepend<T>(x: T, input: T[]): T[];\nprepend<T>(x: T): (input: T[]) => T[];",
+    "allTypings": "function prepend<T>(x: T, input: T[]): T[];\nfunction prepend<T>(x: T): (input: T[]) => T[];",
     "categories": [
       "List"
     ],
@@ -1568,7 +1568,7 @@
   },
   "product": {
     "typing": "\nproduct(list: readonly number[]): number",
-    "allTypings": "product(list: readonly number[]): number;",
+    "allTypings": "function product(list: readonly number[]): number;",
     "categories": [
       "List"
     ],
@@ -1579,7 +1579,7 @@
   },
   "prop": {
     "typing": "\nprop<P extends keyof T, T>(propToFind: P, obj: T): T[P]",
-    "allTypings": "prop<P extends keyof T, T>(propToFind: P, obj: T): T[P];\nprop<P extends string>(p: P): <T>(propToFind: Record<P, T>) => T;\nprop<P extends string, T>(p: P): (propToFind: Record<P, T>) => T;",
+    "allTypings": "function prop<P extends keyof T, T>(propToFind: P, obj: T): T[P];\nfunction prop<P extends string>(p: P): <T>(propToFind: Record<P, T>) => T;\nfunction prop<P extends string, T>(p: P): (propToFind: Record<P, T>) => T;",
     "categories": [
       "Object"
     ],
@@ -1596,7 +1596,7 @@
   },
   "propEq": {
     "typing": "\npropEq<K extends string | number>(propToFind: K, valueToMatch: any, obj: Record<K, any>): boolean",
-    "allTypings": "propEq<K extends string | number>(propToFind: K, valueToMatch: any, obj: Record<K, any>): boolean;\npropEq<K extends string | number>(propToFind: K, valueToMatch: any): (obj: Record<K, any>) => boolean;\npropEq<K extends string | number>(propToFind: K): {\n  (valueToMatch: any, obj: Record<K, any>): boolean;\n  (valueToMatch: any): (obj: Record<K, any>) => boolean;\n};",
+    "allTypings": "function propEq<K extends string | number>(propToFind: K, valueToMatch: any, obj: Record<K, any>): boolean;\nfunction propEq<K extends string | number>(propToFind: K, valueToMatch: any): (obj: Record<K, any>) => boolean;\nfunction propEq<K extends string | number>(propToFind: K): {\n  (valueToMatch: any, obj: Record<K, any>): boolean;\n  (valueToMatch: any): (obj: Record<K, any>) => boolean;\n};",
     "categories": [
       "Object"
     ],
@@ -1615,7 +1615,7 @@
   },
   "propIs": {
     "typing": "\npropIs(type: any, name: string, obj: any): boolean",
-    "allTypings": "propIs(type: any, name: string, obj: any): boolean;\npropIs(type: any, name: string): (obj: any) => boolean;\npropIs(type: any): {\n    (name: string, obj: any): boolean;\n    (name: string): (obj: any) => boolean;\n};",
+    "allTypings": "function propIs(type: any, name: string, obj: any): boolean;\nfunction propIs(type: any, name: string): (obj: any) => boolean;\nfunction propIs(type: any): {\n    (name: string, obj: any): boolean;\n    (name: string): (obj: any) => boolean;\n};",
     "categories": [
       "Object"
     ],
@@ -1628,7 +1628,7 @@
   },
   "propOr": {
     "typing": "\npropOr<T>(defaultValue: T, property: string, obj: { [key: string]: T}): T",
-    "allTypings": "propOr<T>(defaultValue: T, property: string, obj: { [key: string]: T}): T;\npropOr<T>(defaultValue: T, property: string): (obj: { [key: string]: T}) => T;\npropOr<T>(defaultValue: T): FunctionToolbelt.Curry<(property: string, obj: { [key: string]: T}) => T>;",
+    "allTypings": "function propOr<T>(defaultValue: T, property: string, obj: { [key: string]: T}): T;\nfunction propOr<T>(defaultValue: T, property: string): (obj: { [key: string]: T}) => T;\nfunction propOr<T>(defaultValue: T): FunctionToolbelt.Curry<(property: string, obj: { [key: string]: T}) => T>;",
     "categories": [
       "Object"
     ],
@@ -1641,7 +1641,7 @@
   },
   "range": {
     "typing": "\nrange(startInclusive: number, endExclusive: number): number[]",
-    "allTypings": "range(startInclusive: number, endExclusive: number): number[];\nrange(startInclusive: number): (endExclusive: number) => number[];",
+    "allTypings": "function range(startInclusive: number, endExclusive: number): number[];\nfunction range(startInclusive: number): (endExclusive: number) => number[];",
     "categories": [
       "Number"
     ],
@@ -1657,7 +1657,7 @@
   },
   "reduce": {
     "typing": "\nreduce<T, TResult>(reducer: (prev: TResult, current: T, i: number) => TResult, initialValue: TResult, list: readonly T[]): TResult",
-    "allTypings": "reduce<T, TResult>(reducer: (prev: TResult, current: T, i: number) => TResult, initialValue: TResult, list: readonly T[]): TResult;\nreduce<T, TResult>(reducer: (prev: TResult, current: T) => TResult, initialValue: TResult, list: readonly T[]): TResult;\nreduce<T, TResult>(reducer: (prev: TResult, current: T, i?: number) => TResult): (initialValue: TResult, list: readonly T[]) => TResult;\nreduce<T, TResult>(reducer: (prev: TResult, current: T, i?: number) => TResult, initialValue: TResult): (list: readonly T[]) => TResult;",
+    "allTypings": "function reduce<T, TResult>(reducer: (prev: TResult, current: T, i: number) => TResult, initialValue: TResult, list: readonly T[]): TResult;\nfunction reduce<T, TResult>(reducer: (prev: TResult, current: T) => TResult, initialValue: TResult, list: readonly T[]): TResult;\nfunction reduce<T, TResult>(reducer: (prev: TResult, current: T, i?: number) => TResult): (initialValue: TResult, list: readonly T[]) => TResult;\nfunction reduce<T, TResult>(reducer: (prev: TResult, current: T, i?: number) => TResult, initialValue: TResult): (list: readonly T[]) => TResult;",
     "categories": [
       "List"
     ],
@@ -1676,7 +1676,7 @@
   },
   "reject": {
     "typing": "\nreject<T>(predicate: Predicate<T>, list: readonly T[]): T[]",
-    "allTypings": "reject<T>(predicate: Predicate<T>, list: readonly T[]): T[];\nreject<T>(predicate: Predicate<T>): (list: readonly T[]) => T[];\nreject<T>(predicate: Predicate<T>, obj: Dictionary<T>): Dictionary<T>;\nreject<T, U>(predicate: Predicate<T>): (obj: Dictionary<T>) => Dictionary<T>;",
+    "allTypings": "function reject<T>(predicate: Predicate<T>, list: readonly T[]): T[];\nfunction reject<T>(predicate: Predicate<T>): (list: readonly T[]) => T[];\nfunction reject<T>(predicate: Predicate<T>, obj: Dictionary<T>): Dictionary<T>;\nfunction reject<T, U>(predicate: Predicate<T>): (obj: Dictionary<T>) => Dictionary<T>;",
     "categories": [
       "List",
       "Object"
@@ -1692,7 +1692,7 @@
   },
   "repeat": {
     "typing": "\nrepeat<T>(x: T): (timesToRepeat: number) => T[]",
-    "allTypings": "repeat<T>(x: T): (timesToRepeat: number) => T[];\nrepeat<T>(x: T, timesToRepeat: number): T[];",
+    "allTypings": "function repeat<T>(x: T): (timesToRepeat: number) => T[];\nfunction repeat<T>(x: T, timesToRepeat: number): T[];",
     "categories": [
       "List"
     ],
@@ -1707,7 +1707,7 @@
   },
   "replace": {
     "typing": "\nreplace(strOrRegex: RegExp | string, replacer: string, str: string): string",
-    "allTypings": "replace(strOrRegex: RegExp | string, replacer: string, str: string): string;\nreplace(strOrRegex: RegExp | string, replacer: string): (str: string) => string;\nreplace(strOrRegex: RegExp | string): (replacer: string) => (str: string) => string;",
+    "allTypings": "function replace(strOrRegex: RegExp | string, replacer: string, str: string): string;\nfunction replace(strOrRegex: RegExp | string, replacer: string): (str: string) => string;\nfunction replace(strOrRegex: RegExp | string): (replacer: string) => (str: string) => string;",
     "categories": [
       "String"
     ],
@@ -1723,7 +1723,7 @@
   },
   "reverse": {
     "typing": "\nreverse<T>(input: readonly T[]): T[]",
-    "allTypings": "reverse<T>(input: readonly T[]): T[];\nreverse(input: string): string;",
+    "allTypings": "function reverse<T>(input: readonly T[]): T[];\nfunction reverse(input: string): string;",
     "categories": [
       "List",
       "String"
@@ -1736,7 +1736,7 @@
   },
   "slice": {
     "typing": "\nslice(from: number, to: number, input: string): string",
-    "allTypings": "slice(from: number, to: number, input: string): string;\nslice<T>(from: number, to: number, input: readonly T[]): T[];\nslice(from: number, to: number): {\n  (input: string): string;\n  <T>(input: readonly T[]): T[];\n};\nslice(from: number): {\n  (to: number, input: string): string;\n  <T>(to: number, input: readonly T[]): T[];\n};",
+    "allTypings": "function slice(from: number, to: number, input: string): string;\nfunction slice<T>(from: number, to: number, input: readonly T[]): T[];\nfunction slice(from: number, to: number): {\n  (input: string): string;\n  <T>(input: readonly T[]): T[];\n};\nfunction slice(from: number): {\n  (to: number, input: string): string;\n  <T>(to: number, input: readonly T[]): T[];\n};",
     "categories": [
       "List",
       "String"
@@ -1749,7 +1749,7 @@
   },
   "sort": {
     "typing": "\nsort<T>(sortFn: (a: T, b: T) => number, list: readonly T[]): T[]",
-    "allTypings": "sort<T>(sortFn: (a: T, b: T) => number, list: readonly T[]): T[];\nsort<T>(sortFn: (a: T, b: T) => number): (list: readonly T[]) => T[];",
+    "allTypings": "function sort<T>(sortFn: (a: T, b: T) => number, list: readonly T[]): T[];\nfunction sort<T>(sortFn: (a: T, b: T) => number): (list: readonly T[]) => T[];",
     "categories": [
       "List"
     ],
@@ -1766,7 +1766,7 @@
   },
   "sortBy": {
     "typing": "\nsortBy<T>(sortFn: (a: T) => Ord, list: readonly T[]): T[]",
-    "allTypings": "sortBy<T>(sortFn: (a: T) => Ord, list: readonly T[]): T[];\nsortBy(sortFn: (a: any) => Ord): <T>(list: readonly T[]) => T[];",
+    "allTypings": "function sortBy<T>(sortFn: (a: T) => Ord, list: readonly T[]): T[];\nfunction sortBy(sortFn: (a: any) => Ord): <T>(list: readonly T[]) => T[];",
     "categories": [
       "List"
     ],
@@ -1786,7 +1786,7 @@
   },
   "split": {
     "typing": "\nsplit(separator: string | RegExp): (str: string) => string[]",
-    "allTypings": "split(separator: string | RegExp): (str: string) => string[];\nsplit(separator: string | RegExp, str: string): string[];",
+    "allTypings": "function split(separator: string | RegExp): (str: string) => string[];\nfunction split(separator: string | RegExp, str: string): string[];",
     "categories": [
       "String"
     ],
@@ -1802,7 +1802,7 @@
   },
   "splitEvery": {
     "typing": "\nsplitEvery<T>(sliceLength: number, input: readonly T[]): T[][]",
-    "allTypings": "splitEvery<T>(sliceLength: number, input: readonly T[]): T[][];\nsplitEvery(sliceLength: number, input: string): string[];\nsplitEvery(sliceLength: number): {\n  (input: string): string[];\n  <T>(input: readonly T[]): T[][];\n};",
+    "allTypings": "function splitEvery<T>(sliceLength: number, input: readonly T[]): T[][];\nfunction splitEvery(sliceLength: number, input: string): string[];\nfunction splitEvery(sliceLength: number): {\n  (input: string): string[];\n  <T>(input: readonly T[]): T[][];\n};",
     "categories": [
       "List",
       "String"
@@ -1819,7 +1819,7 @@
   },
   "startsWith": {
     "typing": "\nstartsWith(target: string, str: string): boolean",
-    "allTypings": "startsWith(target: string, str: string): boolean;\nstartsWith(target: string): (str: string) => boolean;",
+    "allTypings": "function startsWith(target: string, str: string): boolean;\nfunction startsWith(target: string): (str: string) => boolean;",
     "categories": [
       "String"
     ],
@@ -1835,7 +1835,7 @@
   },
   "subtract": {
     "typing": "\nsubtract(x: number, y: number): number",
-    "allTypings": "subtract(x: number, y: number): number;\nsubtract(x: number): (y: number) => number;",
+    "allTypings": "function subtract(x: number, y: number): number;\nfunction subtract(x: number): (y: number) => number;",
     "categories": [
       "Number"
     ],
@@ -1846,7 +1846,7 @@
   },
   "sum": {
     "typing": "\nsum(list: readonly number[]): number",
-    "allTypings": "sum(list: readonly number[]): number;",
+    "allTypings": "function sum(list: readonly number[]): number;",
     "categories": [
       "List"
     ],
@@ -1856,7 +1856,7 @@
   },
   "symmetricDifference": {
     "typing": "\nsymmetricDifference<T>(x: readonly T[], y: readonly T[]): T[]",
-    "allTypings": "symmetricDifference<T>(x: readonly T[], y: readonly T[]): T[];\nsymmetricDifference<T>(x: readonly T[]): <T>(y: readonly T[]) => T[];",
+    "allTypings": "function symmetricDifference<T>(x: readonly T[], y: readonly T[]): T[];\nfunction symmetricDifference<T>(x: readonly T[]): <T>(y: readonly T[]) => T[];",
     "categories": [
       "List"
     ],
@@ -1870,7 +1870,7 @@
   },
   "T": {
     "typing": "\nT(): boolean",
-    "allTypings": "T(): boolean;",
+    "allTypings": "function T(): boolean;",
     "categories": [
       "Logic"
     ],
@@ -1879,7 +1879,7 @@
   },
   "tail": {
     "typing": "\ntail<T>(input: readonly T[]): T[]",
-    "allTypings": "tail<T>(input: readonly T[]): T[];\ntail(input: string): string;",
+    "allTypings": "function tail<T>(input: readonly T[]): T[];\nfunction tail(input: string): string;",
     "categories": [
       "List",
       "String"
@@ -1892,7 +1892,7 @@
   },
   "take": {
     "typing": "\ntake<T>(howMany: number, input: readonly T[]): T[]",
-    "allTypings": "take<T>(howMany: number, input: readonly T[]): T[];\ntake(howMany: number, input: string): string;\ntake<T>(howMany: number): {\n  <T>(input: readonly T[]): T[];\n  (input: string): string;\n};",
+    "allTypings": "function take<T>(howMany: number, input: readonly T[]): T[];\nfunction take(howMany: number, input: string): string;\nfunction take<T>(howMany: number): {\n  <T>(input: readonly T[]): T[];\n  (input: string): string;\n};",
     "categories": [
       "List",
       "String"
@@ -1912,7 +1912,7 @@
   },
   "takeLast": {
     "typing": "\ntakeLast<T>(howMany: number, input: readonly T[]): T[]",
-    "allTypings": "takeLast<T>(howMany: number, input: readonly T[]): T[];\ntakeLast(howMany: number, input: string): string;\ntakeLast<T>(howMany: number): {\n  <T>(input: readonly T[]): T[];\n  (input: string): string;\n};",
+    "allTypings": "function takeLast<T>(howMany: number, input: readonly T[]): T[];\nfunction takeLast(howMany: number, input: string): string;\nfunction takeLast<T>(howMany: number): {\n  <T>(input: readonly T[]): T[];\n  (input: string): string;\n};",
     "categories": [
       "List",
       "String"
@@ -1929,7 +1929,7 @@
   },
   "tap": {
     "typing": "\ntap<T>(fn: (x: T) => void, input: T): T",
-    "allTypings": "tap<T>(fn: (x: T) => void, input: T): T;\ntap<T>(fn: (x: T) => void): (input: T) => T;",
+    "allTypings": "function tap<T>(fn: (x: T) => void, input: T): T;\nfunction tap<T>(fn: (x: T) => void): (input: T) => T;",
     "categories": [
       "Function"
     ],
@@ -1944,7 +1944,7 @@
   },
   "test": {
     "typing": "\ntest(regExpression: RegExp): (str: string) => boolean",
-    "allTypings": "test(regExpression: RegExp): (str: string) => boolean;\ntest(regExpression: RegExp, str: string): boolean;",
+    "allTypings": "function test(regExpression: RegExp): (str: string) => boolean;\nfunction test(regExpression: RegExp, str: string): boolean;",
     "categories": [
       "String"
     ],
@@ -1960,7 +1960,7 @@
   },
   "times": {
     "typing": "\ntimes<T>(fn: (i: number) => T, howMany: number): T[]",
-    "allTypings": "times<T>(fn: (i: number) => T, howMany: number): T[];\ntimes<T>(fn: (i: number) => T): (howMany: number) => T[];",
+    "allTypings": "function times<T>(fn: (i: number) => T, howMany: number): T[];\nfunction times<T>(fn: (i: number) => T): (howMany: number) => T[];",
     "rambdaSource": "import { map } from './map'\nimport { range } from './range'\n\nexport function times(fn, howMany){\n  if (arguments.length === 1) return _howMany => times(fn, _howMany)\n  if (!Number.isInteger(howMany) || howMany < 0){\n    throw new RangeError('n must be an integer')\n  }\n\n  return map(fn, range(0, howMany))\n}",
     "rambdaSpecs": "import assert from 'assert'\n\nimport { identity } from './identity'\nimport { times } from './times'\n\ntest('happy', () => {\n  const result = times(identity, 5)\n\n  expect(result).toEqual([ 0, 1, 2, 3, 4 ])\n})\n\ntest('with bad input', () => {\n  assert.throws(() => {\n    times(3)('cheers!')\n  }, RangeError)\n  assert.throws(() => {\n    times(identity, -1)\n  }, RangeError)\n})\n\ntest('curry', () => {\n  const result = times(identity)(5)\n\n  expect(result).toEqual([ 0, 1, 2, 3, 4 ])\n})",
     "explanation": "It returns the result of applying function `fn` over members of range array.\n\nThe range array includes numbers between `0` and `howMany`(exclusive).",
@@ -1969,7 +1969,7 @@
   },
   "toLower": {
     "typing": "\ntoLower(str: string): string",
-    "allTypings": "toLower(str: string): string;",
+    "allTypings": "function toLower(str: string): string;",
     "categories": [
       "String"
     ],
@@ -1979,7 +1979,7 @@
   },
   "toUpper": {
     "typing": "\ntoUpper(str: string): string",
-    "allTypings": "toUpper(str: string): string;",
+    "allTypings": "function toUpper(str: string): string;",
     "categories": [
       "String"
     ],
@@ -1989,7 +1989,7 @@
   },
   "toPairs": {
     "typing": "\ntoPairs<S>(obj: { [k: string]: S } | { [k: number]: S }): [string, S][]",
-    "allTypings": "toPairs<S>(obj: { [k: string]: S } | { [k: number]: S }): [string, S][];",
+    "allTypings": "function toPairs<S>(obj: { [k: string]: S } | { [k: number]: S }): [string, S][];",
     "categories": [
       "Object"
     ],
@@ -2001,7 +2001,7 @@
   },
   "toString": {
     "typing": "\ntoString<T>(x: T): string",
-    "allTypings": "toString<T>(x: T): string;",
+    "allTypings": "function toString<T>(x: T): string;",
     "categories": [
       "String"
     ],
@@ -2012,7 +2012,7 @@
   },
   "transpose": {
     "typing": "\ntranspose<T>(list: readonly T[][]): T[][]",
-    "allTypings": "transpose<T>(list: readonly T[][]): T[][];",
+    "allTypings": "function transpose<T>(list: readonly T[][]): T[][];",
     "rambdaSource": "import { _isArray } from './_internals/_isArray'\n\nexport function transpose(array){\n  return array.reduce((acc, el) => {\n    el.forEach((nestedEl, i) =>\n      _isArray(acc[ i ]) ? acc[ i ].push(nestedEl) : acc.push([ nestedEl ]))\n\n    return acc\n  }, [])\n}",
     "rambdaSpecs": "import { transpose } from './transpose'\n\ntest('happy', () => {\n  const input = [\n    [ 'a', 1 ],\n    [ 'b', 2 ],\n    [ 'c', 3 ],\n  ]\n\n  expect(transpose(input)).toEqual([\n    [ 'a', 'b', 'c' ],\n    [ 1, 2, 3 ],\n  ])\n})\n\ntest('when rows are shorter', () => {\n  const actual = transpose([ [ 10, 11 ], [ 20 ], [], [ 30, 31, 32 ] ])\n  const expected = [ [ 10, 20, 30 ], [ 11, 31 ], [ 32 ] ]\n  expect(actual).toEqual(expected)\n})\n\ntest('with empty array', () => {\n  expect(transpose([])).toEqual([])\n})\n\ntest('array with falsy values', () => {\n  const actual = transpose([\n    [ true, false, undefined, null ],\n    [ null, undefined, false, true ],\n  ])\n  const expected = [\n    [ true, null ],\n    [ false, undefined ],\n    [ undefined, false ],\n    [ null, true ],\n  ]\n  expect(actual).toEqual(expected)\n})",
     "example": "const list = [[10, 11], [20], [], [30, 31, 32]]\nconst expected = [[10, 20, 30], [11, 31], [32]]\n\nconst result = R.transpose(list)\n// => `result` is equal to `expected`",
@@ -2020,7 +2020,7 @@
   },
   "trim": {
     "typing": "\ntrim(str: string): string",
-    "allTypings": "trim(str: string): string;",
+    "allTypings": "function trim(str: string): string;",
     "categories": [
       "String"
     ],
@@ -2033,7 +2033,7 @@
   },
   "tryCatch": {
     "typing": "\ntryCatch<T, U>(\n  fn: (input: T) => U,\n  fallback: U\n): (input: T) => U",
-    "allTypings": "tryCatch<T, U>(\n  fn: (input: T) => U,\n  fallback: U\n): (input: T) => U;\ntryCatch<T, U>(\n  fn: (input: T) => U,\n  fallback: (input: T) => U\n): (input: T) => U;\ntryCatch<T>(\n  fn: (input: any) => Promise<any>,\n  fallback: T\n): (input: any) => Promise<T>;\ntryCatch<T>(\n  fn: (input: any) => Promise<any>,\n  fallback: (input: any) => Promise<any>,\n): (input: any) => Promise<T>;",
+    "allTypings": "function tryCatch<T, U>(\n  fn: (input: T) => U,\n  fallback: U\n): (input: T) => U;\nfunction tryCatch<T, U>(\n  fn: (input: T) => U,\n  fallback: (input: T) => U\n): (input: T) => U;\nfunction tryCatch<T>(\n  fn: (input: any) => Promise<any>,\n  fallback: T\n): (input: any) => Promise<T>;\nfunction tryCatch<T>(\n  fn: (input: any) => Promise<any>,\n  fallback: (input: any) => Promise<any>,\n): (input: any) => Promise<T>;",
     "categories": [
       "Function"
     ],
@@ -2048,7 +2048,7 @@
   },
   "type": {
     "typing": "\ntype(x: any): RambdaTypes",
-    "allTypings": "type(x: any): RambdaTypes;",
+    "allTypings": "function type(x: any): RambdaTypes;",
     "categories": [
       "Logic"
     ],
@@ -2068,7 +2068,7 @@
   },
   "union": {
     "typing": "\nunion<T>(x: readonly T[], y: readonly T[]): T[]",
-    "allTypings": "union<T>(x: readonly T[], y: readonly T[]): T[];\nunion<T>(x: readonly T[]): (y: readonly T[]) => T[];",
+    "allTypings": "function union<T>(x: readonly T[], y: readonly T[]): T[];\nfunction union<T>(x: readonly T[]): (y: readonly T[]) => T[];",
     "categories": [
       "List"
     ],
@@ -2082,7 +2082,7 @@
   },
   "uniq": {
     "typing": "\nuniq<T>(list: readonly T[]): T[]",
-    "allTypings": "uniq<T>(list: readonly T[]): T[];",
+    "allTypings": "function uniq<T>(list: readonly T[]): T[];",
     "categories": [
       "List"
     ],
@@ -2102,7 +2102,7 @@
   },
   "uniqWith": {
     "typing": "\nuniqWith<T, U>(uniqFn: (x: T, y: T) => boolean, list: readonly T[]): T[]",
-    "allTypings": "uniqWith<T, U>(uniqFn: (x: T, y: T) => boolean, list: readonly T[]): T[];\nuniqWith<T, U>(uniqFn: (x: T, y: T) => boolean): (list: readonly T[]) => T[];",
+    "allTypings": "function uniqWith<T, U>(uniqFn: (x: T, y: T) => boolean, list: readonly T[]): T[];\nfunction uniqWith<T, U>(uniqFn: (x: T, y: T) => boolean): (list: readonly T[]) => T[];",
     "categories": [
       "List"
     ],
@@ -2114,7 +2114,7 @@
   },
   "unless": {
     "typing": "\nunless<T, U>(predicate: (x: T) => boolean, whenFalseFn: (x: T) => U, obj: T): U",
-    "allTypings": "unless<T, U>(predicate: (x: T) => boolean, whenFalseFn: (x: T) => U, obj: T): U;\nunless<T, U>(predicate: (x: T) => boolean, whenFalseFn: (x: T) => U): (obj: T) => U;",
+    "allTypings": "function unless<T, U>(predicate: (x: T) => boolean, whenFalseFn: (x: T) => U, obj: T): U;\nfunction unless<T, U>(predicate: (x: T) => boolean, whenFalseFn: (x: T) => U): (obj: T) => U;",
     "categories": [
       "Logic",
       "Function"
@@ -2129,7 +2129,7 @@
   },
   "update": {
     "typing": "\nupdate<T>(index: number, newValue: T, list: readonly T[]): T[]",
-    "allTypings": "update<T>(index: number, newValue: T, list: readonly T[]): T[];\nupdate<T>(index: number, newValue: T): (list: readonly T[]) => T[];",
+    "allTypings": "function update<T>(index: number, newValue: T, list: readonly T[]): T[];\nfunction update<T>(index: number, newValue: T): (list: readonly T[]) => T[];",
     "categories": [
       "List"
     ],
@@ -2148,7 +2148,7 @@
   },
   "values": {
     "typing": "\nvalues<T extends object, K extends keyof T>(obj: T): T[K][]",
-    "allTypings": "values<T extends object, K extends keyof T>(obj: T): T[K][];",
+    "allTypings": "function values<T extends object, K extends keyof T>(obj: T): T[K][];",
     "categories": [
       "Object"
     ],
@@ -2160,7 +2160,7 @@
   },
   "when": {
     "typing": "\nwhen<T, U>(predicate: (x: T) => boolean, whenTrueFn: (a: T) => U, input: T): T | U",
-    "allTypings": "when<T, U>(predicate: (x: T) => boolean, whenTrueFn: (a: T) => U, input: T): T | U;\nwhen<T, U>(predicate: (x: T) => boolean, whenTrueFn: (a: T) => U): (input: T) => T | U;\nwhen<T, U>(predicate: (x: T) => boolean): FunctionToolbelt.Curry<(whenTrueFn: (a: T) => U, input: T) => T | U>;",
+    "allTypings": "function when<T, U>(predicate: (x: T) => boolean, whenTrueFn: (a: T) => U, input: T): T | U;\nfunction when<T, U>(predicate: (x: T) => boolean, whenTrueFn: (a: T) => U): (input: T) => T | U;\nfunction when<T, U>(predicate: (x: T) => boolean): FunctionToolbelt.Curry<(whenTrueFn: (a: T) => U, input: T) => T | U>;",
     "categories": [
       "Logic",
       "Function"
@@ -2171,7 +2171,7 @@
   },
   "where": {
     "typing": "\nwhere<T, U>(conditions: T, input: U): boolean",
-    "allTypings": "where<T, U>(conditions: T, input: U): boolean;\nwhere<T>(conditions: T): <U>(input: U) => boolean;\nwhere<ObjFunc2, U>(conditions: ObjFunc2, input: U): boolean;\nwhere<ObjFunc2>(conditions: ObjFunc2): <U>(input: U) => boolean;",
+    "allTypings": "function where<T, U>(conditions: T, input: U): boolean;\nfunction where<T>(conditions: T): <U>(input: U) => boolean;\nfunction where<ObjFunc2, U>(conditions: ObjFunc2, input: U): boolean;\nfunction where<ObjFunc2>(conditions: ObjFunc2): <U>(input: U) => boolean;",
     "categories": [
       "Object",
       "Logic"
@@ -2186,7 +2186,7 @@
   },
   "whereEq": {
     "typing": "\nwhereEq<T, U>(condition: T, input: U): boolean",
-    "allTypings": "whereEq<T, U>(condition: T, input: U): boolean;\nwhereEq<T>(condition: T): <U>(input: U) => boolean;",
+    "allTypings": "function whereEq<T, U>(condition: T, input: U): boolean;\nfunction whereEq<T>(condition: T): <U>(input: U) => boolean;",
     "categories": [
       "Object"
     ],
@@ -2200,7 +2200,7 @@
   },
   "without": {
     "typing": "\nwithout<T>(matchAgainst: readonly T[], source: readonly T[]): T[]",
-    "allTypings": "without<T>(matchAgainst: readonly T[], source: readonly T[]): T[];\nwithout<T>(matchAgainst: readonly T[]): (source: readonly T[]) => T[];",
+    "allTypings": "function without<T>(matchAgainst: readonly T[], source: readonly T[]): T[];\nfunction without<T>(matchAgainst: readonly T[]): (source: readonly T[]) => T[];",
     "categories": [
       "List"
     ],
@@ -2216,7 +2216,7 @@
   },
   "xor": {
     "typing": "\nxor(x: boolean, y: boolean): boolean",
-    "allTypings": "xor(x: boolean, y: boolean): boolean;\nxor(y: boolean): (y: boolean) => boolean;",
+    "allTypings": "function xor(x: boolean, y: boolean): boolean;\nfunction xor(y: boolean): (y: boolean) => boolean;",
     "categories": [
       "Logic"
     ],
@@ -2230,7 +2230,7 @@
   },
   "zip": {
     "typing": "\nzip<K, V>(x: readonly K[], y: readonly V[]): KeyValuePair<K, V>[]",
-    "allTypings": "zip<K, V>(x: readonly K[], y: readonly V[]): KeyValuePair<K, V>[];\nzip<K>(x: readonly K[]): <V>(y: readonly V[]) => KeyValuePair<K, V>[];",
+    "allTypings": "function zip<K, V>(x: readonly K[], y: readonly V[]): KeyValuePair<K, V>[];\nfunction zip<K>(x: readonly K[]): <V>(y: readonly V[]) => KeyValuePair<K, V>[];",
     "categories": [
       "List"
     ],
@@ -2242,7 +2242,7 @@
   },
   "zipObj": {
     "typing": "\nzipObj<T, K extends string>(keys: readonly K[], values: readonly T[]): { [P in K]: T }",
-    "allTypings": "zipObj<T, K extends string>(keys: readonly K[], values: readonly T[]): { [P in K]: T };\nzipObj<K extends string>(keys: readonly K[]): <T>(values: readonly T[]) => { [P in K]: T };\nzipObj<T, K extends number>(keys: readonly K[], values: readonly T[]): { [P in K]: T };\nzipObj<K extends number>(keys: readonly K[]): <T>(values: readonly T[]) => { [P in K]: T };",
+    "allTypings": "function zipObj<T, K extends string>(keys: readonly K[], values: readonly T[]): { [P in K]: T };\nfunction zipObj<K extends string>(keys: readonly K[]): <T>(values: readonly T[]) => { [P in K]: T };\nfunction zipObj<T, K extends number>(keys: readonly K[], values: readonly T[]): { [P in K]: T };\nfunction zipObj<K extends number>(keys: readonly K[]): <T>(values: readonly T[]) => { [P in K]: T };",
     "categories": [
       "List"
     ],
@@ -2254,7 +2254,7 @@
   },
   "props": {
     "typing": "\nprops<P extends string, T>(propsToPick: P[], obj: Record<P, T>): T[]",
-    "allTypings": "props<P extends string, T>(propsToPick: P[], obj: Record<P, T>): T[];\nprops<P extends string>(propsToPick: P[]): <T>(obj: Record<P, T>) => T[];\nprops<P extends string, T>(propsToPick: P[]): (obj: Record<P, T>) => T[];",
+    "allTypings": "function props<P extends string, T>(propsToPick: P[], obj: Record<P, T>): T[];\nfunction props<P extends string>(propsToPick: P[]): <T>(obj: Record<P, T>) => T[];\nfunction props<P extends string, T>(propsToPick: P[]): (obj: Record<P, T>) => T[];",
     "categories": [
       "Object"
     ],
@@ -2266,7 +2266,7 @@
   },
   "zipWith": {
     "typing": "\nzipWith<T, U, TResult>(fn: (x: T, y: U) => TResult, list1: readonly T[], list2: readonly U[]): TResult[]",
-    "allTypings": "zipWith<T, U, TResult>(fn: (x: T, y: U) => TResult, list1: readonly T[], list2: readonly U[]): TResult[];\nzipWith<T, U, TResult>(fn: (x: T, y: U) => TResult, list1: readonly T[]): (list2: readonly U[]) => TResult[];\nzipWith<T, U, TResult>(fn: (x: T, y: U) => TResult): (list1: readonly T[], list2: readonly U[]) => TResult[];",
+    "allTypings": "function zipWith<T, U, TResult>(fn: (x: T, y: U) => TResult, list1: readonly T[], list2: readonly U[]): TResult[];\nfunction zipWith<T, U, TResult>(fn: (x: T, y: U) => TResult, list1: readonly T[]): (list2: readonly U[]) => TResult[];\nfunction zipWith<T, U, TResult>(fn: (x: T, y: U) => TResult): (list1: readonly T[], list2: readonly U[]) => TResult[];",
     "categories": [
       "List"
     ],
@@ -2277,7 +2277,7 @@
   },
   "splitAt": {
     "typing": "\nsplitAt<T>(index: number, input: T[]): [T[], T[]]",
-    "allTypings": "splitAt<T>(index: number, input: T[]): [T[], T[]];\nsplitAt(index: number, input: string): [string, string];\nsplitAt(index: number): {\n    <T>(input: T[]): [T[], T[]];\n    (input: string): [string, string];\n};",
+    "allTypings": "function splitAt<T>(index: number, input: T[]): [T[], T[]];\nfunction splitAt(index: number, input: string): [string, string];\nfunction splitAt(index: number): {\n    <T>(input: T[]): [T[], T[]];\n    (input: string): [string, string];\n};",
     "categories": [
       "List",
       "String"
@@ -2290,7 +2290,7 @@
   },
   "splitWhen": {
     "typing": "\nsplitWhen<T, U>(predicate: Predicate<T>, list: U[]): U[][]",
-    "allTypings": "splitWhen<T, U>(predicate: Predicate<T>, list: U[]): U[][];\nsplitWhen<T>(predicate: Predicate<T>): <U>(list: U[]) => U[][];",
+    "allTypings": "function splitWhen<T, U>(predicate: Predicate<T>, list: U[]): U[][];\nfunction splitWhen<T>(predicate: Predicate<T>): <U>(list: U[]) => U[][];",
     "categories": [
       "List"
     ],
@@ -2302,7 +2302,7 @@
   },
   "takeLastWhile": {
     "typing": "\ntakeLastWhile(predicate: (x: string) => boolean, input: string): string",
-    "allTypings": "takeLastWhile(predicate: (x: string) => boolean, input: string): string;\ntakeLastWhile(predicate: (x: string) => boolean): (input: string) => string;\ntakeLastWhile<T>(predicate: (x: T) => boolean, input: readonly T[]): T[];\ntakeLastWhile<T>(predicate: (x: T) => boolean): <T>(input: readonly T[]) => T[];",
+    "allTypings": "function takeLastWhile(predicate: (x: string) => boolean, input: string): string;\nfunction takeLastWhile(predicate: (x: string) => boolean): (input: string) => string;\nfunction takeLastWhile<T>(predicate: (x: T) => boolean, input: readonly T[]): T[];\nfunction takeLastWhile<T>(predicate: (x: T) => boolean): <T>(input: readonly T[]) => T[];",
     "categories": [
       "List",
       "String"
@@ -2314,7 +2314,7 @@
   },
   "evolve": {
     "typing": "\nevolve<T, U>(rules: Array<(x: T) => U>, list: T[]): U[]",
-    "allTypings": "evolve<T, U>(rules: Array<(x: T) => U>, list: T[]): U[];\nevolve<T, U>(rules: Array<(x: T) => U>) : (list: T[]) => U[];\nevolve<E extends Evolver, V extends Evolvable<E>>(rules: E, obj: V): Evolve<V, E>;\nevolve<E extends Evolver>(rules: E): <V extends Evolvable<E>>(obj: V) => Evolve<V, E>;",
+    "allTypings": "function evolve<T, U>(rules: Array<(x: T) => U>, list: T[]): U[];\nfunction evolve<T, U>(rules: Array<(x: T) => U>) : (list: T[]) => U[];\nfunction evolve<E extends Evolver, V extends Evolvable<E>>(rules: E, obj: V): Evolve<V, E>;\nfunction evolve<E extends Evolver>(rules: E): <V extends Evolvable<E>>(obj: V) => Evolve<V, E>;",
     "categories": [
       "Object",
       "List"
@@ -2330,7 +2330,7 @@
   },
   "dropLastWhile": {
     "typing": "\ndropLastWhile(predicate: (x: string) => boolean, iterable: string): string",
-    "allTypings": "dropLastWhile(predicate: (x: string) => boolean, iterable: string): string;\ndropLastWhile(predicate: (x: string) => boolean): (iterable: string) => string;\ndropLastWhile<T>(predicate: (x: T) => boolean, iterable: readonly T[]): T[];\ndropLastWhile<T>(predicate: (x: T) => boolean): <T>(iterable: readonly T[]) => T[];",
+    "allTypings": "function dropLastWhile(predicate: (x: string) => boolean, iterable: string): string;\nfunction dropLastWhile(predicate: (x: string) => boolean): (iterable: string) => string;\nfunction dropLastWhile<T>(predicate: (x: T) => boolean, iterable: readonly T[]): T[];\nfunction dropLastWhile<T>(predicate: (x: T) => boolean): <T>(iterable: readonly T[]) => T[];",
     "categories": [
       "List",
       "String"
@@ -2344,7 +2344,7 @@
   },
   "dropRepeats": {
     "typing": "\ndropRepeats<T>(list: readonly T[]): T[]",
-    "allTypings": "dropRepeats<T>(list: readonly T[]): T[];",
+    "allTypings": "function dropRepeats<T>(list: readonly T[]): T[];",
     "categories": [
       "List"
     ],
@@ -2358,7 +2358,7 @@
   },
   "dropRepeatsWith": {
     "typing": "\ndropRepeatsWith<T>(predicate: (x: T, y: T) => boolean, list: readonly T[]): T[]",
-    "allTypings": "dropRepeatsWith<T>(predicate: (x: T, y: T) => boolean, list: readonly T[]): T[];\ndropRepeatsWith<T>(predicate: (x: T, y: T) => boolean): (list: readonly T[]) => T[];",
+    "allTypings": "function dropRepeatsWith<T>(predicate: (x: T, y: T) => boolean, list: readonly T[]): T[];\nfunction dropRepeatsWith<T>(predicate: (x: T, y: T) => boolean): (list: readonly T[]) => T[];",
     "categories": [
       "List"
     ],
@@ -2369,7 +2369,7 @@
   },
   "dropWhile": {
     "typing": "\ndropWhile(fn: Predicate<string>, iterable: string): string",
-    "allTypings": "dropWhile(fn: Predicate<string>, iterable: string): string;\ndropWhile(fn: Predicate<string>): (iterable: string) => string;\ndropWhile<T>(fn: Predicate<T>, iterable: readonly T[]): T[];\ndropWhile<T>(fn: Predicate<T>): (iterable: readonly T[]) => T[];",
+    "allTypings": "function dropWhile(fn: Predicate<string>, iterable: string): string;\nfunction dropWhile(fn: Predicate<string>): (iterable: string) => string;\nfunction dropWhile<T>(fn: Predicate<T>, iterable: readonly T[]): T[];\nfunction dropWhile<T>(fn: Predicate<T>): (iterable: readonly T[]) => T[];",
     "categories": [
       "List",
       "String"
@@ -2381,7 +2381,7 @@
   },
   "takeWhile": {
     "typing": "\ntakeWhile(fn: Predicate<string>, iterable: string): string",
-    "allTypings": "takeWhile(fn: Predicate<string>, iterable: string): string;\ntakeWhile(fn: Predicate<string>): (iterable: string) => string;\ntakeWhile<T>(fn: Predicate<T>, iterable: readonly T[]): T[];\ntakeWhile<T>(fn: Predicate<T>): (iterable: readonly T[]) => T[];",
+    "allTypings": "function takeWhile(fn: Predicate<string>, iterable: string): string;\nfunction takeWhile(fn: Predicate<string>): (iterable: string) => string;\nfunction takeWhile<T>(fn: Predicate<T>, iterable: readonly T[]): T[];\nfunction takeWhile<T>(fn: Predicate<T>): (iterable: readonly T[]) => T[];",
     "categories": [
       "List",
       "String"
@@ -2395,7 +2395,7 @@
   },
   "eqProps": {
     "typing": "\neqProps<T, U>(prop: string, obj1: T, obj2: U): boolean",
-    "allTypings": "eqProps<T, U>(prop: string, obj1: T, obj2: U): boolean;\neqProps<P extends string>(prop: P): <T, U>(obj1: Record<P, T>, obj2: Record<P, U>) => boolean;\neqProps<T>(prop: string, obj1: T): <U>(obj2: U) => boolean;",
+    "allTypings": "function eqProps<T, U>(prop: string, obj1: T, obj2: U): boolean;\nfunction eqProps<P extends string>(prop: P): <T, U>(obj1: Record<P, T>, obj2: Record<P, U>) => boolean;\nfunction eqProps<T>(prop: string, obj1: T): <U>(obj2: U) => boolean;",
     "categories": [
       "Object"
     ],

@@ -1,4 +1,4 @@
-const {
+import { 
   mapAsync,
   omit,
   match,
@@ -10,9 +10,11 @@ const {
   trim,
   interpolate,
   path,
-} = require('rambdax')
+ } from 'rambdax'
 const shiki = require('shiki')
-const tripTankTheme = shiki.loadTheme(`${__dirname}/assets/TripTank.json`)
+const {indentRight} = require('./utils/indent-right')
+const niketaTheme = shiki.loadTheme(`${__dirname}/assets/TripTank.json`)
+
 const initialResolver = {
   '{{LINE}}': '<span class="line">',
   '{{START}}': '<pre class="shiki" style="background-color: #25252A">',
@@ -42,7 +44,7 @@ function finalFix(x) {
   }
 }
 
-class ApplyHighlighter {
+export class ApplyHighlighter {
   constructor() {
     this.codeToHtml = () => {
       throw new Error('codeToHtml is not ready')
@@ -52,8 +54,7 @@ class ApplyHighlighter {
 
   async init() {
     const {codeToHtml} = await shiki.getHighlighter({
-      theme: tripTankTheme,
-      // theme: 'nord',
+      theme: niketaTheme,
     })
     this.codeToHtml = codeToHtml
   }
@@ -97,32 +98,40 @@ class ApplyHighlighter {
     return template
   }
 
+  getContent(data){
+    return (prop, language) => {
+      if(!data[prop]) return ''
+      const sourceWithFixedLength = indentRight(data[prop])
+
+      return this.codeToHtml(sourceWithFixedLength, language)
+    }
+  }
+
+  getBenchmarkSource(data){
+    const maybeSource = path('benchmarkInfo.benchmarkContent', data)
+    if(!maybeSource) return ''
+
+    const sourceWithFixedLength = indentRight(maybeSource)
+
+    return this.codeToHtml(
+          fixBenchmarkSource(sourceWithFixedLength),
+          'js'
+        )
+  }
+
   async apply(source) {
     const iterator = async data => {
-      const all = {}
-      all.benchmarkSource = path('benchmarkInfo.benchmarkContent', data)
-        ? this.codeToHtml(
-            fixBenchmarkSource(path('benchmarkInfo.benchmarkContent', data)),
-            'js'
-          )
-        : ''
-      all.rambdaSource = this.codeToHtml(data.rambdaSource, 'js')
-      all.rambdaSpecs = data.rambdaSpecs
-        ? this.codeToHtml(data.rambdaSpecs, 'js')
-        : ''
-      all.failedRamdaSpecs = data.failedRamdaSpecs
-        ? this.codeToHtml(data.failedRamdaSpecs, 'js')
-        : ''
-      all.allTypings = data.allTypings
-        ? this.codeToHtml(data.allTypings, 'ts')
-        : ''
-      all.typing = data.typing
-        ? this.codeToHtml(data.typing.trim(), 'ts')
-        : ''
-      all.typescriptDefinitionTest = data.typescriptDefinitionTest
-        ? this.codeToHtml(data.typescriptDefinitionTest, 'ts')
-        : ''
+      const getContentFn = this.getContent(data)
 
+      const all = {}
+      all.benchmarkSource = this.getBenchmarkSource(data)
+      all.rambdaSource = getContentFn('rambdaSource', 'js')
+      all.rambdaSpecs = getContentFn('rambdaSpecs', 'js')
+      all.failedRamdaSpecs = getContentFn('failedRamdaSpecs', 'js')
+      all.allTypings = getContentFn('allTypings', 'ts')
+      all.typing = getContentFn('typing', 'ts')
+      all.typescriptDefinitionTest = getContentFn('typescriptDefinitionTest', 'ts')
+      
       const parsedData = piped(
         all,
         map(x => this.appendToResolver(x))
@@ -153,5 +162,3 @@ class ApplyHighlighter {
     return interpolate(input, resolver)
   }
 }
-
-exports.ApplyHighlighter = ApplyHighlighter

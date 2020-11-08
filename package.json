@@ -1,8 +1,9 @@
 {
   "name": "rambda-docs",
   "scripts": {
+    "pre": "jest prepare/apply-highlighter.spec.js",
+    "foo": "jest prepare/utils/indent-right.spec.js --watch",
     "prepare": "echo prepareisinternal",
-    "pre": "node prepare/apply-highlighter.test.js",
     "dev": "nodemon prepare/apply-highlighter.test.js",
     "prepare:dev": "nodemon prepare/apply-highlighter.test.js",
     "update": "ng update --all=true --allowDirty=true --next=true",
