@@ -1,6 +1,6 @@
-data.xjson
-data-rambdax.xjson
-new-data.xjson
+data.json
+data-rambdax.json
+new-data.json
 /documentation
 # compiled output
 /dist
