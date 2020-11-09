@@ -1,24 +1,13 @@
 {
   "name": "rambda-docs",
   "scripts": {
-    "pre": "jest prepare/apply-highlighter.spec.js",
-    "test": "jest prepare/utils/indent-right.spec.js --watch",
-    "prepare": "echo prepareisinternal",
-    "dev": "nodemon prepare/apply-highlighter.test.js",
-    "prepare:dev": "nodemon prepare/apply-highlighter.test.js",
-    "component": "ng g component",
-    "class": "ng g class",
-    "directive": "ng g directive",
-    "service": "ng g service",
-    "pipe": "ng g pipe --skip-import",
     "ng": "ng",
-    "in": "ng serve",
     "start": "ng serve",
-    "out": "ng build",
-    "test:all": "jest src",
-    "doc": "compodoc -p tsconfig.app.json"
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "cd src&&run l"
   },
-  "version": "1.0.0",
+  "version": "0.0.0",
   "dependencies": {
     "@angular/animations": "~10.2.0",
     "@angular/common": "~10.2.0",
@@ -28,13 +17,10 @@
     "@angular/platform-browser": "~10.2.0",
     "@angular/platform-browser-dynamic": "~10.2.0",
     "@angular/router": "~10.2.0",
-    "@angular/cdk": "10.2.7",
-    "@angular/material": "10.2.7",
     "@materia-ui/ngx-monaco-editor": "4.0.1",
     "fuzzyset": "1.0.5",
     "grid-fn": "0.2.2",
     "monaco-editor": "^0.20.0",
-    "property-watch-decorator": "^1.2.5",
     "rambdax": "7.0.1",
     "roughjs": "4.3.1",
     "rxjs": "~6.6.0",
@@ -45,35 +31,23 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1002.0",
+    "@angular/cdk": "10.2.7",
     "@angular/cli": "~10.2.0",
     "@angular/compiler-cli": "~10.2.0",
+    "@angular/language-service": "10.1.6",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
-    "@angular/language-service": "10.1.6",
-    "@babel/core": "7.12.3",
-    "@compodoc/compodoc": "1.1.11",
-    "@ngneat/inspector": "^1.1.0",
-    "@types/jest": "26.0.8",
-    "@types/node": "14.0.27",
-    "babel-loader": "8.1.0",
-    "fs-extra": "9.0.1",
-    "jest": "26.2.2",
-    "jest-preset-angular": "8.2.1",
-    "prettier": "2.0.5",
-    "rxjs-tslint-rules": "4.34.0",
-    "shiki": "0.2.6",
+    "@types/node": "^12.11.1",
+    "jasmine-core": "~3.6.0",
+    "jasmine-spec-reporter": "~5.0.0",
+    "karma": "~5.0.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage-istanbul-reporter": "~3.0.2",
+    "karma-jasmine": "~4.0.0",
+    "karma-jasmine-html-reporter": "^1.5.0",
     "ts-node": "9.0.0",
     "tslint-fn": "0.2.2",
     "typescript": "~4.0.2"
-  },
-  "jest": {
-    "preset": "jest-preset-angular",
-    "setupFilesAfterEnv": [
-      "<rootDir>/setupJest.ts"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!@ngrx|angular2-ui-switch|ng-dynamic)"
-    ]
   },
   "private": true
 }

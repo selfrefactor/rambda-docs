@@ -1,17 +1,23 @@
-# Rambda docs
+# Bar
 
-Build with Angular10
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
 
-## Acknowledgement
+## Development server
 
-- rxjs-fruits - for providing working `monaco editor` configuration
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-- shiki - for allowing me to use my own VSCode theme in code highlighting
+## Code scaffolding
 
-## Update deps
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-`Angular-material` is limiting update as its cdk version should match that of this project
+## Build
 
-## TODO
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-extract shortest definition; otherwise there is no point of code snippet mode
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
