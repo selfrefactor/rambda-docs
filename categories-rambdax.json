@@ -214,9 +214,6 @@
     "mapIndexed",
     "filterIndexed"
   ],
-  "Other": [
-    "clamp"
-  ],
   "String": [
     "concat",
     "drop",
@@ -267,7 +264,6 @@
     "viewOr"
   ],
   "Async": [
-    "tryCatch",
     "composeAsync",
     "pipeAsync",
     "delay",

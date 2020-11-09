@@ -10,7 +10,9 @@ import {WholeComponent} from './whole/whole.component'
 import {CellComponent, GridComponent, SubGridComponent} from 'grid-fn'
 import {MonacoEditorModule} from '@materia-ui/ngx-monaco-editor'
 import {ReplComponent} from './repl/repl.component'
-import {PurehtmlPipe} from './utils/purehtml.pipe'
+import {PurehtmlPipe} from './utils/purehtml.pipe';
+import { InspectorModule } from '@ngneat/inspector';
+// import { environment } from '../environments/environment'
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import {PurehtmlPipe} from './utils/purehtml.pipe'
     HttpClientModule,
     // BrowserAnimationsModule,
     AppRoutingModule,
+    InspectorModule.forRoot(),
+    // environment.production ? [] : InspectorModule.forRoot(),
     // MatSliderModule,
   ],
   providers: [],
