@@ -1,14 +1,18 @@
+import { ms } from 'string-fn'
 import { wrapPlaywright } from 'init-playwright'
 
-const url = 'http://localhost:4200'
-
+jest.setTimeout(ms('12 minutes'))
+const urlBase = 'http://localhost:4200'
+const methodUrl = `${urlBase}/all`
 
 describe('workspace-project App', () => {
   it('should display welcome message', async () => {
     const fn = async _ => {
-      return await _.count('div')
+      await _.page.fill('.search__input', 'fid')
+      console.log(1)
+      return 1
     }
-    const result = await wrapPlaywright({url, fn, fallback: -1})
+    const result = await wrapPlaywright({url: methodUrl, fn, fallback: -1})
     console.log(result)
     // expect(result).toBeGreaterThan(100)
   });

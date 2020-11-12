@@ -15,3 +15,9 @@ Build with Angular10
 ## TODO
 
 extract shortest definition; otherwise there is no point of code snippet mode
+
+## Troubleshot
+
+npm ERR! code EINTEGRITY
+
+`npm config set package-lock false`
