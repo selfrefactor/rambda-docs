@@ -5,6 +5,10 @@
     "module": "commonjs",
     "types": [
       "jest"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
     ]
   },
   "files": [
