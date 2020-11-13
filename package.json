@@ -10,6 +10,7 @@
     "component": "ng g component",
     "class": "ng g class",
     "directive": "ng g directive",
+    "resolver": "ng g resolver",
     "service": "ng g service",
     "pipe": "ng g pipe --skip-import",
     "ng": "ng",
