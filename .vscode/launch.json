@@ -4,6 +4,21 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Unit test",
+      "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
+      "args": [
+        "--verbose", 
+        "-i", 
+        "--no-cache",
+        "src/app/services/methods-data.service.spec.ts"
+      ],
+      "disableOptimisticBPs": true,
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "E2E",
       "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
       "args": [

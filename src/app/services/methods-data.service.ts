@@ -5,7 +5,7 @@ import {interpolate, switcher, head} from 'rambdax'
 // WITHOUT_RAMBDAX
 import allCategories from '../../../categories.json'
 // WITHOUT_RAMBDAX
-import allMethods from '../../../new-data.json'
+import allMethods from '../../../assets/new-data.json'
 // WITH_RAMBDAX
 // import allCategories from '../../../categories-rambdax.json'
 import resolver from '../../../resolver.json'
