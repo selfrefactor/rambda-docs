@@ -21,6 +21,7 @@
     "e2e": "jest e2e",
     "doc": "compodoc -p tsconfig.app.json"
   },
+  "license": "MIT",
   "version": "1.0.0",
   "dependencies": {
     "@angular/animations": "~11.0.0",
@@ -38,7 +39,7 @@
     "@angular/material": "10.2.7",
     "@materia-ui/ngx-monaco-editor": "4.0.1",
     "fuzzyset": "1.0.5",
-    "grid-fn": "0.2.2",
+    "grid-fn": "0.4.0",
     "monaco-editor": "^0.20.0",
     "property-watch-decorator": "^1.2.5",
     "rambdax": "7.0.1",
