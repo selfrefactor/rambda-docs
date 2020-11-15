@@ -1,9 +1,12 @@
 const got = require('got')
 const {exec} = require('helpers-fn')
 const {ms} = require('string-fn')
-const {waitFor} = require('rambdax')
+const {resolve} = require('path')
+const execa = require('execa')
+const {waitFor, delay} = require('rambdax')
+const CWD = resolve(__dirname, '../')
 
-const urlBase = 'http://localhost:4200'
+const localUrl = 'http://localhost:4200'
 
 async function checkAngularActive(url) {
   try {
@@ -14,35 +17,39 @@ async function checkAngularActive(url) {
   }
 }
 
-async function runAngularServe(){
-  let flag = false
-  exec({
-    cwd: __dirname,
-    command: 'yarn in',
-    onLog: x => {
-      if(x.includes('Compiled success')){
-        flag = true
-      } 
-    }
-  })
-  const angularIsActive = await waitFor(() =>  flag, ms('4 minutes'), 400)()
-  if(!angularIsActive) throw new Error('!angularIsActive')
+const SUCCESS_MARKER = 'Compiled successfully.'
 
+async function startAngular() {
+  const webpackLogs = [];
+  let flag = false
+  const angularChildProcess = execa.command('yarn in', { cwd: CWD });
+
+  angularChildProcess.stdout.on('data', logData => {
+    if(logData.toString().includes(SUCCESS_MARKER)){
+      flag = true
+    }
+  });
+  const condition = () => flag;
+  await Promise.race([
+    waitFor(condition, ms('6min'), 6 * 60)(),
+    angularChildProcess,
+  ]);
   await exec({
     cwd: __dirname,
-    command: 'yarn test:playwright'
+    command: 'yarn test:playwright',
   })
-  console.log('done');
-  process.exit()
+  angularChildProcess.cancel();
+
+  await delay(3000)
+  console.log('done')
 }
 
 void (async function prepareEndToEnd() {
-  const angularIsActive = await checkAngularActive(urlBase)
-  if(!angularIsActive) return runAngularServe()
+  const angularIsActive = await checkAngularActive(localUrl)
+  if (!angularIsActive) return startAngular()
 
   await exec({
     cwd: __dirname,
-    command: 'yarn test:playwright'
+    command: 'yarn test:playwright',
   })
-  process.exit()
 })()

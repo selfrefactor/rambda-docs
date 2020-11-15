@@ -4,6 +4,7 @@
     "i": "yarn --update-checksums",
     "pre": "jest prepare/apply-highlighter.spec.js",
     "x": "jest e2e/src/app.e2e.spec.ts",
+    "y": "echo foo&&sleep 2&&echo bar&&sleep 44",
     "prepare": "echo prepareisinternal",
     "dev": "nodemon prepare/apply-highlighter.test.js",
     "prepare:dev": "nodemon prepare/apply-highlighter.test.js",
@@ -50,6 +51,7 @@
     "wired-elements": "2.1.2"
   },
   "devDependencies": {
+    "execa":"4.1.0",
     "folio": "0.3.16",
     "playwright-wrap": "0.1.0",
     "@playwright/test": "0.152.0",
