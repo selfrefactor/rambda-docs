@@ -18,8 +18,8 @@
     "start": "ng serve",
     "out": "ng build",
     "test": "jest src",
-    "e2e": "folio test --param browserName=chromium",
-    "pree2e": "node files/prepare-e2e.js",
+    "test:playwright": "folio test --param browserName=chromium",
+    "e2e": "node files/run-e2e.js",
     "doc": "compodoc -p tsconfig.app.json"
   },
   "license": "MIT",
@@ -52,7 +52,7 @@
   "devDependencies": {
     "folio": "0.3.16",
     "playwright-wrap": "0.1.0",
-    "@playwright/test": "https://github.com/selfrefactor/playwright-test#1.0.0",
+    "@playwright/test": "0.152.0",
     "@angular-devkit/build-angular": "~0.1100.1",
     "@angular/cli": "~11.0.1",
     "@angular/compiler-cli": "~11.0.0",

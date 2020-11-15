@@ -1562,9 +1562,10 @@
   dependencies:
     esquery "^1.0.1"
 
-"@playwright/test@https://github.com/selfrefactor/playwright-test#1.0.0":
+"@playwright/test@0.152.0":
   version "0.152.0"
-  resolved "https://github.com/selfrefactor/playwright-test#df7b27a1c5202ed68bc49009dec60c058a59ad85"
+  resolved "https://registry.yarnpkg.com/@playwright/test/-/test-0.152.0.tgz#8584da36fc1502830c480f54a54507cdf16b919c"
+  integrity sha512-SBGq4bkT8lrY3WsRjgrnMIvJaCJM/ZMKGpu/AuC5fIzcJ1M2b2MeEOBa6prJ7z00UPdErStXd4rEPXAPJ4eWqg==
   dependencies:
     folio "=0.3.16"
     playwright "=1.5.2"
