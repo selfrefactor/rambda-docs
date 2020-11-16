@@ -36,7 +36,7 @@ async function startAngular() {
   ]);
   await exec({
     cwd: __dirname,
-    command: 'yarn test:playwright',
+    command: 'yarn test:e2e',
   })
   angularChildProcess.cancel();
 
@@ -50,6 +50,6 @@ void (async function prepareEndToEnd() {
 
   await exec({
     cwd: __dirname,
-    command: 'yarn test:playwright',
+    command: 'yarn test:e2e',
   })
 })()

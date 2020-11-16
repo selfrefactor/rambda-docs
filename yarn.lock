@@ -5151,7 +5151,7 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-folio@0.3.16, folio@=0.3.16:
+folio@=0.3.16:
   version "0.3.16"
   resolved "https://registry.yarnpkg.com/folio/-/folio-0.3.16.tgz#5ba3b86a2141f760baac5a2051f4b0c723cd4595"
   integrity sha512-V/eKkMh88VTd6gL8SCN+++Y6UbjFvGvp3EfipbYzKIY1BS07L0uVh3CXZJGaaTT0/7gZqrnwYbfHpK7XPzrbvA==
@@ -8627,6 +8627,14 @@ platform@^1.3.3:
   version "1.3.6"
   resolved "https://registry.yarnpkg.com/platform/-/platform-1.3.6.tgz#48b4ce983164b209c2d45a107adb31f473a6e7a7"
   integrity "sha1-SLTOmDFksgnC1FoQetsx9HOm56c= sha512-fnWVljUchTro6RiCFvCXBbNhJc2NijN7oIQxbwsyL0buWJPG85v81ehlHI9fXrJsMNgTofEoWIQeClKpgxFLrg=="
+
+playwright-init@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/playwright-init/-/playwright-init-0.1.0.tgz#da986a1e5875d007da1fe5764399354c871b60c3"
+  integrity sha512-MeOPh6ZUtYIdXopmg/FGAO/MjA+tTaInFbazjz+/iDOFofmzz1sopesrUjgX6UzaWhqGHmxAtgGb9cW7+gtMlw==
+  dependencies:
+    rambdax "7.0.1"
+    string-fn "3.1.0"
 
 playwright-wrap@0.1.0:
   version "0.1.0"

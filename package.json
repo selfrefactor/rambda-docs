@@ -19,7 +19,7 @@
     "start": "ng serve",
     "out": "ng build",
     "test": "jest src",
-    "test:playwright": "folio test --param browserName=chromium",
+    "test:e2e": "folio test --param browserName=chromium",
     "e2e": "node files/run-e2e.js",
     "doc": "compodoc -p tsconfig.app.json"
   },
@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "execa":"4.1.0",
-    "folio": "0.3.16",
+    "playwright-init": "0.1.0",
     "playwright-wrap": "0.1.0",
     "@playwright/test": "0.152.0",
     "@angular-devkit/build-angular": "~0.1100.1",
