@@ -2,7 +2,21 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Foo",
+      "name": "E2E - live debug",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+      "args": ["e2e/live-debug.ts", "--transpile-only"],
+      "cwd": "${workspaceRoot}",
+      "internalConsoleOptions": "openOnSessionStart",
+      "skipFiles": ["<node_internals>/**", "node_modules/**"],
+      "env": {
+        "TS_NODE_PROJECT": "${workspaceFolder}/tsconfigx.json"
+      }
+    },
+    {
+      "name": "E2E",
       "type": "node",
       "request": "launch",
       "runtimeExecutable": "node",

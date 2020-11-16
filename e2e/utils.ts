@@ -1,9 +1,6 @@
-const { add } = require('rambdax')
-const { wrap } = require('playwright-wrap')
+import { wrap } from 'playwright-wrap'
 
-async function wrapTest({page, fn, expect}){
+export async function wrapTest({page, fn, expect}){
   const _ = wrap(page)
   await fn({_, expect, page})
 }
-
-exports.wrapTest = wrapTest
