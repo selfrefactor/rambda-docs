@@ -12,21 +12,7 @@
       "internalConsoleOptions": "openOnSessionStart",
       "skipFiles": ["<node_internals>/**", "node_modules/**"],
       "env": {
-        "TS_NODE_PROJECT": "${workspaceFolder}/tsconfigx.json"
-      }
-    },
-    {
-      "name": "E2E",
-      "type": "node",
-      "request": "launch",
-      "runtimeExecutable": "node",
-      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
-      "args": ["e2e/foo.ts", "--transpile-only"],
-      "cwd": "${workspaceRoot}",
-      "internalConsoleOptions": "openOnSessionStart",
-      "skipFiles": ["<node_internals>/**", "node_modules/**"],
-      "env": {
-        "TS_NODE_PROJECT": "${workspaceFolder}/tsconfig.json"
+        "TS_NODE_PROJECT": "${workspaceFolder}/tsconfig.e2e.json"
       }
     },
     {
