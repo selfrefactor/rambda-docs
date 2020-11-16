@@ -2,6 +2,20 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Foo",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+      "args": ["e2e/foo.ts", "--transpile-only"],
+      "cwd": "${workspaceRoot}",
+      "internalConsoleOptions": "openOnSessionStart",
+      "skipFiles": ["<node_internals>/**", "node_modules/**"],
+      "env": {
+        "TS_NODE_PROJECT": "${workspaceFolder}/tsconfig.json"
+      }
+    },
+    {
       "type": "node",
       "request": "launch",
       "name": "Unit test",
@@ -25,7 +39,7 @@
         "--verbose", 
         "-i", 
         "--no-cache",
-        "e2e/app.spec.ts"
+        "e2e/foo.spec.ts"
       ],
       "env":{
         "HEADLESS": "OFF"

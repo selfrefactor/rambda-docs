@@ -4,7 +4,6 @@
     "i": "yarn --update-checksums",
     "pre": "jest prepare/apply-highlighter.spec.js",
     "x": "jest e2e/src/app.e2e.spec.ts",
-    "y": "echo foo&&sleep 2&&echo bar&&sleep 44",
     "prepare": "echo prepareisinternal",
     "dev": "nodemon prepare/apply-highlighter.test.js",
     "prepare:dev": "nodemon prepare/apply-highlighter.test.js",
@@ -19,7 +18,7 @@
     "start": "ng serve",
     "out": "ng build",
     "test": "jest src",
-    "test:e2e": "folio test --param browserName=chromium",
+    "test:e2e": "folio e2e/specs --param browserName=chromium",
     "e2e": "node files/run-e2e.js",
     "doc": "compodoc -p tsconfig.app.json"
   },
