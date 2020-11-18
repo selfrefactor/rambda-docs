@@ -27,7 +27,7 @@ async function testIterator(input: TestData){
   })
   try {
     const _ = wrap(page)
-    await delay(5000)
+    await delay(8000)
     await _.snap(input.label)
     await browser.close()
     return input.label

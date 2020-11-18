@@ -69,7 +69,6 @@ export class WholeComponent implements OnInit {
     private dataService: MethodsDataService,
     private router: Router
   ) {}
-
   ngOnInit() {
     this.allMethods = this.dataService.getAllKeys()
     this.visibleMethods = this.allMethods
@@ -83,7 +82,6 @@ export class WholeComponent implements OnInit {
 
     fromEvent(this.searchInput.nativeElement, 'keyup')
       .pipe(
-        // get value
         map((event: any) => {
           return event.target.value
         }),

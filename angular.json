@@ -8,7 +8,7 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
-          "skipTests": false
+          "skipTests": true
         },
         "@schematics/angular:class": {
           "skipTests": true
@@ -17,19 +17,19 @@
           "skipTests": true
         },
         "@schematics/angular:guard": {
-          "skipTests": true
+          "skipTests": false
         },
         "@schematics/angular:interceptor": {
-          "skipTests": true
+          "skipTests": false
         },
         "@schematics/angular:module": {
           "skipTests": true
         },
         "@schematics/angular:pipe": {
-          "skipTests": true
+          "skipTests": false
         },
         "@schematics/angular:service": {
-          "skipTests": true
+          "skipTests": false
         }
       },
       "root": "",
