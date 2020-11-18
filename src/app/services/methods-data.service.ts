@@ -8,7 +8,7 @@ import allCategories from '../../../categories.json'
 import allMethods from '../../../assets/new-data.json'
 // WITH_RAMBDAX
 // import allCategories from '../../../categories-rambdax.json'
-import resolver from '../../../resolver.json'
+import resolver from '../../../assets/resolver.json'
 import {
   ALL_CATEGORIES,
   Category,

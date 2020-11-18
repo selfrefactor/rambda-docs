@@ -2,8 +2,6 @@
   "name": "rambda-docs",
   "scripts": {
     "i": "yarn --update-checksums",
-    "pre": "jest prepare/apply-highlighter.spec.js",
-    "x": "jest e2e/src/app.e2e.spec.ts",
     "prepare": "echo prepareisinternal",
     "dev": "nodemon prepare/apply-highlighter.test.js",
     "prepare:dev": "nodemon prepare/apply-highlighter.test.js",
