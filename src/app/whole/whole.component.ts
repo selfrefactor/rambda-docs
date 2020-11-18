@@ -60,6 +60,7 @@ export class WholeComponent implements OnInit {
   selectedSnippedMode: SnippetMode = DefaultSnippetMode
   visibleMethods: string[]
   searchActive = false
+  replReady = false
   searchResults: string[]
   replInitialState: string
   @ViewChild('searchInput', {static: true}) searchInput: ElementRef
@@ -182,6 +183,10 @@ export class WholeComponent implements OnInit {
     this.replEvaluateLock = true
     this.replResult = await handleReplChange(newReplContent)
     this.replEvaluateLock = false
+  }
+
+  setReplReadyEvent(){
+    this.replReady = true
   }
 
   selectMode(newMode: SnippetMode) {

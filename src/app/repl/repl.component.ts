@@ -16,16 +16,17 @@ import {
 import {OnChange} from 'property-watch-decorator'
 import {take, filter} from 'rxjs/operators'
 
-import {switcher} from 'rambdax'
+import {switcher, delay } from 'rambdax'
 
 function getReplFontSize(forcedWindowHeight?: number): number {
   const height = forcedWindowHeight ? forcedWindowHeight : window.innerHeight
   const fontSize =  switcher<number>(height)
+    .is((x: number) => x > 2000, 22)
+    .is((x: number) => x > 1700, 19)
     .is((x: number) => x > 1500, 14)
     .is((x: number) => x > 1300, 13)
     .default(12)
 
-  console.log({fontSize})
   return fontSize  
 }
 
@@ -57,6 +58,7 @@ export class ReplComponent implements OnInit, OnChanges {
     fixedOverflowWidgets: true,
   }
   @Output() outputReplEvent = new EventEmitter<string>()
+  @Output() setReplReadyEvent = new EventEmitter<void>()
   @Input() initialState: string
 
   @OnChange<string>(function(this: ReplComponent, code: string) {
@@ -96,6 +98,7 @@ export class ReplComponent implements OnInit, OnChanges {
                   data,
                   ''
                 )
+                delay(500).then(() => this.setReplReadyEvent.emit())
               },
             })
         },

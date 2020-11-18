@@ -11,6 +11,7 @@
 			[topLeft]="{x:0,y:0}"
 			[width]="16"
 		>
+		<div id="test-id" class="{{replReady?'on':'off'}}"></div>
 			<div>R.{{selectedMethod}}</div>
 			<div>Filter by {{activeCategory}}</div>
 			<div class="category__container">
@@ -123,6 +124,7 @@
 		<cell [height]="9" [topLeft]="{x:0,y:6}" [width]="7">
 			<app-repl
 				(outputReplEvent)="onReplChange($event)"
+				(setReplReadyEvent)="setReplReadyEvent()"
 				[initialState]="replInitialState"
 			></app-repl>
 		</cell>
