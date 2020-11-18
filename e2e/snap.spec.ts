@@ -1,16 +1,10 @@
-import {playwrightInit, Resolution} from 'playwright-init'
-import {wrap} from 'playwright-wrap'
 import {ms} from 'string-fn'
-import { delay, mapAsyncLimit } from 'rambdax'
+import { mapAsync } from 'rambdax'
 const urlBase = 'http://localhost:4200'
-const methodUrl = `${urlBase}/all`
+const testUrl = `${urlBase}/all`
+import {TestData, snap} from './snap'
 
-jest.setTimeout(ms('5 minutes'))
-
-interface TestData{
-  label: string
-  screen: Resolution
-}
+jest.setTimeout(ms('2 minutes'))
 
 const TEST_DATA: TestData[] = [
   {label: 'tiny', screen: {x: 1024, y: 768}},
@@ -21,30 +15,10 @@ const TEST_DATA: TestData[] = [
   {label: 'huge', screen: {x: 2256, y: 1504}},
 ]
 
-async function testIterator(input: TestData){
-  const {browser, page} = await playwrightInit({
-    resolution: input.screen,
-    headless: true,
-    logFlag: false,
-    browser: 'chromium',
-    url: methodUrl,
-  })
-  try {
-    const _ = wrap(page)
-    await delay(8000)
-    await _.snap(input.label)
-    await browser.close()
-    return input.label
-  } catch (error) {
-    console.log(error, 'try.catch')
-    await browser.close()
-    return false
-  }
-}
-
 test('happy', async () => {
   console.time('snap')
-  const result = await mapAsyncLimit(testIterator, 3, TEST_DATA)
-  console.log({result})
+  await mapAsync(async (x) => {
+    await snap(testUrl, x)
+  }, TEST_DATA)
   console.timeEnd('snap')
 })

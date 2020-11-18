@@ -35,6 +35,10 @@ function getVisibleSnippetModes(input: SingleMethod): SnippetMode[] {
 
 const SEPARATOR = '--'
 
+function getEventValue(event: any){
+  return event.target.value
+}
+
 @Component({
   selector: 'app-whole',
   templateUrl: './whole.component.html',
@@ -70,6 +74,7 @@ export class WholeComponent implements OnInit {
     private dataService: MethodsDataService,
     private router: Router
   ) {}
+
   ngOnInit() {
     this.allMethods = this.dataService.getAllKeys()
     this.visibleMethods = this.allMethods
@@ -83,13 +88,11 @@ export class WholeComponent implements OnInit {
 
     fromEvent(this.searchInput.nativeElement, 'keyup')
       .pipe(
-        map((event: any) => {
-          return event.target.value
-        }),
+        map(getEventValue),
         debounceTime(700),
         distinctUntilChanged()
       )
-      .subscribe(text => this.applySearch(text))
+      .subscribe(this.applySearch)
   }
 
   onRouteChange(method?: string, category?: string) {

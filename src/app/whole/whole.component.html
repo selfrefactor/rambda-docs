@@ -11,7 +11,9 @@
 			[topLeft]="{x:0,y:0}"
 			[width]="16"
 		>
-		<div id="test-id" class="{{replReady?'on':'off'}}"></div>
+		<div id="test-id" 
+		[attr.data-repl-ready]="replReady.toString()"
+		 ></div>
 			<div>R.{{selectedMethod}}</div>
 			<div>Filter by {{activeCategory}}</div>
 			<div class="category__container">

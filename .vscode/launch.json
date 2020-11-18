@@ -2,6 +2,20 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Snap - live debug",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+      "args": ["e2e/snap.ts", "--transpile-only"],
+      "cwd": "${workspaceRoot}",
+      "internalConsoleOptions": "openOnSessionStart",
+      "skipFiles": ["<node_internals>/**", "node_modules/**"],
+      "env": {
+        "TS_NODE_PROJECT": "${workspaceFolder}/tsconfig.e2e.json"
+      }
+    },
+    {
       "name": "E2E - live debug",
       "type": "node",
       "request": "launch",
@@ -55,4 +69,5 @@
       "url":"http://localhost:4200",
       "webRoot": "${workspaceFolder}"
     }
+  ]
 }
