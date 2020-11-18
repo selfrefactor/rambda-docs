@@ -3,6 +3,10 @@ ngx-monaco-editor {
   height: 100%;
 }
 
+.explanation{
+  min-width: 30vw;
+}
+
 .snippet {
   &__container {
     width: 34.34vw;

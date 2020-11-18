@@ -16,18 +16,10 @@ import {
 import {SingleMethod} from '../services/methods-data.service.interfaces'
 import {fromEvent} from 'rxjs'
 import {
-  filter,
   map,
   debounceTime,
   distinctUntilChanged,
 } from 'rxjs/operators'
-
-function parseExplanation(explanation) {
-  if (!explanation) return []
-  if (!explanation.includes('\n')) return [explanation]
-
-  return explanation.split('\n')
-}
 
 function fixReplInput(replInput: string) {
   if (replInput.includes('const result')) return replInput
@@ -60,7 +52,6 @@ export class WholeComponent implements OnInit {
   currentSnippetModes: SnippetMode[] = []
   currentCodeSnippet = ''
   data: SingleMethod = EmptyMethod
-  explanation: string[] = []
   highlightBackground = '#25252A'
   methodCategoriesIndexes: number[] = []
   replEvaluateLock = false
@@ -136,11 +127,6 @@ export class WholeComponent implements OnInit {
       Can be removed once all examples are fixed
     */
     this.replInitialState = fixReplInput(this.data.example)
-
-    /*
-      Need better solution
-    */
-    this.explanation = parseExplanation(this.data.explanation)
 
     /*
       Show only code snippet modes that we have data for

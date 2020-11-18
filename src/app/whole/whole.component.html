@@ -98,12 +98,14 @@
 			[width]="7"
 		>
 			<wired-card
-				*ngIf="explanation.length > 0"
+				*ngIf="data.explanation"
 				fill="#e2e2e2"
 			>
-				<p
-					*ngFor="let explanationLine of explanation"
-				>{{explanationLine}}</p>
+			<div class="explanation">
+				<p>
+					{{data.explanation}}
+				</p>
+			</div>
 			</wired-card>
 		</cell>
 
