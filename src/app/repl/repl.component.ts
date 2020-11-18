@@ -15,6 +15,20 @@ import {
 } from '@materia-ui/ngx-monaco-editor'
 import {OnChange} from 'property-watch-decorator'
 import {take, filter} from 'rxjs/operators'
+
+import {switcher} from 'rambdax'
+
+function getReplFontSize(forcedWindowHeight?: number): number {
+  const height = forcedWindowHeight ? forcedWindowHeight : window.innerHeight
+  const fontSize =  switcher<number>(height)
+    .is((x: number) => x > 1500, 14)
+    .is((x: number) => x > 1300, 13)
+    .default(12)
+
+  console.log({fontSize})
+  return fontSize  
+}
+
 @Component({
   selector: 'app-repl',
   templateUrl: './repl.component.html',
@@ -27,7 +41,7 @@ export class ReplComponent implements OnInit, OnChanges {
   editorOptions = {
     theme: 'vs-dark', // 'hc-black', // 'vs' 'hc-black' 'vs-dark'
     language: 'typescript',
-    fontSize: 14,
+    fontSize: getReplFontSize(),
     contextmenu: false,
     codeLens: false,
     quickSuggestionsDelay: 700,
