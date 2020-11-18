@@ -7,6 +7,7 @@ const {waitFor, delay} = require('rambdax')
 const CWD = resolve(__dirname, '../')
 
 const localUrl = 'http://localhost:4200'
+const SUCCESS_MARKER = 'Compiled successfully.'
 
 async function checkAngularActive(url) {
   try {
@@ -17,10 +18,10 @@ async function checkAngularActive(url) {
   }
 }
 
-const SUCCESS_MARKER = 'Compiled successfully.'
+const COMMAND = process.env.E2E_TEST_MODE ? 
+  `yarn test:${process.env.E2E_TEST_MODE}` : 'yarn test:e2e'
 
 async function startAngular() {
-  const webpackLogs = [];
   let flag = false
   const angularChildProcess = execa.command('yarn in', { cwd: CWD });
 
@@ -36,7 +37,7 @@ async function startAngular() {
   ]);
   await exec({
     cwd: __dirname,
-    command: 'yarn test:e2e',
+    command: COMMAND,
   })
   angularChildProcess.cancel();
 
@@ -50,6 +51,6 @@ void (async function prepareEndToEnd() {
 
   await exec({
     cwd: __dirname,
-    command: 'yarn test:e2e',
+    command: COMMAND
   })
 })()

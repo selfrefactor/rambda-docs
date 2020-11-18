@@ -63,7 +63,6 @@ export class MethodsDataService {
   getFirstMethodForCategory(category: Category) {
     return head(this.categories[category])
   }
-
   getCategoryData(input: {
     currentFilter: Category,
     methodCategories: string[],
@@ -75,7 +74,8 @@ export class MethodsDataService {
     const methodIndexes = []
 
     if (input.methodCategories.length > 0) {
-      ALL_CATEGORIES.forEach((category, i) => {
+      ALL_CATEGORIES
+      .forEach((category, i) => {
         if (input.methodCategories.includes(category)) {
           methodIndexes.push(i)
         }

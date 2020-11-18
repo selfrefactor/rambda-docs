@@ -2,7 +2,6 @@
   "name": "rambda-docs",
   "scripts": {
     "i": "yarn --update-checksums",
-    "prepare": "echo prepareisinternal",
     "dev": "nodemon prepare/apply-highlighter.test.js",
     "prepare:dev": "nodemon prepare/apply-highlighter.test.js",
     "component": "ng g component",
@@ -16,8 +15,11 @@
     "start": "ng serve",
     "out": "ng build",
     "test": "jest src",
-    "test:e2e": "folio e2e/specs --param browserName=chromium",
+    "test:e2e": "folio e2e/specs --param browserName=chromium -p video",
+    "test:e2ex": "folio e2e/specs --param browserName=chromium",
+    "test:snap": "jest e2e/snap.spec.ts",
     "e2e": "node files/run-e2e.js",
+    "snap": "E2E_TEST_MODE=snap node files/run-e2e.js",
     "doc": "compodoc -p tsconfig.app.json"
   },
   "license": "MIT",
