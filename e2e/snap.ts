@@ -39,6 +39,6 @@ export async function snap(url: string, input: TestData){
     return false
   }
 }
-const urlBase = 'http://localhost:4200/all'
+// const urlBase = 'http://localhost:4200/all'
 
-snap(urlBase, {label: 'tiny', screen: {x: 1024, y: 768}})
+// snap(urlBase, {label: 'tiny', screen: {x: 1024, y: 768}})

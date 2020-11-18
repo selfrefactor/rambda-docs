@@ -21,10 +21,10 @@ import {switcher, delay } from 'rambdax'
 function getReplFontSize(forcedWindowHeight?: number): number {
   const height = forcedWindowHeight ? forcedWindowHeight : window.innerHeight
   const fontSize =  switcher<number>(height)
-    .is((x: number) => x > 2000, 22)
-    .is((x: number) => x > 1700, 19)
-    .is((x: number) => x > 1500, 14)
-    .is((x: number) => x > 1300, 13)
+    .is((x: number) => x > 1200, 22)
+    .is((x: number) => x > 1100, 19)
+    .is((x: number) => x > 1000, 14)
+    .is((x: number) => x > 800, 13)
     .default(12)
 
   return fontSize  
