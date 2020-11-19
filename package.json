@@ -51,6 +51,7 @@
   },
   "devDependencies": {
     "execa":"4.1.0",
+    "os-monitor":"1.0.9",
     "playwright-init": "0.1.0",
     "playwright-wrap": "0.1.0",
     "@playwright/test": "0.152.0",
