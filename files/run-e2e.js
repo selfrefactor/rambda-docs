@@ -1,9 +1,9 @@
 const got = require('got')
-const {exec} = require('helpers-fn')
+const {exec, monitor, log} = require('helpers-fn')
 const {ms} = require('string-fn')
 const {resolve} = require('path')
 const execa = require('execa')
-const {waitFor, delay} = require('rambdax')
+const {waitFor} = require('rambdax')
 const CWD = resolve(__dirname, '../')
 
 const localUrl = 'http://localhost:4200'
@@ -40,17 +40,24 @@ async function startAngular() {
     command: COMMAND,
   })
   angularChildProcess.cancel();
-
-  await delay(3000)
-  console.log('done')
+  const monitorData = await monitor.stop()
+  log(monitorData, 'obj')
 }
 
-void (async function prepareEndToEnd() {
-  const angularIsActive = await checkAngularActive(localUrl)
-  if (!angularIsActive) return startAngular()
-
+async function whenAlreadyRunning(){
   await exec({
     cwd: __dirname,
     command: COMMAND
   })
+  const monitorData = await monitor.stop()
+  log(monitorData, 'obj')
+}
+
+void (async function prepareEndToEnd() {
+  await monitor.start()
+
+  const angularIsActive = await checkAngularActive(localUrl)
+  if (!angularIsActive) return startAngular()
+  
+  return whenAlreadyRunning()
 })()
