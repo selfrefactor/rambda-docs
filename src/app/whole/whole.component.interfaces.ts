@@ -16,9 +16,7 @@ export type Category =
   | 'Function'
   | 'Logic'
 
-export type RambdaxCategory =
-  | Category
-  | 'Async'
+export type RambdaxCategory = Category | 'Async'
 
 type SnippetModeProp =
   | 'rambdaSource'

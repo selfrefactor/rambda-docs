@@ -1,23 +1,23 @@
-import { log } from 'helpers-fn'
+import {log} from 'helpers-fn'
 import {playwrightInit, Resolution} from 'playwright-init'
 import {wrap, WrapOutput} from 'playwright-wrap'
 
-export interface TestData{
-  label: string
-  screen: Resolution
+export interface TestData {
+  label: string,
+  screen: Resolution,
 }
 
-function waitForRepl(_: WrapOutput){
-  return async () => {
+function waitForRepl(_: WrapOutput) {
+  return async() => {
     const el = await _.page.$('#test-id')
-    if(!el) throw new Error('no element with #test-id')
+    if (!el) throw new Error('no element with #test-id')
     const replReadyIndicator = await el.getAttribute('data-repl-ready')
 
     return replReadyIndicator === 'true'
   }
 }
 
-export async function snap(url: string, input: TestData){
+export async function snap(url: string, input: TestData) {
   log(input.label, 'info')
   const {browser, page} = await playwrightInit({
     resolution: input.screen,
@@ -28,7 +28,7 @@ export async function snap(url: string, input: TestData){
   })
   try {
     const _ = wrap(page)
-    
+
     await _.waitForPredicate(waitForRepl(_), 10000)
     await _.snap(input.label)
     await browser.close()

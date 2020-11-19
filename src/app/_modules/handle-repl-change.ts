@@ -10,15 +10,15 @@ const hasResultConst = anyPass([
 ])
 
 interface ResultHolder {
-  async: boolean
-  payload: any
-  type: RambdaTypes
+  async: boolean,
+  payload: any,
+  type: RambdaTypes,
 }
 
 export const addConst = unless(hasResultConst, x => `const result = ${x}`)
 export const addSemiColon = unless<string, string>(
   x => x.endsWith(';'),
-  x => `${x};`,
+  x => `${x};`
 )
 export const stringifyResult = x => {
   if (type(x) === 'Object') {
@@ -28,11 +28,14 @@ export const stringifyResult = x => {
   return JSON.stringify(x)
 }
 
-async function evaluateCode(codeToEvaluate, maybeRambdaxMock): Promise<string | ResultHolder> {
+async function evaluateCode(
+  codeToEvaluate,
+  maybeRambdaxMock
+): Promise<string | ResultHolder> {
   if (maybeRambdaxMock) {
-    var RMock = maybeRambdaxMock
+    const RMock = maybeRambdaxMock
   }
-  var resultHolder: ResultHolder
+  let resultHolder: ResultHolder
   try {
     eval(codeToEvaluate)
     return resultHolder
@@ -41,7 +44,10 @@ async function evaluateCode(codeToEvaluate, maybeRambdaxMock): Promise<string | 
   }
 }
 
-export function handleReplChange(input, maybeRambdaxMock = undefined): Promise<string> {
+export function handleReplChange(
+  input,
+  maybeRambdaxMock = undefined
+): Promise<string> {
   return new Promise(resolve => {
     const code = addSemiColon(addConst(input.trim()))
     const codeToEvaluateRaw = `
@@ -55,7 +61,9 @@ export function handleReplChange(input, maybeRambdaxMock = undefined): Promise<s
     }
     `
     const codeToEvaluate =
-      maybeRambdaxMock === undefined ? codeToEvaluateRaw : replaceRambdaRef(codeToEvaluateRaw)
+      maybeRambdaxMock === undefined
+        ? codeToEvaluateRaw
+        : replaceRambdaRef(codeToEvaluateRaw)
 
     evaluateCode(codeToEvaluate, maybeRambdaxMock).then(evaluated => {
       if (typeof evaluated === 'string') {
@@ -67,7 +75,10 @@ export function handleReplChange(input, maybeRambdaxMock = undefined): Promise<s
         return resolve(stringifyResult(resultHolder.payload))
       }
 
-      const promised = resultHolder.type === 'Async' ? resultHolder.payload() : resultHolder.payload
+      const promised =
+        resultHolder.type === 'Async'
+          ? resultHolder.payload()
+          : resultHolder.payload
 
       promised
         .then(promisedResult => {

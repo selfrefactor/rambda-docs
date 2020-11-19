@@ -1,5 +1,5 @@
 import {ms} from 'string-fn'
-import { mapAsync } from 'rambdax'
+import {mapAsync} from 'rambdax'
 const urlBase = 'http://localhost:4200'
 const testUrl = `${urlBase}/all`
 import {TestData, snap} from './snap'
@@ -15,9 +15,9 @@ const TEST_DATA: TestData[] = [
   {label: 'huge', screen: {x: 2256, y: 1504}},
 ]
 
-test('happy', async () => {
+test('happy', async() => {
   console.time('snap')
-  await mapAsync(async (x) => {
+  await mapAsync(async x => {
     await snap(testUrl, x)
   }, TEST_DATA)
   console.timeEnd('snap')

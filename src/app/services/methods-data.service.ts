@@ -22,8 +22,8 @@ import {
 } from './methods-data.service.interfaces'
 import FuzzySet from 'fuzzyset'
 
-interface Fuzzy{
-  get: (x:string)=> [number, string][]
+interface Fuzzy {
+  get: (x: string) => [number, string][]
 }
 
 const FUZZY_LIMIT = 0.3
@@ -64,18 +64,17 @@ export class MethodsDataService {
     return head(this.categories[category])
   }
   getCategoryData(input: {
-    currentFilter: Category,
-    methodCategories: string[],
+    currentFilter: Category
+    methodCategories: string[]
   }): {
-      activeIndex: number,
-      methodIndexes: number[],
-      visibleMethods: string[],
-    } {
+    activeIndex: number
+    methodIndexes: number[]
+    visibleMethods: string[]
+  } {
     const methodIndexes = []
 
     if (input.methodCategories.length > 0) {
-      ALL_CATEGORIES
-      .forEach((category, i) => {
+      ALL_CATEGORIES.forEach((category, i) => {
         if (input.methodCategories.includes(category)) {
           methodIndexes.push(i)
         }
@@ -100,15 +99,17 @@ export class MethodsDataService {
   }
 
   applySearch(searchString: string) {
-    const fuzzyResult = this.fuzzy.get(searchString)
+    const fuzzyResult = this.fuzzy
+      .get(searchString)
       .filter(([score]) => score > FUZZY_LIMIT)
       .map(([, x]) => x)
-    const fuzzyResultConservative = this.fuzzyConservative.get(searchString)
+    const fuzzyResultConservative = this.fuzzyConservative
+      .get(searchString)
       .filter(([score]) => score > FUZZY_CONSERVATIVE_LIMIT)
 
-      const diff =  fuzzyResult.length - fuzzyResultConservative.length
-      if(diff > 20 && fuzzyResultConservative.length === 0) return []
-      
+    const diff = fuzzyResult.length - fuzzyResultConservative.length
+    if (diff > 20 && fuzzyResultConservative.length === 0) return []
+
     return fuzzyResult
   }
   applyHighlighter(input: string) {

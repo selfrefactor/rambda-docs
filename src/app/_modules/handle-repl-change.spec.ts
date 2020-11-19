@@ -10,7 +10,7 @@ test('adds const when it is missing', () => {
   expect(addConst(withConst)).toMatchInlineSnapshot(expected)
 })
 
-test('sync', async () => {
+test('sync', async() => {
   const code = `
   const fn = R.compose(
     R.join('|'),
@@ -24,7 +24,7 @@ test('sync', async () => {
   expect(result).toMatchInlineSnapshot('"\\"6|8\\""')
 })
 
-test('sync error', async () => {
+test('sync error', async() => {
   const code = `
   const result = R.compose(
     R.join('|'),
@@ -35,7 +35,7 @@ test('sync error', async () => {
   expect(result).toMatchInlineSnapshot('"fn is not a function"')
 })
 
-test('async', async () => {
+test('async', async() => {
   const code = `
   const result = R.composeAsync(
     x => ({x}),
@@ -55,7 +55,7 @@ test('async', async () => {
   `)
 })
 
-test('async error', async () => {
+test('async error', async() => {
   const code = `
   const result = R.composeAsync(
     R.map()

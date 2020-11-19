@@ -16,18 +16,18 @@ import {
 import {OnChange} from 'property-watch-decorator'
 import {take, filter} from 'rxjs/operators'
 
-import {switcher, delay } from 'rambdax'
+import {switcher, delay} from 'rambdax'
 
 function getReplFontSize(forcedWindowHeight?: number): number {
   const height = forcedWindowHeight ? forcedWindowHeight : window.innerHeight
-  const fontSize =  switcher<number>(height)
+  const fontSize = switcher<number>(height)
     .is((x: number) => x > 1200, 22)
     .is((x: number) => x > 1100, 19)
     .is((x: number) => x > 1000, 14)
     .is((x: number) => x > 800, 13)
     .default(12)
 
-  return fontSize  
+  return fontSize
 }
 
 @Component({

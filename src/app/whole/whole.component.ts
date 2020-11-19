@@ -15,11 +15,7 @@ import {
 } from './whole.component.interfaces'
 import {SingleMethod} from '../services/methods-data.service.interfaces'
 import {fromEvent} from 'rxjs'
-import {
-  map,
-  debounceTime,
-  distinctUntilChanged,
-} from 'rxjs/operators'
+import {map, debounceTime, distinctUntilChanged} from 'rxjs/operators'
 
 function fixReplInput(replInput: string) {
   if (replInput.includes('const result')) return replInput
@@ -35,7 +31,7 @@ function getVisibleSnippetModes(input: SingleMethod): SnippetMode[] {
 
 const SEPARATOR = '--'
 
-function getEventValue(event: any){
+function getEventValue(event: any) {
   return event.target.value
 }
 
@@ -87,16 +83,12 @@ export class WholeComponent implements OnInit {
     })
 
     fromEvent(this.searchInput.nativeElement, 'keyup')
-      .pipe(
-        map(getEventValue),
-        debounceTime(700),
-        distinctUntilChanged()
-      )
+      .pipe(map(getEventValue), debounceTime(700), distinctUntilChanged())
       .subscribe(this.applySearch)
   }
 
   onRouteChange(method?: string, category?: string) {
-    if (this.searchActive) { 
+    if (this.searchActive) {
       this.searchActive = false
       this.searchInput.nativeElement.value = ''
     }
@@ -106,7 +98,7 @@ export class WholeComponent implements OnInit {
       */
       return this.handleHomePageFilter(category)
     }
- 
+
     if (method === this.activeMethod && category) return console.log('skip')
     if (method !== this.activeMethod && category) {
       /*
@@ -188,7 +180,7 @@ export class WholeComponent implements OnInit {
     this.replEvaluateLock = false
   }
 
-  setReplReadyEvent(){
+  setReplReadyEvent() {
     this.replReady = true
   }
 

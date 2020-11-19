@@ -1,14 +1,14 @@
 import {playwrightInit} from 'playwright-init'
 import {wrap} from 'playwright-wrap'
-import { foo} from './foo'
+import {foo} from './foo'
 import expect from 'expect'
 
-async function applyLiveDebug(testFn){
-  const { browser, page } = await playwrightInit({
-    headless : false,
-    logFlag  : false,
-    browser  : 'chromium',
-    url      : 'about:blank',
+async function applyLiveDebug(testFn) {
+  const {browser, page} = await playwrightInit({
+    headless: false,
+    logFlag: false,
+    browser: 'chromium',
+    url: 'about:blank',
   })
   try {
     const _ = wrap(page)
@@ -20,6 +20,6 @@ async function applyLiveDebug(testFn){
   }
 }
 
-void async function liveDebug(){
+void (async function liveDebug() {
   await applyLiveDebug(foo)
-}()
+})()

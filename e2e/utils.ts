@@ -1,6 +1,6 @@
-import { wrap } from 'playwright-wrap'
+import {wrap} from 'playwright-wrap'
 
-export async function wrapTest({page, fn, expect}){
+export async function wrapTest({page, fn, expect}) {
   const _ = wrap(page)
   await fn({_, expect, page})
 }
