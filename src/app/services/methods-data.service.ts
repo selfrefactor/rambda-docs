@@ -116,8 +116,6 @@ export class MethodsDataService {
     return interpolate(input, resolver)
   }
   getDataKey(prop: SnippetMode): keyof CodeSnippet {
-    // TODO: R.switcher typings can be improved
-    // ============================================
     return switcher<keyof CodeSnippet>(prop)
       .is('source', 'rambdaSource')
       .is('tests', 'allTypings')

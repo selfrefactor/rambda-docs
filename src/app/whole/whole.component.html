@@ -11,9 +11,10 @@
 			[topLeft]="{x:0,y:0}"
 			[width]="16"
 		>
-		<div id="test-id" 
-		[attr.data-repl-ready]="replReady.toString()"
-		 ></div>
+			<div
+				[attr.data-repl-ready]="replReady.toString()"
+				id="test-id"
+			></div>
 			<div>R.{{selectedMethod}}</div>
 			<div>Filter by {{activeCategory}}</div>
 			<div class="category__container">
@@ -100,15 +101,10 @@
 			[topLeft]="{x:0,y:0}"
 			[width]="7"
 		>
-			<wired-card
-				*ngIf="data.explanation"
-				fill="#e2e2e2"
-			>
-			<div class="explanation">
-				<p>
-					{{data.explanation}}
-				</p>
-			</div>
+			<wired-card *ngIf="data.explanation" fill="#e2e2e2">
+				<div class="explanation">
+					<p>{{data.explanation}}</p>
+				</div>
 			</wired-card>
 		</cell>
 

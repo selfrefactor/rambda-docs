@@ -10,7 +10,9 @@ Build with **Angular 10**
 
 ## TODO
 
-extract shortest definition; otherwise there is no point of code snippet mode
+- extract shortest definition; otherwise there is no point of code snippet mode
+
+- add firefox and mobile to `snap`
 
 ## E2E tests
 

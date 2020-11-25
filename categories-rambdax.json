@@ -170,7 +170,8 @@
     "maybe",
     "pass",
     "switcher",
-    "waitFor"
+    "waitFor",
+    "xnor"
   ],
   "Object": [
     "assoc",
