@@ -5665,6 +5665,27 @@ helpers-fn@1.2.0:
     rambdax "7.0.1"
     string-fn "3.1.0"
 
+helpers-fn@1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/helpers-fn/-/helpers-fn-1.3.1.tgz#c50d8ccf15b091044020df970a08b1d92070b71c"
+  integrity sha512-TnS/U5k1IdOUMjwjDVumkfoE+Pn3G8BMRR+b831pPKMY57cArMpT3gNKSQ+jVblsHrTO4uoSNruCaXd41xW2iQ==
+  dependencies:
+    benny "3.6.15"
+    boxen "4.2.0"
+    cfonts "2.8.6"
+    chalk "4.1.0"
+    env-fn "2.1.1"
+    fdir "4.1.0"
+    fs-extra "9.0.1"
+    gradient-string "1.2.0"
+    hjson-js "https://github.com/selfrefactor/hjson-js#1.1.2"
+    log-symbols "4.0.0"
+    node-os-utils "1.3.2"
+    pidusage "2.0.21"
+    q-i "2.0.1"
+    rambdax "7.0.1"
+    string-fn "3.1.0"
+
 hex-color-regex@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/hex-color-regex/-/hex-color-regex-1.1.0.tgz"
@@ -5672,7 +5693,14 @@ hex-color-regex@^1.1.0:
 
 "hjson-js@git+https://github.com/selfrefactor/hjson-js.git#1.1.2":
   version "3.2.1"
+  uid "4b2cc987be6b603967888719f18c56c0118907d4"
   resolved "git+https://github.com/selfrefactor/hjson-js.git#4b2cc987be6b603967888719f18c56c0118907d4"
+  dependencies:
+    rambdax "7.0.1"
+
+"hjson-js@https://github.com/selfrefactor/hjson-js#1.1.2":
+  version "3.2.1"
+  resolved "https://github.com/selfrefactor/hjson-js#4b2cc987be6b603967888719f18c56c0118907d4"
   dependencies:
     rambdax "7.0.1"
 
@@ -8564,6 +8592,13 @@ picomatch@^2.0.4, picomatch@^2.0.5, picomatch@^2.2.1:
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.2.2.tgz"
   integrity "sha1-IfMz6ba46v8CRo9RRupAbTRfTa0= sha512-q0M/9eZHzmr0AulXyPwNfZjtwZ/RBZlbN3K3CErVrk50T2ASYI7Bye0EvekFY3IP1Nt2DHu0re+V2ZHIpMkuWg=="
 
+pidusage@2.0.21:
+  version "2.0.21"
+  resolved "https://registry.yarnpkg.com/pidusage/-/pidusage-2.0.21.tgz#7068967b3d952baea73e57668c98b9eaa876894e"
+  integrity sha512-cv3xAQos+pugVX+BfXpHsbyz/dLzX+lr44zNMsYiGxUw+kV5sgQCIcLd1z+0vq+KyC7dJ+/ts2PsfgWfSC3WXA==
+  dependencies:
+    safe-buffer "^5.2.1"
+
 pify@^2.0.0, pify@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz"
@@ -8624,21 +8659,28 @@ platform@^1.3.3:
   resolved "https://registry.yarnpkg.com/platform/-/platform-1.3.6.tgz#48b4ce983164b209c2d45a107adb31f473a6e7a7"
   integrity "sha1-SLTOmDFksgnC1FoQetsx9HOm56c= sha512-fnWVljUchTro6RiCFvCXBbNhJc2NijN7oIQxbwsyL0buWJPG85v81ehlHI9fXrJsMNgTofEoWIQeClKpgxFLrg=="
 
-playwright-init@0.1.0:
+playwright-init@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/playwright-init/-/playwright-init-0.3.0.tgz#df5f4764e127c93e658e8f16112bae498f30cd6f"
+  integrity sha512-5jGV7IIYVngio9JSy/XalRk1p6pOx+jqqUcMXH03db3qrRKMRwolRpqYFt3I2khCHrp5DFpVhvaYUsS/vnePmg==
+
+playwright-screens@0.1.0:
   version "0.1.0"
-  resolved "https://registry.yarnpkg.com/playwright-init/-/playwright-init-0.1.0.tgz#da986a1e5875d007da1fe5764399354c871b60c3"
-  integrity sha512-MeOPh6ZUtYIdXopmg/FGAO/MjA+tTaInFbazjz+/iDOFofmzz1sopesrUjgX6UzaWhqGHmxAtgGb9cW7+gtMlw==
+  resolved "https://registry.yarnpkg.com/playwright-screens/-/playwright-screens-0.1.0.tgz#6a16639ad16261a423f70a278b1c3f02d11663bc"
+  integrity sha512-V51FIn/75F7TQ5Ruj0yr/9MjStmM5cc36A9U46iIoOg8Ah0zlSO15bqqdmj/Yr4GW06RugMUvsnHXD3MMnaNlg==
   dependencies:
-    rambdax "7.0.1"
+    helpers-fn "1.3.1"
+    rambdax "7.1.0"
     string-fn "3.1.0"
 
-playwright-wrap@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/playwright-wrap/-/playwright-wrap-0.1.0.tgz#3ffe2b4bbcfe826199dd28b0556ea60a2288909d"
-  integrity sha512-3ttYvzI9EHXp+OYQNlJS0v9C18QqvJ2MTYlvuV/BTX+cAUwRAePfvVTNBAC+m6LuW77m9xulsgTypookrckFJg==
+playwright-wrap@0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/playwright-wrap/-/playwright-wrap-0.6.0.tgz#73f73d5fc23e91a74fe0f922a523e6888f635fd8"
+  integrity sha512-lUz/eJ6ezrC3+vZSSgxdjl7TOXQdzILoLRfR8DOSa7AoHK6m3bGyPwRtaVtI1Hi3ZUWAAQyz3KHfSI3+OKAKqg==
   dependencies:
-    rambdax "7.0.1"
-    string-fn "^3.1.0"
+    playwright-init "0.3.0"
+    rambdax "7.1.0"
+    string-fn "3.1.0"
 
 playwright@=1.5.2:
   version "1.5.2"
@@ -9298,6 +9340,11 @@ rambdax@7.0.1:
   resolved "https://registry.yarnpkg.com/rambdax/-/rambdax-7.0.1.tgz"
   integrity "sha1-ahsxhKvPTPbfXf/Cf8DXEQCqIew= sha512-Xrrp45dg1PLt40LMcjfNyVDcPBndzpR2t+AXGAcc9iqU9lD9bnk/b1B+n4W5tFXoSKDmZmgckcA8ajgVzbtxGA=="
 
+rambdax@7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/rambdax/-/rambdax-7.1.0.tgz#138bc13b3dbe445f635e1e3bd94bc6ae24827fe2"
+  integrity sha512-U/fBKF2IrHTLaqCsshQ948fXNrigfU0aE4Cl18y/BqkGM4E/Yg8XYKuAzghlCVq1ybPDJdq8HbGCcnuS8c6CEg==
+
 randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5, randombytes@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/randombytes/-/randombytes-2.1.0.tgz"
@@ -9796,7 +9843,7 @@ safe-buffer@5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz"
   integrity "sha1-mR7GnSluAxN0fVm9/St0XDX4go0= sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g=="
 
-safe-buffer@>=5.1.0, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@^5.2.0, safe-buffer@~5.2.0:
+safe-buffer@>=5.1.0, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@^5.2.0, safe-buffer@^5.2.1, safe-buffer@~5.2.0:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.2.1.tgz"
   integrity "sha1-Hq+fqb2x/dTsdfWPnNtOa3gn7sY= sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ=="
@@ -10462,7 +10509,7 @@ stream-shift@^1.0.0:
   resolved "https://registry.yarnpkg.com/stream-shift/-/stream-shift-1.0.1.tgz"
   integrity "sha1-1wiCgVWasneEJCebCHfaPDktWj0= sha512-AiisoFqQ0vbGcZgQPY1cdP2I76glaVA/RauYR4G4thNFgkTqr90yXTo4LYX60Jl+sIlPNHHdGSwo01AvbKUSVQ=="
 
-string-fn@3.1.0, string-fn@^3.1.0:
+string-fn@3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/string-fn/-/string-fn-3.1.0.tgz"
   integrity "sha1-vvUFB0vA20CtgIUknB2XteMOEo4= sha512-LFje5UeJH6t0XILNbwjUWctL5aU9yDKz8ILPzKVHDgw6ZGR8ebulvRD0zjUVEGKzCNxi1IzJK63/HR+7Q9HQQQ=="
@@ -10649,7 +10696,7 @@ supports-hyperlinks@^2.0.0:
 svg-to-pdfkit@^0.1.8:
   version "0.1.8"
   resolved "https://github.com/alafr/SVG-to-PDFKit/tarball/master"
-  integrity "sha1-3vSrYMQC+fOPqr4UlCg4DaFDOQU= sha512-lNiGDkpRaRdZeJV5240g0tPy8vnfY6H94ywyOM8BjaAJRmQsowiFXwkLgXVGbQNXLyRyYRA88HSgQQ4W9/wQmQ=="
+  integrity "sha1-ggdhqd0a1IyVnkdsrxHyKcWi7fI= sha512-aD23MRwSAFW1WfsYTgH7OAmlHVpzdwkvxivCjZPlsALxz/yDEVT/iTrCCkqiO38EHpdfZku6FsOyqf8a/f/rSg=="
   dependencies:
     pdfkit ">=0.8.1"
 
