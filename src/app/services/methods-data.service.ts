@@ -1,14 +1,13 @@
 import {Injectable} from '@angular/core'
 import {interpolate, switcher, head} from 'rambdax'
 // WITH_RAMBDAX
-// import allMethods from '../../../new-data-rambdax.json'
+// import allMethods from '../../../data-rambdax.json'
+// WITHOUT_RAMBDAX
+import allMethods from '../../../assets/data.json'
 // WITHOUT_RAMBDAX
 import allCategories from '../../../categories.json'
-// WITHOUT_RAMBDAX
-import allMethods from '../../../assets/new-data.json'
 // WITH_RAMBDAX
 // import allCategories from '../../../categories-rambdax.json'
-import resolver from '../../../assets/resolver.json'
 import {
   ALL_CATEGORIES,
   Category,
@@ -111,9 +110,6 @@ export class MethodsDataService {
     if (diff > 20 && fuzzyResultConservative.length === 0) return []
 
     return fuzzyResult
-  }
-  applyHighlighter(input: string) {
-    return interpolate(input, resolver)
   }
   getDataKey(prop: SnippetMode): keyof CodeSnippet {
     return switcher<keyof CodeSnippet>(prop)

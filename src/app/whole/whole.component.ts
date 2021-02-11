@@ -143,13 +143,9 @@ export class WholeComponent implements OnInit {
     }
 
     const prop = this.dataService.getDataKey(this.codeSnippetMode)
-    this.currentCodeSnippet = this.dataService.applyHighlighter(
-      this.data[prop]
-    )
+    this.currentCodeSnippet = this.data[prop]
 
-    this.typescriptDefinition = this.dataService.applyHighlighter(
-      this.data.typing
-    )
+    this.typescriptDefinition = this.data.typing
   }
 
   handleHomePageFilter(category: string) {
@@ -187,9 +183,7 @@ export class WholeComponent implements OnInit {
   selectMode(newMode: SnippetMode) {
     if (newMode.mode === this.codeSnippetMode.mode) return
 
-    this.currentCodeSnippet = this.dataService.applyHighlighter(
-      this.data[newMode.mode]
-    )
+    this.currentCodeSnippet = this.data[newMode.mode]
     this.codeSnippetMode = newMode
   }
 
